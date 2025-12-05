@@ -84,7 +84,12 @@ main {
 }
 
 .project-video {
-    display: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    border: none;
 }
 
 .project-content {
