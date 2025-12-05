@@ -92,6 +92,25 @@ main {
     border: none;
 }
 
+.project-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    display: block;
+}
+
+.project-images-row {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.project-images-row .project-image {
+    width: 50%;
+    margin: 0;
+}
+
 .project-content {
     display: none;
     padding: 0 30px 30px 30px;
