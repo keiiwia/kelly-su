@@ -49,13 +49,13 @@ main {
 .project {
     background: white;
     margin-bottom: 30px;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
 .project-header {
     width: 100%;
+    background-color: #FEF9F4;
     border: none;
     padding: 30px;
     cursor: pointer;
@@ -65,16 +65,13 @@ main {
     gap: 20px;
 }
 
-.project-header:hover {
-    background-color: #f9f9f9;
-}
-
 .project-header h2 {
     font-family: "Instrument Serif", serif;
     font-size: 1.8em;
     margin: 0;
     color: #2E7675;
     flex: 1;
+    text-align: left;
 }
 
 .toggle-icon {
@@ -93,6 +90,11 @@ main {
 .project-content {
     display: none;
     padding: 0 30px 30px 30px;
+    text-align: left;
+}
+
+.project-content * {
+    text-align: left;
 }
 
 #video-preview {
