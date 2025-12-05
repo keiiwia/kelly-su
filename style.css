@@ -34,6 +34,7 @@ h1 {
     margin-bottom: 5px;
     color: #2E7675;
     display: inline-block;
+    cursor: default;
 }
 
 .header-favicon {
@@ -42,10 +43,13 @@ h1 {
     margin-left: 10px;
     vertical-align: middle;
     opacity: 0;
-    transition: opacity 0.2s;
+    display: inline-block;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-h1:hover .header-favicon {
+h1:hover .header-favicon,
+header:hover .header-favicon {
     opacity: 1;
 }
 
