@@ -11,6 +11,7 @@
 html:has(body.landing-page) {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    overflow-x: visible;
 }
 
 body.landing-page {
@@ -19,7 +20,8 @@ body.landing-page {
     background-attachment: fixed;
     font-family: 'DM Sans', sans-serif;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: visible;
+    overflow-y: auto;
     --mouse-x: 50%;
     --mouse-y: 50%;
 }
@@ -262,6 +264,7 @@ body.landing-page::after {
     min-height: 100vh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    overflow: visible;
 }
 
 .assets-strip-perfume-layer {
@@ -276,7 +279,7 @@ body.landing-page::after {
 }
 
 .assets-strip-perfume-layer .asset-item--perfume-below-card {
-    margin-left: calc(320px + 4rem);
+    margin-left: calc(320px + 4rem + 480px);
 }
 
 .assets-strip {
@@ -290,6 +293,7 @@ body.landing-page::after {
     justify-content: center;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    overflow: visible;
 }
 
 .assets-strip-inner {
@@ -298,8 +302,7 @@ body.landing-page::after {
     justify-content: center;
     gap: 4rem;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: visible;
+    overflow: visible;
     padding: 2rem 1rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -343,18 +346,25 @@ body.landing-page::after {
 }
 
 .asset-item--angel {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
     align-self: flex-end;
     z-index: 1;
 }
 
+.asset-item--angel:hover {
+    transform: translateY(-8px);
+}
+
 .asset-item--camera {
     align-self: center;
-    transform: rotate(4deg);
+    transform: rotate(4deg) translateX(-400px);
     z-index: 2;
 }
 
 .asset-item--camera:hover {
-    transform: rotate(4deg) translateY(-8px);
+    transform: rotate(4deg) translateX(-400px) translateY(-8px);
 }
 
 .asset-item--pencil {

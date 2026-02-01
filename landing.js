@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function checkScroll() {
             const stripBottom = assetsStrip.offsetTop + assetsStrip.offsetHeight;
             const scrollY = window.scrollY;
-            const threshold = stripBottom - window.innerHeight * 0.3;
+            const threshold = stripBottom + window.innerHeight * 0.15;
             cardWrapper.classList.toggle('hidden', scrollY > threshold);
         }
         window.addEventListener('scroll', checkScroll, { passive: true });
