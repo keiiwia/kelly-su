@@ -1,4 +1,3 @@
-//init
 document.addEventListener('DOMContentLoaded', () => {
     const preview = document.getElementById('video-preview');
     const previewVideo = document.createElement('video');
@@ -6,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     previewVideo.loop = true;
     preview.appendChild(previewVideo);
 
-    //dropdown
     document.querySelectorAll('.project-header').forEach((header, index) => {
         const project = header.closest('.project');
         const video = project.querySelector('.project-video');
@@ -31,14 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // preview moves with
         header.addEventListener('mousemove', (e) => {
-            if (!project.classList.contains('active')) {
-                preview.style.left = (e.clientX + 20) + 'px';
-                preview.style.top = isFirstTwo 
-                    ? (e.clientY + 20) + 'px' 
-                    : (e.clientY - 320) + 'px';
-            }
+            if (project.classList.contains('active')) return;
+            preview.style.left = (e.clientX + 20) + 'px';
+            preview.style.top = isFirstTwo ? (e.clientY + 20) + 'px' : (e.clientY - 320) + 'px';
         });
         header.addEventListener('mouseleave', () => {
             preview.style.display = 'none';
