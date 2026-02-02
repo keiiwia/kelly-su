@@ -16,6 +16,7 @@ html:has(body.landing-page) {
 
 body.landing-page {
     min-height: 100vh;
+    padding-top: 3.5rem;
     background: #F3EEEB;
     background-attachment: fixed;
     font-family: 'DM Sans', sans-serif;
@@ -71,9 +72,78 @@ body.landing-page::after {
     100% { transform: translate(24px, 24px); }
 }
 
+/* Fixed top menu bar */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100vw;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: #F3EEEB;
+    font-family: 'DM Sans', sans-serif;
+    border-bottom: 1px solid rgba(139, 133, 149, 0.2);
+    box-sizing: border-box;
+}
+
+.top-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.top-nav-links a {
+    color: #5a5568;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.top-nav-links a:hover {
+    color: #3d3a45;
+}
+
+.top-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #3d3a45;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.top-nav-name {
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.top-nav-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.top-nav-brand:hover .top-nav-logo {
+    opacity: 1;
+}
+
 .card-fixed-wrapper {
     position: fixed;
-    inset: 0;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,6 +555,23 @@ body.landing-page::after {
 }
 
 @media (max-width: 768px) {
+    .top-nav {
+        padding: 0.75rem 1rem;
+    }
+
+    .top-nav-links {
+        gap: 1.25rem;
+    }
+
+    .top-nav-links a {
+        font-size: 0.85rem;
+    }
+
+    .top-nav-logo {
+        width: 24px;
+        height: 24px;
+    }
+
     .card {
         width: 90vw;
         max-width: 288px;
