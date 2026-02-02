@@ -573,12 +573,15 @@ body.landing-page::after {
     }
 
     .portfolio-section {
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     .portfolio-grid {
-        gap: 2rem;
-        max-width: 100%;
+        gap: 0.5rem;
+    }
+
+    .portfolio-section-header {
+        padding: 0 1rem;
     }
 
     .card {
@@ -624,12 +627,13 @@ body:not(.landing-page) {
     position: relative;
     z-index: 5;
     scroll-snap-align: start;
-    padding: 5rem 2rem 2rem;
+    padding: 5rem 0 2rem;
 }
 
 .portfolio-section-header {
     max-width: 1200px;
     margin: 0 auto 2rem;
+    padding: 0 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -669,14 +673,32 @@ body:not(.landing-page) {
     background: rgba(139, 133, 149, 0.08);
 }
 
+/* Full-page dark overlay when a tile is hovered */
+.portfolio-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.portfolio-section:has(.portfolio-tile:hover) .portfolio-overlay {
+    opacity: 1;
+}
+
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    aspect-ratio: 2;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: 1.5;
+    position: relative;
+    z-index: 5;
 }
 
 .portfolio-tile {
@@ -687,13 +709,97 @@ body:not(.landing-page) {
     text-decoration: none;
     color: inherit;
     background: #F0EDEA;
+    position: relative;
+    z-index: 1;
+    transition: z-index 0s 0.2s;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Dark layer behind image/text: tile background darkens on hover */
+.portfolio-tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
+.portfolio-tile:hover::before {
+    opacity: 1;
+}
+
+.portfolio-tile:hover {
+    z-index: 100;
+    transition: z-index 0s 0s;
 }
 
 .portfolio-tile img {
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+/* Tile overlay: title, description, tags on hover (no darkening of image) */
+.portfolio-tile-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.portfolio-tile:hover .portfolio-tile-overlay {
+    opacity: 1;
+}
+
+.portfolio-tile-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.35rem;
+    line-height: 1.3;
+    text-transform: lowercase;
+    text-shadow: 0 1px 3px rgba(0, 27, 137, 0.9), 0 2px 6px rgba(0, 27, 137, 0.7), 0 3px 8px rgba(0, 20, 80, 0.6);
+}
+
+.portfolio-tile-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0, 27, 137, 0.9), 0 2px 6px rgba(0, 27, 137, 0.7), 0 3px 8px rgba(0, 20, 80, 0.6);
+}
+
+.portfolio-tile-tags {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #F0A840;
+    letter-spacing: 0.03em;
+    text-transform: lowercase;
+    text-shadow: 0 1px 3px rgba(0, 27, 137, 0.9), 0 2px 6px rgba(0, 27, 137, 0.7), 0 3px 8px rgba(0, 20, 80, 0.6);
 }
 
 /* Footer */
