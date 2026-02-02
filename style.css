@@ -609,8 +609,8 @@ body.landing-page::after {
     }
 }
 
-/* Portfolio (shared and portfolio page) */
-body {
+/* Portfolio (shared and portfolio page) – only when not landing page */
+body:not(.landing-page) {
     font-family: "EB Garamond", serif;
     font-weight: 400;
     line-height: 1.6;
@@ -739,20 +739,20 @@ body {
     color: #3d3a45;
 }
 
-.container {
+body:not(.landing-page) .container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     gap: 40px;
 }
 
-header {
+body:not(.landing-page) header {
     width: 30%;
     text-align: left;
     padding: 20px 0;
 }
 
-h1 {
+body:not(.landing-page) h1 {
     font-family: "Instrument Serif", serif;
     font-size: 2.5em;
     margin-bottom: 5px;
@@ -761,7 +761,7 @@ h1 {
     cursor: default;
 }
 
-.header-favicon {
+body:not(.landing-page) .header-favicon {
     width: 40px;
     height: 40px;
     margin-left: 10px;
@@ -772,23 +772,23 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
-h1:hover .header-favicon,
-header:hover .header-favicon {
+body:not(.landing-page) h1:hover .header-favicon,
+body:not(.landing-page) header:hover .header-favicon {
     opacity: 1;
 }
 
-.subtitle {
+body:not(.landing-page) .subtitle {
     color: #DC7C57;
     font-size: 1.1em;
 }
 
-main {
+body:not(.landing-page) main {
     width: 70%;
     margin-bottom: 40px;
     padding-top: 40px;
 }
 
-.project {
+body:not(.landing-page) .project {
     background: #F3EEEB;
     margin-bottom: 30px;
     box-shadow: 0 2px 4px rgba(201, 131, 106, 0.1);
