@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelly Su — Portfolio</title>
+    <title>Kelly Su</title>
     <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -92,137 +92,15 @@
     </div>
 
     <section class="portfolio-section">
-        <div class="container">
-            <header>
-                <h1>Kelly Su<img src="images/favicon.jpg" alt="" class="header-favicon"></h1>
-                <p class="subtitle">keiiwia (kewiə)</p>
-            </header>
-
-            <main>
-            <section class="project">
-                <button class="project-header">
-                    <h2>Word Salad: A Collage of Confusion</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="tech">VanillaJS, HTML, CSS</span>
-                        <a href="https://keiiwia.github.io/systems/project1-wordsalad/index.html" target="_blank" class="project-link">View Project →</a>
-                    </div>
-                    <p class="description">"Word salad" refers to a string of words or phrases that are confused, nonsensical, and/or difficult to understand. Medically, it's a symptom of a thought/personality disorder where words are jumbled into a meaningless collection. Generally, it describes any communication that lacks any sense of substance.</p>
-                    <p class="description">The "word salad" aspect comes into play when the user chooses words, sometimes nonsensically—perhaps trying to string together bits of poetry or meaning, similar to how people who struggle with dysgraphia and schizophrenia have intent to speak, but their words don't come out right.</p>
-                </div>
-            </section>
-
-            <section class="project">
-                <button class="project-header">
-                    <h2>Self as Systems: The Sum of Wholes</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="tech">VanillaJS, HTML, CSS</span>
-                        <a href="https://keiiwia.github.io/systems/pinterest_datascraped/index.html" target="_blank" class="project-link">View Project →</a>
-                    </div>
-                    <video class="project-video" src="videos/thesumofwholes-walkthrough.mp4" controls muted loop></video>
-                    <p class="description">A data visualization of who the algorithm thinks I am, and who the algorithm thinks the average new user is.</p>
-                    <p class="description">The Sum of Wholes pulls from two perspectives: my tailored images that Pinsage, Pinterest's aggregate algorithm, suggests to me after I've interacted for years and curated a specific "aesthetic;" it also pulls from the perspective of a completely fresh user—the bare bones of a typical, average image algorithm, nontailored at all.</p>
-                    <p class="description">I requested my data from Pinterest, and was provided (among other data) the metatags for what is tailored to my account.</p>
-                    <img src="images/pinterest-data-inferences.png" alt="Pinterest data: inferences and topic frequency chart" class="project-image">
-                    <p class="description">Using a data scraper, I pulled the top 100 images correlated to a specific internal tag (ie: "design," "food," etc.) for both the new user and from my account.</p>
-                    <div class="project-images-row">
-                        <img src="images/pinterest-data-scrape-1.png" alt="Pinterest data scrape 1" class="project-image">
-                        <img src="images/pinterest-data-scrape-2.png" alt="Pinterest data scrape 2" class="project-image">
-                    </div>
-                </div>
-            </section>
-
-            <section class="project">
-                <button class="project-header">
-                    <h2>City as Systems: A Visualization of Economic "In's and Out's"</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="tech">VanillaJS, HTML, CSS</span>
-                        <a href="https://keiiwia.github.io/systems/cstudio_cityassystem/index.html" target="_blank" class="project-link">View Project →</a>
-                    </div>
-                    <video class="project-video" src="videos/cityassystem-walkthrough.mp4" controls muted loop></video>
-                    <p class="description">Living in NYC and along the Hudson River, I see a lot of cargo ships coming in and out of the ports. The main questions at play when observing said ships are:</p>
-                    <ul class="description">
-                        <li>How does the Hudson River act in this way, in our modern era of automobile vehicular transportation, airplane/aero vehicular transport, and train railways?</li>
-                        <li>When we see the cargo boats going through the Hudson and docking at the different ports, how much of that cargo belongs to what we've purchased/will purchase on a day-to-day basis?</li>
-                    </ul>
-                    <p class="description">Gathering data about the PANYNJ came from numerous different sources: the Bureau of Transportation Statistics, the PANYNJ Trade Statistics, U.S. Department of Transportation, etc. To composite an accurate and in-depth collection of data, I used AI (GPT 4o) to help sort through all different forms of data.</p>
-                    <div class="research-section">
-                        <h3>Research Process</h3>
-                        <p class="description">There were 5 main categories I sorted the cargo imported/exported into:</p>
-                        <ul class="description">
-                            <li>Food & agriculture</li>
-                            <li>Consumer & E-Commerce Goods</li>
-                            <li>Construction & Raw Materials</li>
-                            <li>Industrial/Machinery</li>
-                            <li>Other/Mixed Freight</li>
-                        </ul>
-                        <p class="description">The FAF uses 43 categories, and the PANYNJ Yearly Trade Reports do not detail every category/commodity that is listed/tracked by the FAF, but only the top 10 commodities. I had to extrapolate with the data I had gathered from the four main sources listed previously.</p>
-                        <h4>Utilizing AI for data gathering/data organization:</h4>
-                        <p class="description">If the information is displayed on a website (non-PDF), I collect the numerical data and reformat it into an excel sheet, which I then send to ChatGPT to reorganize and recategorize.</p>
-                        <p class="description">If the information is displayed via PDF, I inputted the source PDF itself and gave several strict criterion for GPT to look for and gather into a JSON file:</p>
-                        <ul class="description">
-                            <li>Top 10 Containerized Imports (in TEUs)</li>
-                            <li>Top 10 Containerized Exports (in TEUs)</li>
-                            <li>Annual total imports (in TEUs)</li>
-                            <li>Annual total exports (in TEUs)</li>
-                            <li>Categorized into the 5 main categories determined previously.</li>
-                        </ul>
-                        <p class="description">Between the years of data collection (2018-2024), the units listed began to shift from TEU's (standardized containerized units) to metric tons. For this, I also required GPT to reconvert metric tons into TEU's for standardization. The general estimate formula for a TEU is: <code>TEUs = (metric tons × 1000) ÷ 24</code></p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="project">
-                <button class="project-header">
-                    <h2>Machine Learning: Photobooth Color Palette Aggregator</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="tech">VanillaJS, HTML, CSS, React.js</span>
-                        <a href="https://keiiwia.github.io/systems/color-psychology/index.html" target="_blank" class="project-link">View Project →</a>
-                    </div>
-                    <p class="description">Generate your own color palettes through either K-Means or Agglomerative Algorithmic Clustering</p>
-                    <p class="description">I first began thinking about machine learning while working on a project in collaboration with the Human Language and Development Lab at the NSSR. I was researching how computers determine color from pictures humans input, and I was inspired by an article software developer Austin Poor wrote about algorithmically determining color palettes from movie stills. <a href="https://austinpoor.com/blog/algorithmic-color-palettes" target="_blank">https://austinpoor.com/blog/algorithmic-color-palettes</a></p>
-                    <p class="description">I, too, wanted to use machine learning to determine color palettes, no matter the scene, however many times, so I coded a ML algorithm program (in Vanilla Javascript) that would go through the HSL/RGB colors for all images inputted, and return color palettes for each image depending on which clustering method was utilized. For this project, I chose two ML algorithms: K-Means clustering and Agglomerative clustering.</p>
-                </div>
-            </section>
-
-            <section class="project">
-                <button class="project-header">
-                    <h2>The Lab's Digital Fridge</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <div class="project-meta">
-                        <span class="tech">VanillaJS, HTML, CSS, 11ty Static Site Generator, WebXR, modelviewer.dev</span>
-                        <a href="https://keiiwia.github.io/systems-collection-a2/" target="_blank" class="project-link">View Project →</a>
-                    </div>
-                    <video class="project-video" src="videos/digitalfridge-walkthrough.mp4" controls muted loop></video>
-                    <p class="description">A visual collection of calories consumed at work</p>
-                    <p class="description">This all started with a rotisserie chicken. At the time, we were researching photogrammetry and LiDAR scanning at the XR Lab, and on a whim, my coworker and I scanned the rotisserie chicken.</p>
-                    <p class="description">For the Apple ecosystem, Apple developed the .USDZ file format, and for a while, I would scan in snacks, pastries, and other meals I had at the lab. From there, I converted the .USDZ files to .GLTF files, providing both for my static sites in order to accommodate as many websites and platforms as possible.</p>
-                </div>
-            </section>
-
-            <section class="project">
-                <button class="project-header">
-                    <h2>Other Work</h2>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <div class="project-content">
-                    <a href="https://keiiwia.github.io/keiiwiaccportfolio/" target="_blank" class="project-link">A Dive Into Experimenting →</a>
-                </div>
-            </section>
-            </main>
+        <div class="portfolio-grid">
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
+            <a href="#" class="portfolio-tile"><img src="images/favicon.png" alt=""></a>
         </div>
     </section>
 
