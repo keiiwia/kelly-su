@@ -651,15 +651,21 @@ body:not(.landing-page):not(.project-page) {
     margin: 0;
 }
 
-.portfolio-all-works-btn {
+.portfolio-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.portfolio-filter-btn {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: #5a5568;
     letter-spacing: 0.02em;
     text-transform: lowercase;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.85rem;
     border: 1px solid rgba(139, 133, 149, 0.4);
     background: transparent;
     border-radius: 4px;
@@ -667,10 +673,20 @@ body:not(.landing-page):not(.project-page) {
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.portfolio-all-works-btn:hover {
+.portfolio-filter-btn:hover {
     color: #3d3a45;
     border-color: rgba(139, 133, 149, 0.7);
     background: rgba(139, 133, 149, 0.08);
+}
+
+.portfolio-filter-btn.is-active {
+    color: #3d3a45;
+    border-color: rgba(201, 131, 56, 0.6);
+    background: rgba(201, 131, 56, 0.12);
+}
+
+.portfolio-tile.is-hidden {
+    display: none;
 }
 
 /* Full-page dark overlay when a tile is hovered */

@@ -94,11 +94,16 @@
     <section class="portfolio-section">
         <div class="portfolio-section-header">
             <h2 class="portfolio-section-title">selected works</h2>
-            <a href="#" class="portfolio-all-works-btn">all works</a>
+            <div class="portfolio-filters" role="group" aria-label="Filter projects">
+                <button type="button" class="portfolio-filter-btn is-active" data-filter="all">all</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="ml-ai">machine learning/ai</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="web">web</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="design">design</button>
+            </div>
         </div>
         <div class="portfolio-grid">
             <div class="portfolio-overlay" id="portfolio-overlay" aria-hidden="true"></div>
-            <a href="projects/dreamee.html" class="portfolio-tile">
+            <a href="projects/dreamee.html" class="portfolio-tile" data-category="xr-ar ml-ai">
                 <img src="home-imgs/dreamee-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">Dream.ee, Real-Time AI World Generation</span>
@@ -106,7 +111,7 @@
                     <span class="portfolio-tile-tags">XR Dev, AI, BCI, Unity</span>
                 </span>
             </a>
-            <a href="projects/operation.html" class="portfolio-tile">
+            <a href="projects/operation.html" class="portfolio-tile" data-category="web design">
                 <img src="home-imgs/operation-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">Gods as Humans: Playing with Mortality</span>
@@ -114,7 +119,7 @@
                     <span class="portfolio-tile-tags">Physical Computation, Installation, Web Dev </span>
                 </span>
             </a>
-            <a href="projects/photobooth.html" class="portfolio-tile">
+            <a href="projects/photobooth.html" class="portfolio-tile" data-category="web ml-ai">
                 <img src="home-imgs/photobooth-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">Machine Learning: Photobooth Color Palette Aggregator</span>
@@ -122,7 +127,7 @@
                     <span class="portfolio-tile-tags">Web Dev, Machine Learning</span>
                 </span>
             </a>
-            <a href="projects/fridge.html" class="portfolio-tile">
+            <a href="projects/fridge.html" class="portfolio-tile" data-category="xr-ar web">
                 <img src="home-imgs/fridge-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">The Lab's Digital Fridge</span>
@@ -130,7 +135,7 @@
                     <span class="portfolio-tile-tags">Web Dev, Augmented Reality</span>
                 </span>
             </a>
-            <a href="projects/pinterest.html" class="portfolio-tile">
+            <a href="projects/pinterest.html" class="portfolio-tile" data-category="web data-viz">
                 <img src="home-imgs/pinterest-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">Self as Systems: The Sum of Wholes</span>
@@ -138,7 +143,7 @@
                     <span class="portfolio-tile-tags">Web Dev, Data Visualization</span>
                 </span>
             </a>
-            <a href="projects/panynj.html" class="portfolio-tile">
+            <a href="projects/panynj.html" class="portfolio-tile" data-category="web data-viz">
                 <img src="home-imgs/panynj-icon.png" alt="">
                 <span class="portfolio-tile-overlay">
                     <span class="portfolio-tile-title">City as Systems: A Visualization of Economic "In's and Out's"</span>
