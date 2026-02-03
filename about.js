@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const stack = document.querySelector('.about-photo-stack');
     const caption = document.querySelector('.about-photo-caption');
+    const body = document.body;
+
+    function setStippleMouse(clientX, clientY) {
+        const x = (clientX / window.innerWidth) * 100;
+        const y = (clientY / window.innerHeight) * 100;
+        body.style.setProperty('--mouse-x', `${x}%`);
+        body.style.setProperty('--mouse-y', `${y}%`);
+    }
+    document.addEventListener('mousemove', (e) => setStippleMouse(e.clientX, e.clientY));
 
     /* Start with On my birthday, then the rest */
     const photos = [
@@ -53,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         caption.textContent = photo.caption;
         caption.style.transform = `rotate(${rotation}deg)`;
-        caption.style.display = '';
         index = nextIndex;
 
         // Defer removal so caption and new layer paint first; then cap stack and freeze size
@@ -62,14 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const toRemove = layers.length - maxLayers;
             if (toRemove <= 0) return;
 
-            const stackWidth = stack.offsetWidth;
             const stackHeight = stack.offsetHeight;
 
             for (let i = 0; i < toRemove; i++) {
                 stack.removeChild(stack.firstElementChild);
             }
 
-            stack.style.width = stackWidth + 'px';
             stack.style.height = stackHeight + 'px';
 
             const newFirst = stack.firstElementChild;

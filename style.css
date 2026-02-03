@@ -14,6 +14,12 @@ html:has(body.landing-page) {
     overflow-x: visible;
 }
 
+body.landing-page,
+body.about-page {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+}
+
 body.landing-page {
     min-height: 100vh;
     padding-top: 3.5rem;
@@ -23,22 +29,30 @@ body.landing-page {
     position: relative;
     overflow-x: visible;
     overflow-y: auto;
-    --mouse-x: 50%;
-    --mouse-y: 50%;
 }
 
-body.landing-page::before {
+body.about-page {
+    position: relative;
+}
+
+body.landing-page::before,
+body.about-page::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(200, 180, 220, 0.3) 1px, transparent 1px);
+    background-image: radial-gradient(circle, #fff 1px, transparent 1px);
     background-size: 24px 24px;
     animation: drift 60s linear infinite;
     pointer-events: none;
     z-index: 1;
 }
 
-body.landing-page::after {
+body.about-page::before {
+    opacity: 0;
+}
+
+body.landing-page::after,
+body.about-page::after {
     content: '';
     position: fixed;
     inset: 0;
@@ -65,6 +79,16 @@ body.landing-page::after {
     -webkit-mask-size: cover, 5px 5px;
     mask-composite: intersect;
     -webkit-mask-composite: source-in;
+}
+
+body.about-page::after {
+    background: #fff;
+}
+
+body.about-page main,
+body.about-page .site-footer {
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes drift {
@@ -1125,10 +1149,23 @@ body.about-page {
 
 body.about-page .about-content {
     flex: 1;
-    max-width: 720px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 2rem;
+    max-width: 960px;
     margin: 0 auto;
     padding: 4rem 2rem 2rem;
     width: 100%;
+}
+
+body.about-page .about-column-text,
+body.about-page .about-column-photo {
+    min-width: 0;
+}
+
+body.about-page .about-column-photo {
+    display: flex;
+    flex-direction: column;
 }
 
 body.about-page .about-content h1 {
@@ -1141,11 +1178,30 @@ body.about-page .about-content h1 {
     text-transform: lowercase;
 }
 
-body.about-page .about-content p {
+body.about-page .about-content p,
+body.about-page .about-content ul,
+body.about-page .about-content li {
     font-size: 0.95rem;
     color: #5a5568;
-    line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+body.about-page .about-content p {
+    line-height: 1.6;
+}
+
+body.about-page .about-content ul {
+    padding-left: 2rem;
+    line-height: 1.1;
+}
+
+body.about-page .about-content li {
+    margin-left: 0.5rem;
+    line-height: 1.1;
+}
+
+body.about-page .about-content li:last-child {
+    margin-bottom: 0;
 }
 
 /* About photo pile (stack: new image appears on top with random rotation) */
@@ -1156,6 +1212,13 @@ body.about-page .about-photo-pile {
     align-items: center;
 }
 
+body.about-page .about-column-photo .about-photo-pile {
+    flex: 1;
+    width: 100%;
+    margin-top: 0;
+    align-items: stretch;
+}
+
 body.about-page .about-photo-stack {
     position: relative;
     max-width: 50%;
@@ -1163,6 +1226,19 @@ body.about-page .about-photo-stack {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+body.about-page .about-column-photo .about-photo-stack {
+    max-width: 100%;
+    width: 100%;
+}
+
+body.about-page .about-column-photo .about-photo-layer:first-child {
+    width: 100%;
+}
+
+body.about-page .about-column-photo .about-photo-layer .about-photo-img {
+    width: 100%;
 }
 
 body.about-page .about-photo-layer {
