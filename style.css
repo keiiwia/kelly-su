@@ -1317,16 +1317,24 @@ body.fun-page .fun-card p {
     margin: 0;
 }
 
+body.fun-page .fun-card img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+}
+
 /* Cards arranged in a circle around the intro (1100, 550), radius ~550px */
-body.fun-page .fun-card:nth-child(2) { top: 550px; left: 1650px; }   /* 0° */
-body.fun-page .fun-card:nth-child(3) { top: 904px; left: 1521px; }   /* 40° */
-body.fun-page .fun-card:nth-child(4) { top: 1092px; left: 1196px; } /* 80° */
-body.fun-page .fun-card:nth-child(5) { top: 1027px; left: 825px; }  /* 120° */
-body.fun-page .fun-card:nth-child(6) { top: 738px; left: 583px; }   /* 160° */
-body.fun-page .fun-card:nth-child(7) { top: 362px; left: 583px; }    /* 200° */
-body.fun-page .fun-card:nth-child(8) { top: 73px; left: 825px; }     /* 240° */
-body.fun-page .fun-card:nth-child(9) { top: 8px; left: 1196px; }     /* 280° */
-body.fun-page .fun-card:nth-child(10) { top: 196px; left: 1521px; }  /* 320° */
+body.fun-page .fun-card:nth-child(2) { top: 470px; left: 1580px; }   /* Concept Art (main) */
+body.fun-page .fun-card:nth-child(3) { top: 120px; left: 1120px; }   /* Monere asset – left of Concept Art, no overlap */
+body.fun-page .fun-card:nth-child(4) { top: 540px; left: 2020px; }  /* Null assets – right of Concept Art, no overlap */
+body.fun-page .fun-card:nth-child(5) { top: 904px; left: 1521px; }   /* Camera Strolls */
+body.fun-page .fun-card:nth-child(6) { top: 1092px; left: 1196px; } /* My favorite game */
+body.fun-page .fun-card:nth-child(7) { top: 1027px; left: 825px; }   /* Perfume */
+body.fun-page .fun-card:nth-child(8) { top: 738px; left: 583px; }     /* Eats with Friends */
+body.fun-page .fun-card:nth-child(9) { top: 362px; left: 583px; }     /* Crafts */
+body.fun-page .fun-card:nth-child(10) { top: 73px; left: 825px; }     /* Say Hi */
 
 body.fun-page .fun-card--label p {
     display: none;
