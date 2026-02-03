@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self as Systems: The Sum of Wholes — Kelly Su</title>
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="project-page">
+    <header class="top-nav" role="banner">
+        <a href="../index.html" class="top-nav-brand" aria-label="Kelly Su home">
+            <span class="top-nav-name">Kelly Su</span>
+            <img src="../images/favicon.jpg" alt="" class="top-nav-logo">
+        </a>
+        <nav class="top-nav-links" aria-label="Main">
+            <a href="../index.html#work">work</a>
+            <a href="../index.html#psych">psych</a>
+            <a href="../index.html#fun">fun</a>
+            <a href="../index.html#about">about</a>
+        </nav>
+    </header>
+
+    <main class="project-layout">
+        <aside class="project-toc">
+            <a href="../index.html" class="project-toc-home">← home</a>
+            <nav class="project-toc-nav" aria-label="On this page">
+                <a href="#overview">overview</a>
+                <a href="#data">data & process</a>
+            </nav>
+        </aside>
+        <div class="project-main">
+            <p class="project-page-header"></p>
+            <h1>Self as Systems: The Sum of Wholes</h1>
+            <div class="project-meta">
+                <span class="tech">VanillaJS, HTML, CSS</span>
+                <a href="https://keiiwia.github.io/systems/pinterest_datascraped/index.html" target="_blank" rel="noopener noreferrer" class="project-link">View Project →</a>
+            </div>
+            <section id="overview">
+                <video class="project-video" src="../videos/thesumofwholes-walkthrough.mp4" controls muted loop></video>
+                <div class="project-details-grid">
+                    <div class="project-detail"><span class="project-detail-label">ROLE</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">TIMELINE</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">TEAM</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">SKILLS</span><span class="project-detail-value">—</span></div>
+                </div>
+                <p>A data visualization of who the algorithm thinks I am, and who the algorithm thinks the average new user is.</p>
+                <p>The Sum of Wholes pulls from two perspectives: my tailored images that Pinsage, Pinterest's aggregate algorithm, suggests to me after I've interacted for years and curated a specific "aesthetic;" it also pulls from the perspective of a completely fresh user—the bare bones of a typical, average image algorithm, nontailored at all.</p>
+                <p>I requested my data from Pinterest, and was provided (among other data) the metatags for what is tailored to my account.</p>
+            </section>
+            <section id="data">
+                <img src="../images/pinterest-data-inferences.png" alt="Pinterest data: inferences and topic frequency chart" class="project-image">
+                <p>Using a data scraper, I pulled the top 100 images correlated to a specific internal tag (ie: "design," "food," etc.) for both the new user and from my account.</p>
+                <div class="project-images-row">
+                    <img src="../images/pinterest-data-scrape-1.png" alt="Pinterest data scrape 1" class="project-image">
+                    <img src="../images/pinterest-data-scrape-2.png" alt="Pinterest data scrape 2" class="project-image">
+                </div>
+            </section>
+        </div>
+        <div class="project-sidebar"></div>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-credit">Designed and coded by Kelly Su.</p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://www.linkedin.com/in/kelly-x-su" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:kellysu@newschool.edu">Email</a>
+            <a href="https://github.com/keiiwia/" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://keiiwia.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </nav>
+    </footer>
+</body>
+</html>

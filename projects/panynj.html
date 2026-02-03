@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City as Systems — Kelly Su</title>
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="project-page">
+    <header class="top-nav" role="banner">
+        <a href="../index.html" class="top-nav-brand" aria-label="Kelly Su home">
+            <span class="top-nav-name">Kelly Su</span>
+            <img src="../images/favicon.jpg" alt="" class="top-nav-logo">
+        </a>
+        <nav class="top-nav-links" aria-label="Main">
+            <a href="../index.html#work">work</a>
+            <a href="../index.html#psych">psych</a>
+            <a href="../index.html#fun">fun</a>
+            <a href="../index.html#about">about</a>
+        </nav>
+    </header>
+
+    <main class="project-layout">
+        <aside class="project-toc">
+            <a href="../index.html" class="project-toc-home">← home</a>
+            <nav class="project-toc-nav" aria-label="On this page">
+                <a href="#overview">overview</a>
+                <a href="#research">research process</a>
+            </nav>
+        </aside>
+        <div class="project-main">
+            <p class="project-page-header">Data Visualization • Website 2025 </p>
+            <h1>City as Systems: A Visualization of Economic "In's and Out's"</h1>
+            <div class="project-meta">
+                <span class="tech">VanillaJS, HTML, CSS</span>
+                <a href="https://keiiwia.github.io/systems/cstudio_cityassystem/index.html" target="_blank" rel="noopener noreferrer" class="project-link">View Project →</a>
+            </div>
+            <section id="overview">
+                <video class="project-video" src="../videos/cityassystem-walkthrough.mp4" controls muted loop></video>
+                <div class="project-details-grid">
+                    <div class="project-detail"><span class="project-detail-label">ROLE</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">TIMELINE</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">TEAM</span><span class="project-detail-value">—</span></div>
+                    <div class="project-detail"><span class="project-detail-label">SKILLS</span><span class="project-detail-value">—</span></div>
+                </div>
+                <p>Living in NYC and along the Hudson River, I see a lot of cargo ships coming in and out of the ports. The main questions at play when observing said ships are:</p>
+                <ul>
+                    <li>How does the Hudson River act in this way, in our modern era of automobile vehicular transportation, airplane/aero vehicular transport, and train railways?</li>
+                    <li>When we see the cargo boats going through the Hudson and docking at the different ports, how much of that cargo belongs to what we've purchased/will purchase on a day-to-day basis?</li>
+                </ul>
+                <p>Gathering data about the PANYNJ came from numerous different sources: the Bureau of Transportation Statistics, the PANYNJ Trade Statistics, U.S. Department of Transportation, etc. To composite an accurate and in-depth collection of data, I used AI (GPT 4o) to help sort through all different forms of data.</p>
+            </section>
+            <section id="research" class="research-section">
+                <h3>Research Process</h3>
+                <p>There were 5 main categories I sorted the cargo imported/exported into:</p>
+                <ul>
+                    <li>Food & agriculture</li>
+                    <li>Consumer & E-Commerce Goods</li>
+                    <li>Construction & Raw Materials</li>
+                    <li>Industrial/Machinery</li>
+                    <li>Other/Mixed Freight</li>
+                </ul>
+                <p>The FAF uses 43 categories, and the PANYNJ Yearly Trade Reports do not detail every category/commodity that is listed/tracked by the FAF, but only the top 10 commodities. I had to extrapolate with the data I had gathered from the four main sources listed previously.</p>
+                <h4>Utilizing AI for data gathering/data organization:</h4>
+                <p>If the information is displayed on a website (non-PDF), I collect the numerical data and reformat it into an excel sheet, which I then send to ChatGPT to reorganize and recategorize.</p>
+                <p>If the information is displayed via PDF, I inputted the source PDF itself and gave several strict criterion for GPT to look for and gather into a JSON file:</p>
+                <ul>
+                    <li>Top 10 Containerized Imports (in TEUs)</li>
+                    <li>Top 10 Containerized Exports (in TEUs)</li>
+                    <li>Annual total imports (in TEUs)</li>
+                    <li>Annual total exports (in TEUs)</li>
+                    <li>Categorized into the 5 main categories determined previously.</li>
+                </ul>
+                <p>Between the years of data collection (2018-2024), the units listed began to shift from TEU's (standardized containerized units) to metric tons. For this, I also required GPT to reconvert metric tons into TEU's for standardization. The general estimate formula for a TEU is: <code>TEUs = (metric tons × 1000) ÷ 24</code></p>
+            </section>
+        </div>
+        <div class="project-sidebar"></div>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-credit">Designed and coded by Kelly Su.</p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://www.linkedin.com/in/kelly-x-su" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:kellysu@newschool.edu">Email</a>
+            <a href="https://github.com/keiiwia/" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://keiiwia.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </nav>
+    </footer>
+</body>
+</html>
