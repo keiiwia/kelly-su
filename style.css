@@ -1296,24 +1296,24 @@ body.fun-page .fun-intro p {
 
 body.fun-page .fun-card {
     position: absolute;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
     max-width: 400px;
     user-select: none;
 }
 
 body.fun-page .fun-card h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     color: #4a4556;
 }
 
 body.fun-page .fun-card p {
-    line-height: 1.6;
+    line-height: 1.5;
     color: #6b6575;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     margin: 0;
 }
 
@@ -1321,14 +1321,52 @@ body.fun-page .fun-card img {
     display: block;
     max-width: 100%;
     height: auto;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     border-radius: 8px;
+}
+
+/* Subcards (Monere, Null) – distinct from main fun-cards */
+body.fun-page .fun-subcard {
+    position: absolute;
+    padding: 0.2rem 0;
+    max-width: 260px;
+    overflow: visible;
+    user-select: none;
+}
+
+body.fun-page .fun-subcard h2 {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    color: #3d3028;
+}
+
+body.fun-page .fun-subcard p {
+    line-height: 1.4;
+    color: #3d3028;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+body.fun-page .fun-subcard img {
+    display: block;
+    width: 380px;
+    max-width: none;
+    height: auto;
+    margin-bottom: 0.3rem;
+    border-radius: 6px;
+}
+
+body.fun-page .fun-subcard:nth-child(4) img {
+    width: 340px;
 }
 
 /* Cards arranged in a circle around the intro (1100, 550), radius ~550px */
 body.fun-page .fun-card:nth-child(2) { top: 470px; left: 1580px; }   /* Concept Art (main) */
-body.fun-page .fun-card:nth-child(3) { top: 120px; left: 1120px; }   /* Monere asset – left of Concept Art, no overlap */
-body.fun-page .fun-card:nth-child(4) { top: 540px; left: 2020px; }  /* Null assets – right of Concept Art, no overlap */
+body.fun-page .fun-subcard:nth-child(3) { top: 80px; left: 1580px; }  /* Monere – above Concept Art */
+body.fun-page .fun-subcard:nth-child(4) { top: 565px; left: 1700px; } /* N[u]ll – below Concept Art */
 body.fun-page .fun-card:nth-child(5) { top: 904px; left: 1521px; }   /* Camera Strolls */
 body.fun-page .fun-card:nth-child(6) { top: 1092px; left: 1196px; } /* My favorite game */
 body.fun-page .fun-card:nth-child(7) { top: 1027px; left: 825px; }   /* Perfume */
