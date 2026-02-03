@@ -613,7 +613,7 @@ body.landing-page::after {
 }
 
 /* Portfolio (shared and portfolio page) – only when not landing page */
-body:not(.landing-page):not(.project-page) {
+body:not(.landing-page):not(.project-page):not(.about-page) {
     font-family: "EB Garamond", serif;
     font-weight: 400;
     line-height: 1.6;
@@ -634,6 +634,7 @@ body:not(.landing-page):not(.project-page) {
     max-width: 1200px;
     margin: 0 auto 2rem;
     padding: 0 2rem;
+    padding-top: 40vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1112,20 +1113,55 @@ body.project-page .project-main a:not(.project-link):hover {
     text-decoration: underline;
 }
 
-body:not(.landing-page):not(.project-page) .container {
+/* About page */
+body.about-page {
+    min-height: 100vh;
+    padding-top: 3.5rem;
+    background: #F3EEEB;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+body.about-page .about-content {
+    flex: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+    width: 100%;
+}
+
+body.about-page .about-content h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #3d3a45;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+}
+
+body.about-page .about-content p {
+    font-size: 0.95rem;
+    color: #5a5568;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+body:not(.landing-page):not(.project-page):not(.about-page) .container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     gap: 40px;
 }
 
-body:not(.landing-page):not(.project-page) header {
+body:not(.landing-page):not(.project-page):not(.about-page) header {
     width: 30%;
     text-align: left;
     padding: 20px 0;
 }
 
-body:not(.landing-page):not(.project-page) h1 {
+body:not(.landing-page):not(.project-page):not(.about-page) h1 {
     font-family: "Instrument Serif", serif;
     font-size: 2.5em;
     margin-bottom: 5px;
@@ -1134,7 +1170,7 @@ body:not(.landing-page):not(.project-page) h1 {
     cursor: default;
 }
 
-body:not(.landing-page):not(.project-page) .header-favicon {
+body:not(.landing-page):not(.project-page):not(.about-page) .header-favicon {
     width: 40px;
     height: 40px;
     margin-left: 10px;
@@ -1145,23 +1181,23 @@ body:not(.landing-page):not(.project-page) .header-favicon {
     transition: opacity 0.3s ease;
 }
 
-body:not(.landing-page):not(.project-page) h1:hover .header-favicon,
-body:not(.landing-page):not(.project-page) header:hover .header-favicon {
+body:not(.landing-page):not(.project-page):not(.about-page) h1:hover .header-favicon,
+body:not(.landing-page):not(.project-page):not(.about-page) header:hover .header-favicon {
     opacity: 1;
 }
 
-body:not(.landing-page):not(.project-page) .subtitle {
+body:not(.landing-page):not(.project-page):not(.about-page) .subtitle {
     color: #DC7C57;
     font-size: 1.1em;
 }
 
-body:not(.landing-page):not(.project-page) main {
+body:not(.landing-page):not(.project-page):not(.about-page) main {
     width: 70%;
     margin-bottom: 40px;
     padding-top: 40px;
 }
 
-body:not(.landing-page):not(.project-page) .project {
+body:not(.landing-page):not(.project-page):not(.about-page) .project {
     background: #F3EEEB;
     margin-bottom: 30px;
     box-shadow: 0 2px 4px rgba(201, 131, 106, 0.1);
