@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const firstLayer = stack.querySelector('.about-photo-layer');
     const initialRotation = randomRotation();
+    firstLayer.dataset.rotation = String(initialRotation);
     firstLayer.style.transform = `rotate(${initialRotation}deg)`;
     firstLayer.style.zIndex = '1';
+    caption.textContent = photos[0].caption;
     caption.style.transform = `rotate(${initialRotation}deg)`;
 
     function goToNext() {
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const layer = document.createElement('div');
         layer.className = 'about-photo-layer';
+        layer.dataset.rotation = String(rotation);
         layer.style.zIndex = String(nextZ++);
         layer.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
 
@@ -50,13 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         caption.textContent = photo.caption;
         caption.style.transform = `rotate(${rotation}deg)`;
+        caption.style.display = '';
         index = nextIndex;
 
-        // Once the full loop is done, keep stack at max 8: remove oldest (bottom) layers
-        const layers = stack.querySelectorAll('.about-photo-layer');
-        for (let i = 0; i < layers.length - maxLayers; i++) {
-            stack.removeChild(stack.firstElementChild);
-        }
+        // Defer removal so caption and new layer paint first; then cap stack and freeze size
+        requestAnimationFrame(() => {
+            const layers = stack.querySelectorAll('.about-photo-layer');
+            const toRemove = layers.length - maxLayers;
+            if (toRemove <= 0) return;
+
+            const stackWidth = stack.offsetWidth;
+            const stackHeight = stack.offsetHeight;
+
+            for (let i = 0; i < toRemove; i++) {
+                stack.removeChild(stack.firstElementChild);
+            }
+
+            stack.style.width = stackWidth + 'px';
+            stack.style.height = stackHeight + 'px';
+
+            const newFirst = stack.firstElementChild;
+            if (newFirst && newFirst.dataset.rotation !== undefined) {
+                newFirst.style.transform = `rotate(${newFirst.dataset.rotation}deg)`;
+            }
+        });
     }
 
     setInterval(goToNext, intervalMs);
