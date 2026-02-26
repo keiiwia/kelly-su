@@ -973,10 +973,63 @@ body.playground-page .top-nav {
     max-width: 100vw;
 }
 
+body.playground-mode-explore .playground-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    z-index: 3;
+    pointer-events: none;
+}
+
+body.playground-mode-grid .playground-intro {
+    position: static;
+    transform: none;
+    padding: 4.5rem 2rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    z-index: 2;
+}
+
+.playground-intro h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #3d3a45;
+    letter-spacing: -0.01em;
+}
+
+.playground-hero-line {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #6b6575;
+}
+
+.playground-hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #8a8595;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+body.playground-mode-grid .playground-hero-sub {
+    display: none;
+}
+
 body.playground-page .playground-main {
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 body.playground-page .fun-content {
@@ -1033,13 +1086,7 @@ body.playground-page .fun-drag-hint.hidden {
 }
 
 body.playground-page .fun-intro {
-    position: absolute;
-    left: 1100px;
-    top: 550px;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    max-width: 420px;
-    user-select: none;
+    display: none;
 }
 
 body.playground-page .fun-intro h1 {
@@ -1064,6 +1111,10 @@ body.playground-page .fun-card {
     padding: 0.25rem 0;
     max-width: 400px;
     user-select: none;
+}
+
+body.playground-page .fun-card.playground-hidden {
+    display: none;
 }
 
 body.playground-page a.fun-card {
@@ -1157,8 +1208,10 @@ body.playground-page .playground-mode-toggle {
     display: flex;
     justify-content: center;
     gap: 0.75rem;
-    padding: 4.5rem 2rem 1.5rem;
+    padding: 0;
+    margin-top: 0.75rem;
     z-index: 2;
+    pointer-events: auto;
 }
 
 .playground-mode-btn {
@@ -1240,7 +1293,7 @@ body.playground-page .playground-mode-toggle {
 
 @media (max-width: 768px) {
     body.playground-page .playground-mode-toggle {
-        padding-top: 3.75rem;
+        margin-top: 0.5rem;
     }
 
     body.playground-page .fun-content {

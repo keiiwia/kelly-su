@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const exploreSection = document.querySelector('.playground-section--explore');
     const gridSection = document.querySelector('.playground-section--grid');
 
+    // Default to exploration mode classes on load
+    document.body.classList.add('playground-mode-explore');
+
     // Mode toggle: exploration vs grid
     if (modeButtons.length && exploreSection && gridSection) {
         modeButtons.forEach((btn) => {

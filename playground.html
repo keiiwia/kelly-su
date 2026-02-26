@@ -22,13 +22,18 @@
     </header>
 
     <main class="playground-main">
-        <div class="playground-mode-toggle" role="tablist" aria-label="Playground view mode">
-            <button class="playground-mode-btn is-active" data-mode="explore" role="tab" aria-selected="true">
-                exploration mode
-            </button>
-            <button class="playground-mode-btn" data-mode="grid" role="tab" aria-selected="false">
-                grid mode
-            </button>
+        <div class="playground-intro" aria-label="Playground intro">
+            <h1>Playground</h1>
+            <p class="playground-hero-line">Work hard, play hard.</p>
+            <p class="playground-hero-sub">↔ Drag to explore.</p>
+            <div class="playground-mode-toggle" role="tablist" aria-label="Playground view mode">
+                <button class="playground-mode-btn is-active" data-mode="explore" role="tab" aria-selected="true">
+                    exploration mode
+                </button>
+                <button class="playground-mode-btn" data-mode="grid" role="tab" aria-selected="false">
+                    grid mode
+                </button>
+            </div>
         </div>
 
         <!-- Exploration mode: draggable canvas -->
@@ -40,7 +45,7 @@
                             <h1>Playground</h1>
                             <p>Work hard, play hard.<br> ↔ Drag to explore.</p>
                         </div>
-                        <div class="fun-card">
+                        <div class="fun-card playground-hidden">
                             <h2>Concept Art</h2>
                             <p>I started off with an illustration background. Sometimes I draw characters, worlds, and concepts for games.</p>
                         </div>
@@ -52,15 +57,15 @@
                             <img src="images/fun-projects/null/null-asset.png" alt="Null asset">
                             <p><strong>N[u]ll:</strong> 2-D Gameboy-style exploration game of identity and finding purpose.</p>
                         </div>
-                        <div class="fun-card">
+                        <div class="fun-card playground-hidden">
                             <h2>Photography</h2>
                             <p>Click to view all selected photos, based on collections.</p>
                         </div>
-                        <div class="fun-card">
+                        <div class="fun-card playground-hidden">
                             <h2>Web Experiments</h2>
                             <p>Always a work in progress.</p>
                         </div>
-                        <div class="fun-card">
+                        <div class="fun-card playground-hidden">
                             <h2>Mixed Media</h2>
                             <p>Experiments with mood and texture.</p>
                         </div>
@@ -85,28 +90,12 @@
         <section class="playground-section playground-section--grid" aria-label="Grid mode">
             <div class="playground-grid">
                 <article class="playground-grid-card">
-                    <h2>Concept Art</h2>
-                    <p>Characters, worlds, and concepts for games, rooted in an illustration background.</p>
-                </article>
-                <article class="playground-grid-card">
                     <h2>Monere</h2>
                     <p>A game about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
                 </article>
                 <article class="playground-grid-card">
                     <h2>N[u]ll</h2>
                     <p>2‑D Gameboy-style exploration game of identity and finding purpose.</p>
-                </article>
-                <article class="playground-grid-card">
-                    <h2>Photography</h2>
-                    <p>Selected photo collections from camera strolls and everyday observations.</p>
-                </article>
-                <article class="playground-grid-card">
-                    <h2>Web Experiments</h2>
-                    <p>Small front-end and creative coding experiments — always in progress.</p>
-                </article>
-                <article class="playground-grid-card">
-                    <h2>Mixed Media</h2>
-                    <p>Studies in mood and texture across physical and digital mediums.</p>
                 </article>
                 <article class="playground-grid-card">
                     <h2>Lucky, lucky!</h2>
