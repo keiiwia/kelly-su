@@ -198,7 +198,6 @@ body.project-page .project-main .project-details-grid {
     gap: 1.5rem;
     margin: 0 0 2rem;
     padding: 1.5rem 0;
-    border-top: 1px solid rgba(139, 133, 149, 0.2);
     border-bottom: 1px solid rgba(139, 133, 149, 0.2);
 }
 

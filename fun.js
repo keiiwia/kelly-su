@@ -2,6 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('funCanvasContainer');
     const canvas = document.getElementById('funCanvas');
     const dragHint = document.getElementById('funDragHint');
+    const modeButtons = document.querySelectorAll('.playground-mode-btn');
+    const exploreSection = document.querySelector('.playground-section--explore');
+    const gridSection = document.querySelector('.playground-section--grid');
+
+    // Mode toggle: exploration vs grid
+    if (modeButtons.length && exploreSection && gridSection) {
+        modeButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const mode = btn.dataset.mode;
+
+                modeButtons.forEach((b) => {
+                    b.classList.toggle('is-active', b === btn);
+                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+                });
+
+                const isExplore = mode === 'explore';
+                exploreSection.classList.toggle('is-active', isExplore);
+                gridSection.classList.toggle('is-active', !isExplore);
+                document.body.classList.toggle('playground-mode-explore', isExplore);
+                document.body.classList.toggle('playground-mode-grid', !isExplore);
+            });
+        });
+    }
 
     if (!container || !canvas) return;
 

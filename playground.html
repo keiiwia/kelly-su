@@ -21,51 +21,109 @@
         </nav>
     </header>
 
-    <main class="fun-content" id="funMain">
-        <div class="fun-canvas-container" id="funCanvasContainer">
-            <div class="fun-canvas" id="funCanvas">
-                <div class="fun-intro">
-                    <h1>Playground</h1>
-                    <p>Work hard, play hard.<br> ↔ Drag to explore.</p>
+    <main class="playground-main">
+        <div class="playground-mode-toggle" role="tablist" aria-label="Playground view mode">
+            <button class="playground-mode-btn is-active" data-mode="explore" role="tab" aria-selected="true">
+                exploration mode
+            </button>
+            <button class="playground-mode-btn" data-mode="grid" role="tab" aria-selected="false">
+                grid mode
+            </button>
+        </div>
+
+        <!-- Exploration mode: draggable canvas -->
+        <section class="playground-section playground-section--explore is-active" aria-label="Exploration mode">
+            <div class="fun-content" id="funMain">
+                <div class="fun-canvas-container" id="funCanvasContainer">
+                    <div class="fun-canvas" id="funCanvas">
+                        <div class="fun-intro">
+                            <h1>Playground</h1>
+                            <p>Work hard, play hard.<br> ↔ Drag to explore.</p>
+                        </div>
+                        <div class="fun-card">
+                            <h2>Concept Art</h2>
+                            <p>I started off with an illustration background. Sometimes I draw characters, worlds, and concepts for games.</p>
+                        </div>
+                        <div class="fun-subcard">
+                            <img src="images/fun-projects/monere/monere-assets.png" alt="Monere assets">
+                            <p><strong>Monere:</strong> A game about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
+                        </div>
+                        <div class="fun-subcard">
+                            <img src="images/fun-projects/null/null-asset.png" alt="Null asset">
+                            <p><strong>N[u]ll:</strong> 2-D Gameboy-style exploration game of identity and finding purpose.</p>
+                        </div>
+                        <div class="fun-card">
+                            <h2>Photography</h2>
+                            <p>Click to view all selected photos, based on collections.</p>
+                        </div>
+                        <div class="fun-card">
+                            <h2>Web Experiments</h2>
+                            <p>Always a work in progress.</p>
+                        </div>
+                        <div class="fun-card">
+                            <h2>Mixed Media</h2>
+                            <p>Experiments with mood and texture.</p>
+                        </div>
+                        <div class="fun-card">
+                            <h2>Lucky, lucky!</h2>
+                            <p>A series about capitalism, human greed, and luck.</p>
+                        </div>
+                        <a href="projects/operation.html" class="fun-card">
+                            <h2>Gods as Humans</h2>
+                            <p>A critique on speculative futures through physical hardware and software. Installation · Physical computing.</p>
+                        </a>
+                        <a href="projects/photobooth.html" class="fun-card">
+                            <h2>Photobooth</h2>
+                            <p>Generate color palettes from photos through K-Means and Agglomerative clustering. ML · Web.</p>
+                        </a>
+                    </div>
                 </div>
-                <div class="fun-card">
+            </div>
+        </section>
+
+        <!-- Grid mode: organized tiles -->
+        <section class="playground-section playground-section--grid" aria-label="Grid mode">
+            <div class="playground-grid">
+                <article class="playground-grid-card">
                     <h2>Concept Art</h2>
-                    <p>I started off with an illustration background. Sometimes I draw characters, worlds, and concepts for games.</p>
-                </div>
-                <div class="fun-subcard">
-                    <img src="images/fun-projects/monere/monere-assets.png" alt="Monere assets">
-                    <p><strong>Monere:</strong> A game about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
-                </div>
-                <div class="fun-subcard">
-                    <img src="images/fun-projects/null/null-asset.png" alt="Null asset">
-                    <p><strong>N[u]ll:</strong> 2-D Gameboy-style exploration game of identity and finding purpose.</p>
-                </div>
-                <div class="fun-card">
+                    <p>Characters, worlds, and concepts for games, rooted in an illustration background.</p>
+                </article>
+                <article class="playground-grid-card">
+                    <h2>Monere</h2>
+                    <p>A game about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
+                </article>
+                <article class="playground-grid-card">
+                    <h2>N[u]ll</h2>
+                    <p>2‑D Gameboy-style exploration game of identity and finding purpose.</p>
+                </article>
+                <article class="playground-grid-card">
                     <h2>Photography</h2>
-                    <p>Click to view all selected photos, based on collections.</p>
-                </div>
-                <div class="fun-card">
+                    <p>Selected photo collections from camera strolls and everyday observations.</p>
+                </article>
+                <article class="playground-grid-card">
                     <h2>Web Experiments</h2>
-                    <p>Always a work in progress.</p>
-                </div>
-                <div class="fun-card">
+                    <p>Small front-end and creative coding experiments — always in progress.</p>
+                </article>
+                <article class="playground-grid-card">
                     <h2>Mixed Media</h2>
-                    <p>Experiments with mood and texture.</p>
-                </div>
-                <div class="fun-card">
+                    <p>Studies in mood and texture across physical and digital mediums.</p>
+                </article>
+                <article class="playground-grid-card">
                     <h2>Lucky, lucky!</h2>
                     <p>A series about capitalism, human greed, and luck.</p>
-                </div>
-                <a href="projects/operation.html" class="fun-card">
+                </article>
+                <article class="playground-grid-card playground-grid-card--link">
                     <h2>Gods as Humans</h2>
-                    <p>A critique on speculative futures through physical hardware and software. Installation · Physical computing.</p>
-                </a>
-                <a href="projects/photobooth.html" class="fun-card">
+                    <p>A speculative installation exploring humanity, godhood, and control.</p>
+                    <a href="projects/operation.html">View project →</a>
+                </article>
+                <article class="playground-grid-card playground-grid-card--link">
                     <h2>Photobooth</h2>
-                    <p>Generate color palettes from photos through K-Means and Agglomerative clustering. ML · Web.</p>
-                </a>
+                    <p>Machine-learning color palettes generated from photobooth images.</p>
+                    <a href="projects/photobooth.html">View project →</a>
+                </article>
             </div>
-        </div>
+        </section>
     </main>
 
     <script src="fun.js"></script>
