@@ -7,6 +7,12 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* Landing page */
 html:has(body.landing-page) {
     scroll-snap-type: y proximity;
@@ -27,7 +33,6 @@ body.landing-page {
     background-attachment: fixed;
     font-family: 'DM Sans', sans-serif;
     position: relative;
-    overflow-x: visible;
     overflow-y: auto;
 }
 
@@ -89,6 +94,12 @@ body.about-page main,
 body.about-page .site-footer {
     position: relative;
     z-index: 1;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
 }
 
 @keyframes drift {
@@ -224,7 +235,7 @@ body.about-page .site-footer {
 }
 
 .hero {
-    min-height: calc(55vh + 100px);
+    min-height: 16vh;
     position: relative;
     z-index: 0;
     scroll-snap-align: none;
@@ -404,7 +415,7 @@ body.about-page .site-footer {
     align-items: flex-end;
     justify-content: center;
     pointer-events: none;
-    padding: 4rem 2rem;
+    padding: 2.5rem 2rem;
 }
 
 .assets-strip-perfume-layer .asset-item--perfume-below-card {
@@ -420,13 +431,13 @@ body.about-page .site-footer {
     align-items: center;
     justify-content: flex-end;
     pointer-events: none;
-    padding: 4rem 2rem;
+    padding: 2.5rem 2rem;
 }
 
 .assets-strip-location-layer .asset-item--postit-below-card {
     margin-left: calc(-320px - 4rem - 400px + 200px);
     margin-bottom: 0;
-    transform: translateY(150px);
+    transform: translateY(80px);
 }
 
 .assets-strip-location-layer .asset-item--location-below-card {
@@ -441,8 +452,8 @@ body.about-page .site-footer {
 }
 
 .assets-strip {
-    min-height: 70vh;
-    padding: 4rem 2rem;
+    min-height: 60vh;
+    padding: 2.5rem 2rem 3rem;
     position: relative;
     z-index: 11;
     display: flex;
