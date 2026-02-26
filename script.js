@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ── Portfolio filters ──────────────────────────────────────────
+    const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
+    if (filterBtns.length) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                const filter = btn.dataset.filter;
+
+                // Handle standalone ptiles (hero tile)
+                document.querySelectorAll('.portfolio-grid > .ptile').forEach(tile => {
+                    const cats = tile.dataset.category || '';
+                    tile.classList.toggle('is-hidden', filter !== 'all' && !cats.split(' ').includes(filter));
+                });
+
+                // Handle ptile-rows — hide row if all children are hidden
+                document.querySelectorAll('.ptile-row').forEach(row => {
+                    const tiles = row.querySelectorAll('.ptile');
+                    let anyVisible = false;
+                    tiles.forEach(tile => {
+                        const cats = tile.dataset.category || '';
+                        const hidden = filter !== 'all' && !cats.split(' ').includes(filter);
+                        tile.classList.toggle('is-hidden', hidden);
+                        if (!hidden) anyVisible = true;
+                    });
+                    row.classList.toggle('is-hidden', !anyVisible);
+                });
+            });
+        });
+    }
+
+    // ── Video preview (project pages) ─────────────────────────────
     const preview = document.getElementById('video-preview');
     const previewVideo = document.createElement('video');
     previewVideo.muted = true;

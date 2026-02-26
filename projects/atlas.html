@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas — Kelly Su</title>
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../project-pages.css">
+</head>
+<body class="project-page">
+
+    <header class="top-nav" role="banner">
+        <a href="../index.html" class="top-nav-brand" aria-label="Kelly Su home">
+            <span class="top-nav-name">Kelly Su</span>
+            <img src="../images/favicon.jpg" alt="" class="top-nav-logo">
+        </a>
+        <nav class="top-nav-links" aria-label="Main">
+            <a href="../index.html#work">work</a>
+            <a href="../fun.html">playground</a>
+            <a href="../about.html">about</a>
+        </nav>
+    </header>
+
+    <!-- TOC + main layout -->
+    <div class="project-layout">
+
+        <!-- Sticky TOC -->
+        <aside class="project-toc" aria-label="Table of contents">
+            <a href="../index.html" class="project-toc-home">← home</a>
+            <nav class="project-toc-nav">
+                <a href="#overview">overview</a>
+                <a href="#context">context</a>
+                <a href="#research">research</a>
+                <a href="#reframe">reframe</a>
+                <a href="#iteration">iteration</a>
+                <a href="#solution">solution</a>
+                <a href="#stakeholders">stakeholders</a>
+                <a href="#reflection">reflection</a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="project-main">
+
+            <!-- Hero image -->
+            <div class="project-hero">
+                <img src="../home-imgs/atlas-hero.png" alt="Atlas OBDS ecosystem — device, watch, and speaker dock">
+            </div>
+
+            <!-- Title block -->
+            <div class="project-header-block">
+                <p class="project-label">product design · sanofi–ideo device innovation challenge · 2025</p>
+                <h1>Atlas</h1>
+            </div>
+
+            <hr class="project-divider">
+
+            <!-- Details grid -->
+            <div class="project-details-grid">
+                <div class="project-detail">
+                    <span class="project-detail-label">Role</span>
+                    <span class="project-detail-value">Product designer — research, ideation, 3D modeling, UX/UI, visual design</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Timeline</span>
+                    <span class="project-detail-value">June – October 2025</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Team</span>
+                    <span class="project-detail-value">3 people</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Tools</span>
+                    <span class="project-detail-value">Figma, Blender, Keyshot, Photoshop, Illustrator, GSAP</span>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <section id="overview">
+                <span class="section-label">overview</span>
+                <h2 class="section-heading">What if your OBDS could do more than just drug delivery?</h2>
+                <p>Atlas was designed for the Sanofi–IDEO Device Innovation Challenge 2025. The brief: reimagine the on-body drug delivery system (OBDS) experience. Existing devices like Omnipod, enFuse, and Vertiva solve the clinical problem — but they ignore the human experience. Anxiety. Stigma. Forgetting. Caregiver burden. The device ends its job the moment the dose is administered. The patient's life doesn't.</p>
+                <p>Atlas is a modular ecosystem of three connected objects: an OBDS device, a smartwatch, and a home speaker dock. Together they address the full arc of living with a chronic condition — not just the moment of administration.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">North star</span>
+                    <p>What if your OBDS could do more than just drug delivery?</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Context -->
+            <section id="context">
+                <span class="section-label">context</span>
+                <h2 class="section-heading">The clinical problem is solved. The human problem isn't.</h2>
+
+                <div class="project-stats">
+                    <div>
+                        <div class="project-stat-num">75%</div>
+                        <div class="project-stat-label">of Americans struggle with medication adherence</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-num">125k</div>
+                        <div class="project-stat-label">deaths per year from nonadherence</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-num">$300B</div>
+                        <div class="project-stat-label">in avoidable annual healthcare costs</div>
+                    </div>
+                </div>
+
+                <p>The existing OBDS market treats drug delivery as the end goal. Omnipod, enFuse, and Vertiva are clinically effective. But they're designed around the device, not around the person wearing it. We started by asking: what does a day with chronic illness actually feel like?</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Research -->
+            <section id="research">
+                <span class="section-label">research</span>
+                <h2 class="section-heading">The device ends. The condition doesn't.</h2>
+                <p>We conducted patient interviews with people managing chronic conditions requiring regular OBDS use. Two quotes shaped the entire project direction.</p>
+
+                <div class="project-quote">
+                    <p>"Sometimes it feels like I'm wearing a big sign that says 'I'm medically disabled.'"</p>
+                    <cite>— Type 1 Diabetes OBDS user</cite>
+                </div>
+
+                <div class="project-quote">
+                    <p>"I do tend to forget. I have my reminder on my phone, but if I switch it off I forget later."</p>
+                    <cite>— Injector pen user</cite>
+                </div>
+
+                <p>These two quotes pointed at two separate failure modes that the market hadn't addressed together: the emotional experience of wearing a medical device in public, and the cognitive failure of passive reminder systems.</p>
+
+                <h3>Four opportunities from research</h3>
+                <p><strong>Reduce administration anxiety.</strong> Redesign the moment of administration, not just the mechanism. The ritual matters as much as the result.</p>
+                <p><strong>Make forgetting structurally harder.</strong> Passive phone reminders fail. The system needs to integrate with the patient's environment — their home, their wrist, their routine.</p>
+                <p><strong>Design for the full ecosystem.</strong> Caregivers, clinicians, and pharma partners are underserved. The device serves the patient; the platform can serve everyone.</p>
+                <p><strong>Make the device livable.</strong> Form, color, and materials aren't cosmetic choices for a chronic condition patient — they're functional. A device you're proud to wear gets worn. A device that signals illness gets hidden.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Reframe -->
+            <section id="reframe">
+                <span class="section-label">reframe</span>
+                <h2 class="section-heading">Not a better device. A better ecosystem.</h2>
+                <p>The design brief that came out of research: a modular, human-centered on-body drug delivery ecosystem that simplifies treatment, reduces anxiety, and grows with the patient — serving the full care network, not just the person wearing the device.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-brief.png" alt="Atlas design brief and opportunity map">
+                    <figcaption>Opportunity mapping — from device-centric to ecosystem-centric thinking</figcaption>
+                </figure>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Iteration -->
+            <section id="iteration">
+                <span class="section-label">process & iteration</span>
+                <h2 class="section-heading">Two pivots that unlocked the final design</h2>
+                <p>Our first version explored a detachable touchscreen "core unit" that refunctioned as a smartwatch or small speaker. The idea: one device that does everything. A Tamagotchi-style digital companion for managing treatment.</p>
+                <p>It tested badly. Too many moving parts, too much cognitive overhead, overlapping functions that added complexity without adding value. We stripped it back.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-v1.png" alt="Atlas early concept — combined touchscreen unit">
+                    <figcaption>Early concept: one unit trying to do everything. Tested poorly — users found it overwhelming.</figcaption>
+                </figure>
+
+                <h3>Pivot 1: Screen → dedicated smartwatch</h3>
+                <p>Instead of the OBDS carrying a screen, we separated the interaction entirely. The smartwatch handles all patient-facing communication: reminders, administration guidance, health tracking, the digital companion. It magnetically docks to the OBDS during treatment, then returns to daily wear. Familiar interaction model, fewer failure points, cleaner form on the body.</p>
+
+                <h3>Pivot 2: Syringe pump → peristaltic pump</h3>
+                <p>The syringe pump mechanism required a form factor too large for the rounded, wearable shape we needed. Switching to a peristaltic pump — inspired by IV drip mechanics — reduced the physical footprint significantly while improving delivery consistency. One constraint solved two problems simultaneously.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-iteration.png" alt="Atlas iteration showing pump mechanism change">
+                    <figcaption>The pump mechanism switch unlocked the rounded form factor — less bulk, same delivery performance</figcaption>
+                </figure>
+
+                <div class="project-callout">
+                    <span class="callout-label">Design lesson</span>
+                    <p>The first version tried to do too much. The version that worked stripped physical complexity while keeping the ecosystem ambition. Less mechanism, same vision.</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Solution -->
+            <section id="solution">
+                <span class="section-label">solution</span>
+                <h2 class="section-heading">Three connected objects. One continuous experience.</h2>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-system.png" alt="Atlas full ecosystem — device, watch, speaker dock">
+                    <figcaption>The Atlas ecosystem — OBDS device, smartwatch, and home speaker dock</figcaption>
+                </figure>
+
+                <h3>OBDS Device</h3>
+                <p>Modular needle heads — hypodermic or microneedle depending on treatment. Octopus-inspired suction adhesive that maintains contact through sweat and body oils. Reusable 30mL cartridge. Peristaltic pump for consistent delivery. Soft rounded form available in a full skin tone range plus expressive colors — because a device you're proud to wear gets worn.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-device.png" alt="Atlas OBDS device detail renders">
+                    <figcaption>OBDS device in multiple colorways — form designed to be wearable, not just functional</figcaption>
+                </figure>
+
+                <h3>Smartwatch</h3>
+                <p>Tracks health metrics continuously. Layered reminder cadence: 24 hours, 1 hour, and 10 minutes before each dose. AI-guided multilingual administration instructions reduce errors at the moment of use. A pixel-art digital companion — subtle, not infantilizing — provides emotional continuity across the treatment day.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-watch.png" alt="Atlas smartwatch UI screens">
+                    <figcaption>Smartwatch UI — administration guidance, health tracking, companion character</figcaption>
+                </figure>
+
+                <h3>Home Speaker Dock</h3>
+                <p>Charges the watch overnight. Provides voice-based reminders and dosing guidance for patients who prefer audio over screen interaction. Acts as a home care hub — caregiver-facing data, refill alerts, appointment reminders.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Stakeholders -->
+            <section id="stakeholders">
+                <span class="section-label">stakeholders</span>
+                <h2 class="section-heading">Designed for the full care network</h2>
+                <p>One of the core failures of existing OBDS products is that they're designed for a single user — the patient — while ignoring everyone else in the care network. Atlas was designed for four stakeholders simultaneously.</p>
+
+                <h3>Emily — the patient</h3>
+                <p>Multilingual administration guidance, adaptive reminder cadence, a device that doesn't signal illness to everyone around her. Reduced anxiety at every step of the treatment ritual.</p>
+
+                <h3>Peter — the caregiver</h3>
+                <p>Remote monitoring through the app without hovering in person. His father maintains independence; Peter maintains peace of mind.</p>
+
+                <h3>Dr. Lin — the clinician</h3>
+                <p>Real-time adherence data. Fewer administration errors. Confidence that the patient is following the treatment protocol between appointments.</p>
+
+                <h3>PharmaCorp — the pharma partner</h3>
+                <p>Refillable cartridges reduce packaging waste and enable subscription logistics. Anonymized adherence data provides population-level insight. A branded patient ecosystem creates a direct ongoing relationship with users — not just a one-time prescription.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/atlas-stakeholders.png" alt="Atlas stakeholder ecosystem map">
+                    <figcaption>Stakeholder ecosystem — the platform serves all four simultaneously</figcaption>
+                </figure>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Reflection -->
+            <section id="reflection">
+                <span class="section-label">reflection</span>
+                <h2 class="section-heading">What this project taught me about ecosystem design</h2>
+                <p>The hardest design decision on Atlas wasn't a form factor or a feature — it was learning to cut. Our first version was technically interesting. The final version was actually useful. Stripping complexity while preserving ambition is a skill, and it's one I only developed because the early prototype tested so badly.</p>
+                <p>The bigger lesson was about scope. We could have designed a better syringe. Instead we designed a system that serves a patient, their caregiver, their doctor, and their pharma company simultaneously — and makes each of their lives meaningfully easier. That's what "product thinking" actually means when the stakes are healthcare.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">Atlas → Iaso</span>
+                    <p>Atlas taught me that the hardware is only part of the problem. Iaso applies the same ecosystem thinking to the software layer — same patient, different surface.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="project-sidebar"></aside>
+
+    </div>
+
+    <!-- Next project -->
+    <a href="iaso.html" class="project-next">
+        <div>
+            <div class="project-next-label">next project</div>
+            <div class="project-next-title">Iaso — Medication Adherence App</div>
+        </div>
+        <span class="project-next-arrow">→</span>
+    </a>
+
+    <footer class="site-footer">
+        <p class="footer-credit">Designed and coded by Kelly Su.</p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://www.linkedin.com/in/kelly-x-su" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:kellysu@newschool.edu">Email</a>
+            <a href="https://github.com/keiiwia/" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://keiiwia.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Scroll spy for TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.project-toc-nav a');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('is-active'));
+                    const active = document.querySelector(`.project-toc-nav a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('is-active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(s => observer.observe(s));
+    </script>
+
+</body>
+</html>

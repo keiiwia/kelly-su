@@ -1,0 +1,492 @@
+/* ─── PROJECT PAGES — self-contained styles for body.project-page ────
+   Loaded on iaso.html, atlas.html, and any future project pages.
+   style.css provides only global resets, fonts, .top-nav, .site-footer.
+──────────────────────────────────────────────────────────────────── */
+
+/* ── Page shell ──────────────────────────────────────────────────── */
+body.project-page {
+    min-height: 100vh;
+    padding-top: 3.5rem;
+    background: #F3EEEB;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Two-column layout ───────────────────────────────────────────── */
+body.project-page .project-layout {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 2rem 0;
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* ── TOC sidebar ─────────────────────────────────────────────────── */
+body.project-page .project-toc {
+    flex: 0 0 calc((100% - 4rem) * 0.25);
+    position: sticky;
+    top: 5rem;
+}
+
+body.project-page .project-toc-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #3d3a45;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+body.project-page .project-toc-home:hover {
+    color: #5a5568;
+}
+
+body.project-page .project-toc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+body.project-page .project-toc-nav a {
+    font-size: 0.85rem;
+    color: #5a5568;
+    text-decoration: none;
+    font-weight: 400;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, padding-left 0.15s ease;
+}
+
+body.project-page .project-toc-nav a:hover {
+    color: #3d3a45;
+}
+
+body.project-page .project-toc-nav a.is-active {
+    color: #C98338;
+    font-weight: 500;
+    padding-left: 0.5rem;
+    border-left: 2px solid #C98338;
+}
+
+/* ── Main content column ─────────────────────────────────────────── */
+body.project-page .project-main {
+    flex: 0 0 calc((100% - 4rem) * 0.55);
+    min-width: 0;
+}
+
+body.project-page .project-sidebar {
+    flex: 0 0 calc((100% - 4rem) * 0.2);
+}
+
+/* General prose */
+body.project-page .project-main p {
+    font-size: 0.95rem;
+    color: #5a5568;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+body.project-page .project-main ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+    color: #5a5568;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+body.project-page .project-main ul li {
+    margin-bottom: 0.35rem;
+}
+
+body.project-page .project-main code {
+    background: rgba(139, 133, 149, 0.15);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #3d3a45;
+}
+
+body.project-page .project-main a:not(.project-link) {
+    color: #C98338;
+    text-decoration: none;
+}
+
+body.project-page .project-main a:not(.project-link):hover {
+    text-decoration: underline;
+}
+
+body.project-page .project-main .project-link {
+    font-size: 0.9rem;
+    color: #C98338;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+body.project-page .project-main .project-link:hover {
+    color: #E8A84D;
+}
+
+body.project-page .project-main video {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    display: block;
+}
+
+/* ── Hero image (inside main column, not full-bleed) ─────────────── */
+.project-hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1.25rem;
+    border-radius: 6px;
+}
+
+.project-hero img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.project-hero--contain img {
+    object-fit: contain;
+    background: #EAE5DF;
+}
+
+/* ── Project title block ─────────────────────────────────────────── */
+.project-header-block {
+    padding: 0 0 0.5rem;
+    max-width: 100%;
+}
+
+.project-header-block .project-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #C98338;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Specificity high enough to beat any generic h1 rule in style.css */
+body.project-page .project-main .project-header-block h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #3d3a45;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+}
+
+/* ── Details grid ────────────────────────────────────────────────── */
+body.project-page .project-main .project-details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 0 0 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(139, 133, 149, 0.2);
+    border-bottom: 1px solid rgba(139, 133, 149, 0.2);
+}
+
+body.project-page .project-main .project-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+body.project-page .project-main .project-detail-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #5a5568;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+body.project-page .project-main .project-detail-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #3d3a45;
+    line-height: 1.4;
+}
+
+/* ── Section typography ──────────────────────────────────────────── */
+.section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #C98338;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+    display: block;
+}
+
+/* Section-level heading — Crimson Pro, editorial weight */
+body.project-page .project-main h2.section-heading {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: #3d3a45;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+}
+
+/* Generic h2 (not a section heading) */
+body.project-page .project-main h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3d3a45;
+    margin: 2rem 0 0.75rem;
+}
+
+/* Subsection h3 */
+body.project-page .project-main h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3d3a45;
+    margin: 1.75rem 0 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+/* ── Content blocks ──────────────────────────────────────────────── */
+.project-quote {
+    margin: 1.75rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid #C98338;
+    background: rgba(201, 131, 56, 0.06);
+    border-radius: 0 6px 6px 0;
+}
+
+.project-quote p {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #4a4556;
+    line-height: 1.55;
+    margin: 0 !important;
+}
+
+.project-quote cite {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: #8a8595;
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.project-callout {
+    margin: 1.75rem 0;
+    padding: 1.25rem 1.5rem;
+    background: rgba(139, 133, 149, 0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(139, 133, 149, 0.18);
+}
+
+.project-callout .callout-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #8a8595;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.project-callout p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #4a4556;
+    line-height: 1.55;
+    margin: 0 !important;
+}
+
+.project-divider {
+    border: none;
+    border-top: 1px solid rgba(139, 133, 149, 0.2);
+    margin: 2.5rem 0;
+}
+
+.project-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 1.75rem 0;
+    padding: 1.5rem;
+    background: rgba(201, 131, 56, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(201, 131, 56, 0.15);
+}
+
+.project-stat-num {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #C98338;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.project-stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #6b6575;
+    line-height: 1.4;
+}
+
+/* ── Images ──────────────────────────────────────────────────────── */
+figure.project-figure {
+    margin: 1.75rem 0;
+}
+
+figure.project-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+figure.project-figure figcaption {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: #8a8595;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+/* Full-width image that bleeds out of the main column */
+.project-img-break {
+    margin: 2rem -2rem;
+    overflow: hidden;
+}
+
+.project-img-break img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-img-break figcaption,
+.img-caption {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    color: #8a8595;
+    margin-top: 0.5rem;
+    padding: 0 2rem;
+    letter-spacing: 0.01em;
+}
+
+.project-img-2up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.75rem 0;
+}
+
+.project-img-2up img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* ── Next project footer link ────────────────────────────────────── */
+.project-next {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(139, 133, 149, 0.2);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.project-next:hover {
+    background: rgba(139, 133, 149, 0.05);
+}
+
+.project-next-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #8a8595;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.project-next-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #3d3a45;
+}
+
+.project-next-arrow {
+    font-size: 1.5rem;
+    color: #9b8fa9;
+    transition: transform 0.2s ease;
+}
+
+.project-next:hover .project-next-arrow {
+    transform: translateX(4px);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    body.project-page .project-layout {
+        flex-direction: column;
+        padding: 1.5rem 1rem 0;
+    }
+
+    body.project-page .project-toc {
+        position: static;
+        display: none;
+    }
+
+    body.project-page .project-main {
+        flex: 1;
+    }
+
+    body.project-page .project-main .project-header-block h1 {
+        font-size: 2rem;
+    }
+
+    body.project-page .project-main .project-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-img-break {
+        margin: 1.5rem -1rem;
+    }
+
+    .project-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .project-img-2up {
+        grid-template-columns: 1fr;
+    }
+}

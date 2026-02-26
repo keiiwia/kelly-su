@@ -48,7 +48,7 @@
                         <h1 class="name">Kelly Su</h1>
                         <div>
                             <p class="subtitle">keiiwia (kewiə)</p>
-                            <p class="scroll-hint">product designer · front-end developer · creative technologist</p>
+                            <p class="scroll-hint">designer, creative technologist, artist, hci research</p>
                         </div>
                     </div>
                 </div>
@@ -92,83 +92,66 @@
     </div>
 
     <section class="portfolio-section">
+        <div class="portfolio-section-header">
+            <h2 class="portfolio-section-title">selected works</h2>
+            <p>for more sillies, checkout <a href="fun.html">my playground!</a></p>
+            <div class="portfolio-filters" role="group" aria-label="Filter projects">
+                <button type="button" class="portfolio-filter-btn is-active" data-filter="all">all</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="ml-ai">machine learning/ai</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="web">web</button>
+                <button type="button" class="portfolio-filter-btn" data-filter="design">design</button>
+            </div>
+        </div>
         <div class="portfolio-grid">
-
-            <!-- Row 1: hero tile full width -->
-            <a href="projects/iaso.html" class="ptile ptile--hero" data-category="ux product">
-                <div class="ptile-img-wrap">
-                    <img src="home-imgs/iaso-hero.png" alt="Iaso app screens">
-                </div>
-                <div class="ptile-meta">
-                    <div class="ptile-meta-left">
-                        <span class="ptile-label">ux/mobile · ios · 2025</span>
-                        <h3 class="ptile-title">Iaso</h3>
-                        <p class="ptile-desc">A digital pillbox that earns long-term trust — prescription scanning, GPS-based reminders, and a caregiver platform built into a consumer iOS app.</p>
-                    </div>
-                    <span class="ptile-arrow">→</span>
-                </div>
+            <div class="portfolio-overlay" id="portfolio-overlay" aria-hidden="true"></div>
+            <a href="projects/dreamee.html" class="portfolio-tile" data-category="xr-ar ml-ai">
+                <img src="home-imgs/dreamee-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">Dream.ee, Real-Time AI World Generation</span>
+                    <p class="portfolio-tile-desc">Visualize and experience your dreams and passions, through AI-generated worlds and neural feedback.</p>
+                    <span class="portfolio-tile-tags">XR Dev, AI, BCI, Unity</span>
+                </span>
             </a>
-
-            <!-- Row 2: 60/40 split — Atlas large left, Dream.ee smaller right -->
-            <div class="ptile-row ptile-row--60-40">
-                <a href="projects/atlas.html" class="ptile" data-category="product">
-                    <div class="ptile-img-wrap">
-                        <img src="home-imgs/atlas-hero.png" alt="Atlas OBDS ecosystem">
-                    </div>
-                    <div class="ptile-meta">
-                        <div class="ptile-meta-left">
-                            <span class="ptile-label">product design · sanofi–ideo · 2025</span>
-                            <h3 class="ptile-title">Atlas</h3>
-                            <p class="ptile-desc">A modular on-body drug delivery ecosystem — device, smartwatch, and home hub — for the Sanofi–IDEO Device Innovation Challenge.</p>
-                        </div>
-                        <span class="ptile-arrow">→</span>
-                    </div>
-                </a>
-                <a href="projects/dreamee.html" class="ptile" data-category="creative-tech product">
-                    <div class="ptile-img-wrap">
-                        <img src="home-imgs/dreamee-hero.png" alt="Dream.ee XR experience">
-                    </div>
-                    <div class="ptile-meta">
-                        <div class="ptile-meta-left">
-                            <span class="ptile-label">xr · ux · mit reality hack 2026 ✦</span>
-                            <h3 class="ptile-title">Dream.ee</h3>
-                            <p class="ptile-desc">Founder's Lab Award winner. Designed the UX for an AI world-generation system driven by neural feedback.</p>
-                        </div>
-                        <span class="ptile-arrow">→</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Row 3: 40/60 split — flipped rhythm -->
-            <div class="ptile-row ptile-row--40-60">
-                <a href="projects/operation.html" class="ptile" data-category="creative-tech">
-                    <div class="ptile-img-wrap">
-                        <img src="home-imgs/operation-icon.png" alt="Gods as Humans installation">
-                    </div>
-                    <div class="ptile-meta">
-                        <div class="ptile-meta-left">
-                            <span class="ptile-label">installation · physical computing</span>
-                            <h3 class="ptile-title">Gods as Humans</h3>
-                            <p class="ptile-desc">A critique on speculative futures through physical hardware and software.</p>
-                        </div>
-                        <span class="ptile-arrow">→</span>
-                    </div>
-                </a>
-                <a href="projects/photobooth.html" class="ptile" data-category="creative-tech">
-                    <div class="ptile-img-wrap">
-                        <img src="home-imgs/photobooth-icon.png" alt="Photobooth color palette aggregator">
-                    </div>
-                    <div class="ptile-meta">
-                        <div class="ptile-meta-left">
-                            <span class="ptile-label">ml · web · 2024</span>
-                            <h3 class="ptile-title">Photobooth</h3>
-                            <p class="ptile-desc">Generate color palettes from photos through K-Means and Agglomerative clustering.</p>
-                        </div>
-                        <span class="ptile-arrow">→</span>
-                    </div>
-                </a>
-            </div>
-
+            <a href="projects/operation.html" class="portfolio-tile" data-category="web design">
+                <img src="home-imgs/operation-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">Gods as Humans: Playing with Mortality</span>
+                    <p class="portfolio-tile-desc">A critique on speculative futures, through a mixture between physical hardware and software.</p>
+                    <span class="portfolio-tile-tags">Physical Computation, Installation, Web Dev </span>
+                </span>
+            </a>
+            <a href="projects/photobooth.html" class="portfolio-tile" data-category="web ml-ai">
+                <img src="home-imgs/photobooth-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">Machine Learning: Photobooth Color Palette Aggregator</span>
+                    <p class="portfolio-tile-desc">Generate your own color palettes through either K-Means or Agglomerative Algorithmic Clustering</p>
+                    <span class="portfolio-tile-tags">Web Dev, Machine Learning</span>
+                </span>
+            </a>
+            <a href="projects/fridge.html" class="portfolio-tile" data-category="xr-ar web">
+                <img src="home-imgs/fridge-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">The Lab's Digital Fridge</span>
+                    <p class="portfolio-tile-desc">A visual collection of calories consumed at work</p>
+                    <span class="portfolio-tile-tags">Web Dev, Augmented Reality</span>
+                </span>
+            </a>
+            <a href="projects/pinterest.html" class="portfolio-tile" data-category="web data-viz">
+                <img src="home-imgs/pinterest-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">Self as Systems: The Sum of Wholes</span>
+                    <p class="portfolio-tile-desc">A data visualization of who the algorithm thinks I am, and who the algorithm thinks the average new user is.</p>
+                    <span class="portfolio-tile-tags">Web Dev, Data Visualization</span>
+                </span>
+            </a>
+            <a href="projects/panynj.html" class="portfolio-tile" data-category="web data-viz">
+                <img src="home-imgs/panynj-icon.png" alt="">
+                <span class="portfolio-tile-overlay">
+                    <span class="portfolio-tile-title">City as Systems: A Visualization of Economic "In's and Out's"</span>
+                    <p class="portfolio-tile-desc">Living in NYC and along the Hudson River, I see a lot of cargo ships coming in and out of the ports.</p>
+                    <span class="portfolio-tile-tags">Web Dev, Data Visualization</span>
+                </span>
+            </a>
         </div>
     </section>
 

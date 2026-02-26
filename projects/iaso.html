@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iaso — Kelly Su</title>
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../project-pages.css">
+</head>
+<body class="project-page">
+
+    <header class="top-nav" role="banner">
+        <a href="../index.html" class="top-nav-brand" aria-label="Kelly Su home">
+            <span class="top-nav-name">Kelly Su</span>
+            <img src="../images/favicon.jpg" alt="" class="top-nav-logo">
+        </a>
+        <nav class="top-nav-links" aria-label="Main">
+            <a href="../index.html#work">work</a>
+            <a href="../fun.html">playground</a>
+            <a href="../about.html">about</a>
+        </nav>
+    </header>
+
+    <!-- TOC + main layout -->
+    <div class="project-layout">
+
+        <!-- Sticky TOC -->
+        <aside class="project-toc" aria-label="Table of contents">
+            <a href="../index.html" class="project-toc-home">← home</a>
+            <nav class="project-toc-nav">
+                <a href="#overview">overview</a>
+                <a href="#context">context</a>
+                <a href="#research">research</a>
+                <a href="#opportunities">opportunities</a>
+                <a href="#iteration">iteration</a>
+                <a href="#testing">testing</a>
+                <a href="#solution">solution</a>
+                <a href="#reflection">reflection</a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="project-main">
+
+            <!-- Hero image -->
+            <div class="project-hero">
+                <img src="../home-imgs/iaso-hero.png" alt="Iaso app screens">
+            </div>
+
+            <!-- Title block -->
+            <div class="project-header-block">
+                <p class="project-label">ux/mobile · ios · 2025 – ongoing</p>
+                <h1>Iaso</h1>
+            </div>
+
+            <hr class="project-divider">
+
+            <!-- Details grid -->
+            <div class="project-details-grid">
+                <div class="project-detail">
+                    <span class="project-detail-label">Role</span>
+                    <span class="project-detail-value">Solo designer & developer</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Timeline</span>
+                    <span class="project-detail-value">Fall 2025 – ongoing</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Tools</span>
+                    <span class="project-detail-value">Figma, Xcode, SwiftUI</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Methods</span>
+                    <span class="project-detail-value">User interviews, desk research, prototyping</span>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <section id="overview">
+                <span class="section-label">overview</span>
+                <h2 class="section-heading">Track your daily doses. Learn what you're taking. Stay accountable.</h2>
+                <p>Iaso started as a class project for CD Studio: UX at The New School — and became something I couldn't stop working on. Named after Ἰασώ, the Greek goddess of recuperation and cures, the project grew directly out of Atlas. Designing a hardware ecosystem for medication adherence taught me that the physical device was only part of the problem. The rest lived in software: forgetting, routine disruption, the friction of managing multiple prescriptions, the caregiver who can't be present all day.</p>
+                <p>I wanted to know if the same ecosystem thinking could work at the app layer — and I wanted to build it myself.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Context -->
+            <section id="context">
+                <span class="section-label">context</span>
+                <h2 class="section-heading">How do we digitize a very physical process?</h2>
+                <p>A pillbox is low-tech, reliable, and immediately understood. Every medication app tries to replace it — and most fail. The challenge wasn't building another reminder app. It was building something that earns the trust a pillbox already has, while doing things a pillbox structurally cannot.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">How Might We</span>
+                    <p>How might we make it easy for everyone — patients, seniors, caregivers — to access healthcare information and track medication habits, without adding more complexity to an already overwhelming process?</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Research -->
+            <section id="research">
+                <span class="section-label">research</span>
+                <h2 class="section-heading">A design failure dressed up as a health crisis</h2>
+                <p>I started with the data because it reframes the problem immediately.</p>
+
+                <div class="project-stats">
+                    <div>
+                        <div class="project-stat-num">50%</div>
+                        <div class="project-stat-label">of people don't take medications as prescribed</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-num">125k</div>
+                        <div class="project-stat-label">Americans die annually from nonadherence</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-num">39%</div>
+                        <div class="project-stat-label">cite forgetfulness as the primary reason — not cost</div>
+                    </div>
+                </div>
+
+                <p>I then looked at why existing apps fail — through user interviews, desk research, and a competitive review of Medisafe, MyTherapy, and Care4Today.</p>
+
+                <div class="project-quote">
+                    <p>"I downloaded three different apps. I always end up back to just setting an alarm."</p>
+                </div>
+
+                <div class="project-quote">
+                    <p>"My mom can't figure out the interface. I just call her every morning now."</p>
+                </div>
+
+                <p>The pattern was consistent: apps work for a few weeks, then get abandoned. Not because the reminder concept fails — but because the apps create their own burden. I mapped five recurring failure modes across every product I reviewed:</p>
+
+                <h3>Setup friction</h3>
+                <p>Adding five medications manually takes 20+ minutes. The people with the most complex regimens are least likely to finish setup — the people who need help most are the ones being left behind.</p>
+
+                <h3>Unreliable notifications</h3>
+                <p>The single most common complaint across all apps. One missed reminder destroys trust permanently. Users go back to alarms.</p>
+
+                <h3>Wrong user model</h3>
+                <p>Designed for young, healthy people tracking supplements. Not for a 70-year-old managing 8 prescriptions from three different doctors. 51% of adults 65+ take 5+ prescriptions daily — they are the primary use case.</p>
+
+                <h3>No adaptation</h3>
+                <p>Life changes: you travel, your schedule shifts, a doctor adds a new prescription. The app doesn't adapt. It falls out of sync with reality and becomes useless.</p>
+
+                <h3>No enduring value</h3>
+                <p>Once a habit forms (~90 days in), reminders become noise. There's no reason to keep using the app. A $5 pillbox wins on long-term retention because it requires zero maintenance.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">Key insight</span>
+                    <p>Any app trying to replace a pillbox needs to do things a pillbox structurally cannot — not just digitize the same experience.</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Opportunities -->
+            <section id="opportunities">
+                <span class="section-label">opportunities</span>
+                <h2 class="section-heading">Three clear gaps in the market</h2>
+
+                <h3>Eliminate setup friction</h3>
+                <p>Prescription scanning (on-device ML for privacy, no server dependency) can reduce medication entry from 20 minutes to under 2. This is the single biggest barrier to adoption and the most obvious gap in the market.</p>
+
+                <h3>Make reminders context-aware</h3>
+                <p>Time-based reminders fail when routines change. GPS location nodes — reminders that fire when you arrive home rather than at a fixed clock time — adapt to real life instead of demanding users adapt to the app. This directly addresses the most common adherence failure: leaving before a scheduled dose and not being home when the reminder fires.</p>
+
+                <h3>Design for the actual user</h3>
+                <p>No major app is genuinely designed for seniors. Large touch targets, high contrast, persistent labeled navigation, one action per screen — these aren't accessibility add-ons, they're the core product decision. Designing for the hardest user makes the product better for everyone.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Iteration -->
+            <section id="iteration">
+                <span class="section-label">process & iteration</span>
+                <h2 class="section-heading">Three rounds before it tested well</h2>
+                <p>My first designs leaned into a warm, modern aesthetic — card-based layouts, soft color palette, multiple medications visible at once. They looked good. They tested poorly.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-v1.png" alt="Iaso v1 — early home screen exploration">
+                    <figcaption>Early iteration: all medications visible at once, checkbox interaction pattern</figcaption>
+                </figure>
+
+                <p>During an early user session, a participant in her late 60s stared at the screen for a moment and asked: <em>"Which one do I press?"</em> That one moment drove the next three rounds of iteration.</p>
+
+                <h3>Checkboxes → confirmation action</h3>
+                <p>Checkboxes carry the mental model of "select items in a list." That's not what a patient needs at 9 AM — they need to confirm they took something right now. I replaced them with a single prominent confirmation action per dose group.</p>
+
+                <h3>All medications at once → current dose dominant</h3>
+                <p>Showing everything simultaneously created visual competition. The redesign surfaces only what needs action now, with upcoming doses visible but visually subordinate. There's a clear answer to "what do I do?" the moment you open the app.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-iterations.png" alt="Iaso three iterations side by side">
+                    <figcaption>Visual identity evolved across three rounds — list layout → card system → final color hierarchy</figcaption>
+                </figure>
+
+                <h3>Color logic simplified</h3>
+                <p>Early versions used teal for both "current time indicator" and "taken" state, which created genuine confusion. Final system: one color per state, no overlap, no ambiguity.</p>
+
+                <h3>Navigation labeled</h3>
+                <p>Icon-only bottom navigation replaced with labeled tabs. Gesture-based navigation removed entirely. Seniors don't explore, they execute — hidden swipeable screens replaced with explicit navigation.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Testing -->
+            <section id="testing">
+                <span class="section-label">testing</span>
+                <h2 class="section-heading">Designing for the harder use case</h2>
+                <p>I tested with users across two age groups: adults 25–40 and adults 60+. The failure modes were different for each, which created a real product tension.</p>
+                <p>Younger users wanted density — more information, faster navigation, less hand-holding. Older users consistently needed larger targets, explicit labels, slower flows, and more confirmation steps before committing to an action.</p>
+
+                <h3>A/B test: home screen</h3>
+                <div class="project-img-2up">
+                    <img src="../project-imgs/iaso-version-a.png" alt="Version A: list with checkboxes">
+                    <img src="../project-imgs/iaso-version-b.png" alt="Version B: current dose dominant">
+                </div>
+
+                <p><strong>Version A</strong> showed all today's medications in a list with checkboxes. Clean, information-dense, familiar from other apps. Version A looked better in a static screenshot.</p>
+                <p><strong>Version B</strong> made the current dose dominant with a single confirmation action, upcoming doses shown smaller below. Version B performed better in every real-use metric — task completion speed, error rate, and confidence rating from older users.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">Product decision</span>
+                    <p>Iaso is designed primarily for the harder use case. No "simplified senior mode" toggle — designing for the most demanding user makes the product better for everyone. Designing for the easiest user excludes the people who need it most.</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Solution -->
+            <section id="solution">
+                <span class="section-label">solution</span>
+                <h2 class="section-heading">Track your daily doses. Learn what you're taking. Stay accountable.</h2>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-final-home.png" alt="Iaso final home screen">
+                    <figcaption>Home screen — current dose dominant, single confirmation action, upcoming doses subordinate</figcaption>
+                </figure>
+
+                <h3>Home screen</h3>
+                <p>Surfaces only what needs action right now. Current dose is large and centered. One confirmation action. Upcoming doses visible but subordinate. The date strip provides calendar context without dominating.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-insights.png" alt="Iaso insights screen">
+                    <figcaption>Insights — adherence tracking, medication inventory, interaction safety checks</figcaption>
+                </figure>
+
+                <h3>Insights</h3>
+                <p>Tracks adherence over time — adherence rate, taken/missed/skipped breakdown, medication inventory with days/doses remaining, and a safety panel that flags drug interaction warnings. This is the screen that provides enduring value after the habit is formed.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-add-med.png" alt="Iaso medication setup flow">
+                    <figcaption>Manual medication setup — one step at a time, confirmation at end</figcaption>
+                </figure>
+
+                <h3>Medication setup</h3>
+                <p>Walks through name, type, dosage, frequency, duration, and purpose in focused one-thing-at-a-time steps. Searches a database of 14,000+ medications with generic name disambiguation (Xanax → Alprazolam). Each step is confirmed before moving forward.</p>
+
+                <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                <p>On-device ML scans a prescription document and auto-fills medication details. Running inference on-device rather than server-side keeps health data private and removes internet dependency. User reviews and edits before confirming — AI makes mistakes, and medical accuracy requires human confirmation.</p>
+
+                <h3>GPS location nodes <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                <p>Reminders fire when the user arrives at a designated location (home, work, gym) rather than at a fixed time. Addresses the most common real-world failure: leaving before a scheduled dose and not being home when the notification fires.</p>
+
+                <h3>Caregiver view</h3>
+                <p>Lets a designated family member see adherence at a glance and receive alerts when doses are missed. Designed as a peace-of-mind tool, not a surveillance one. The patient controls what's shared.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Reflection -->
+            <section id="reflection">
+                <span class="section-label">reflection</span>
+                <h2 class="section-heading">Designing for Month 6, not Month 1</h2>
+                <p>Building this solo — designing and developing in parallel — changed how I make decisions. Every choice I made in Figma, I had to implement in SwiftUI. That constraint made me more honest. It's easy to design a beautiful multi-step confirmation flow; it's harder to build one that handles a blurry scan, an unrecognized drug name, or a notification that fires while Do Not Disturb is on. The edge cases are the product.</p>
+                <p>The research taught me something I didn't expect: the medication adherence problem isn't unsolved because nobody has tried. It's unsolved because most solutions optimize for the first 30 days. The app that gets downloaded is a different problem than the app that gets used a year later. I'm designing for the second one — which means the smart scan and GPS features aren't additions, they're the core argument for why Iaso still matters in Month 12.</p>
+
+                <div class="project-callout">
+                    <span class="callout-label">Atlas → Iaso</span>
+                    <p>Both projects share the same insight: healthcare solutions fail when they solve a narrow technical problem while ignoring the broader human context. Atlas worked at the hardware and ecosystem level. Iaso brings the same holistic thinking to the software layer — same patient, different surface.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Sidebar (intentionally light — space for future additions) -->
+        <aside class="project-sidebar"></aside>
+
+    </div>
+
+    <!-- Next project -->
+    <a href="atlas.html" class="project-next">
+        <div>
+            <div class="project-next-label">next project</div>
+            <div class="project-next-title">Atlas — On-Body Drug Delivery Ecosystem</div>
+        </div>
+        <span class="project-next-arrow">→</span>
+    </a>
+
+    <footer class="site-footer">
+        <p class="footer-credit">Designed and coded by Kelly Su.</p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://www.linkedin.com/in/kelly-x-su" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:kellysu@newschool.edu">Email</a>
+            <a href="https://github.com/keiiwia/" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://keiiwia.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Scroll spy for TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.project-toc-nav a');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('is-active'));
+                    const active = document.querySelector(`.project-toc-nav a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('is-active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(s => observer.observe(s));
+    </script>
+
+</body>
+</html>

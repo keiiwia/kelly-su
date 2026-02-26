@@ -6,6 +6,7 @@
     <title>Photobooth Color Palette Aggregator — Kelly Su</title>
     <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../project-pages.css">
 </head>
 <body class="project-page">
     <header class="top-nav" role="banner">
@@ -15,43 +16,50 @@
         </a>
         <nav class="top-nav-links" aria-label="Main">
             <a href="../index.html#work">work</a>
-            <a href="../psych.html">psych</a>
-            <a href="../fun.html">fun</a>
+            <a href="../fun.html">playground</a>
             <a href="../about.html">about</a>
         </nav>
     </header>
 
-    <main class="project-layout">
-        <aside class="project-toc">
+    <div class="project-layout">
+
+        <aside class="project-toc" aria-label="Table of contents">
             <a href="../index.html" class="project-toc-home">← home</a>
-            <nav class="project-toc-nav" aria-label="On this page">
+            <nav class="project-toc-nav">
                 <a href="#overview">overview</a>
                 <a href="#process">process</a>
             </nav>
         </aside>
-        <div class="project-main">
-            <p class="project-page-header">Machine Learning • Website 2025 </p>
-            <h1>Photobooth Color Palette Aggregator</h1>
-            <div class="project-meta">
-                <span class="tech">VanillaJS, HTML, CSS, React.js, Python</span>
-                <a href="https://keiiwia.github.io/systems/color-psychology/index.html" target="_blank" rel="noopener noreferrer" class="project-link">View Project →</a>
+
+        <main class="project-main">
+
+            <div class="project-header-block">
+                <p class="project-label">Machine Learning · Website 2025</p>
+                <h1>Photobooth Color Palette Aggregator</h1>
             </div>
+
+            <hr class="project-divider">
+
             <div class="project-details-grid">
                 <div class="project-detail"><span class="project-detail-label">ROLE</span><span class="project-detail-value">—</span></div>
                 <div class="project-detail"><span class="project-detail-label">TIMELINE</span><span class="project-detail-value">—</span></div>
                 <div class="project-detail"><span class="project-detail-label">TEAM</span><span class="project-detail-value">—</span></div>
-                <div class="project-detail"><span class="project-detail-label">SKILLS</span><span class="project-detail-value">—</span></div>
+                <div class="project-detail"><span class="project-detail-label">SKILLS</span><span class="project-detail-value">VanillaJS, HTML, CSS, <br> React.js, Python</span></div>
             </div>
+
             <section id="overview">
-                <p>Generate your own color palettes through either K-Means or Agglomerative Algorithmic Clustering</p>
+                <p>Generate your own color palettes through either K-Means or Agglomerative Algorithmic Clustering.</p>
+                <p><a href="https://keiiwia.github.io/systems/color-psychology/index.html" target="_blank" rel="noopener noreferrer" class="project-link">View Project →</a></p>
             </section>
+
             <section id="process">
                 <p>I first began thinking about machine learning while working on a project in collaboration with the Human Language and Development Lab at the NSSR. I was researching how computers determine color from pictures humans input, and I was inspired by an article software developer Austin Poor wrote about algorithmically determining color palettes from movie stills. <a href="https://austinpoor.com/blog/algorithmic-color-palettes" target="_blank" rel="noopener noreferrer">https://austinpoor.com/blog/algorithmic-color-palettes</a></p>
                 <p>I, too, wanted to use machine learning to determine color palettes, no matter the scene, however many times, so I coded a ML algorithm program (in Vanilla Javascript) that would go through the HSL/RGB colors for all images inputted, and return color palettes for each image depending on which clustering method was utilized. For this project, I chose two ML algorithms: K-Means clustering and Agglomerative clustering.</p>
             </section>
-        </div>
-        <div class="project-sidebar"></div>
-    </main>
+
+        </main>
+
+    </div>
 
     <footer class="site-footer">
         <p class="footer-credit">Designed and coded by Kelly Su.</p>

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const assetsStrip = document.querySelector('.assets-strip');
     const body = document.body;
 
+    //c + p to set ruleset for rest of htmls
     function setBackgroundStippleMouse(clientX, clientY) {
         if (!body.classList.contains('landing-page')) return;
         const x = (clientX / window.innerWidth) * 100;
@@ -65,30 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cardWrapper && assetsStrip) {
         function checkScroll() {
-            const stripBottom = assetsStrip.offsetTop + assetsStrip.offsetHeight;
             const scrollY = window.scrollY;
-            const threshold = stripBottom + window.innerHeight * 0.15;
+            // Hide card once user has scrolled past ~60% of viewport height
+            const threshold = window.innerHeight * 0.6;
             cardWrapper.classList.toggle('hidden', scrollY > threshold);
         }
         window.addEventListener('scroll', checkScroll, { passive: true });
         checkScroll();
-    }
-
-    // Portfolio filter buttons
-    const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
-    const tiles = document.querySelectorAll('.portfolio-tile');
-    if (filterBtns.length && tiles.length) {
-        filterBtns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                filterBtns.forEach((b) => b.classList.remove('is-active'));
-                btn.classList.add('is-active');
-                tiles.forEach((tile) => {
-                    const categories = (tile.getAttribute('data-category') || '').split(/\s+/);
-                    const show = filter === 'all' || categories.includes(filter);
-                    tile.classList.toggle('is-hidden', !show);
-                });
-            });
-        });
     }
 });
