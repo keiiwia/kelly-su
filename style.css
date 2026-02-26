@@ -1535,7 +1535,7 @@ code {
 .portfolio-grid {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 1.5rem;
     width: 100%;
     max-width: none;
     margin: 0;
@@ -1549,6 +1549,8 @@ code {
     text-decoration: none;
     color: inherit;
     background: #F0EDEA;
+    border: 1px solid rgba(139, 133, 149, 0.12);
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -1660,16 +1662,8 @@ code {
 /* Row layouts */
 .ptile-row {
     display: grid;
-    gap: 0;
+    gap: 1.5rem;
     width: 100%;
-}
-
-.ptile-row .ptile {
-    border-left: 1px solid rgba(139, 133, 149, 0.12);
-}
-
-.ptile-row .ptile:first-child {
-    border-left: none;
 }
 
 .ptile-row--60-40 {
@@ -1680,10 +1674,9 @@ code {
     grid-template-columns: 2fr 3fr;
 }
 
-/* Thin divider between rows */
-.ptile--hero,
+/* extra breathing room between rows */
 .ptile-row {
-    border-bottom: 1px solid rgba(139, 133, 149, 0.12);
+    padding-bottom: 0.5rem;
 }
 
 /* Filter: hide tiles */
@@ -1697,15 +1690,6 @@ code {
     .ptile-row--60-40,
     .ptile-row--40-60 {
         grid-template-columns: 1fr;
-    }
-
-    .ptile-row .ptile {
-        border-left: none;
-        border-top: 1px solid rgba(139, 133, 149, 0.12);
-    }
-
-    .ptile-row .ptile:first-child {
-        border-top: none;
     }
 
     .ptile--hero .ptile-img-wrap {
