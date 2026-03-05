@@ -31,6 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ── Portfolio tile reveal on scroll ────────────────────────────
+    const tiles = document.querySelectorAll('.ptile');
+    if ('IntersectionObserver' in window && tiles.length) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+            }
+        );
+
+        tiles.forEach((tile) => observer.observe(tile));
+    } else {
+        // Fallback: make all tiles visible
+        tiles.forEach((tile) => tile.classList.add('is-visible'));
+    }
+
     // ── Video preview (project pages) ─────────────────────────────
     const preview = document.getElementById('video-preview');
     const previewVideo = document.createElement('video');

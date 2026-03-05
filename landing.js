@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.getElementById('card');
     const cardContent = document.querySelector('.card-content');
     const cardWrapper = document.getElementById('card-wrapper');
-    const assetsStrip = document.querySelector('.assets-strip');
     const body = document.body;
 
     //c + p to set ruleset for rest of htmls
@@ -64,13 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     card.addEventListener('touchend', handleLeave);
 
-    if (cardWrapper && assetsStrip) {
+    // Fade card out when scrolling past hero region, fade back on return
+    if (cardWrapper) {
         function checkScroll() {
             const scrollY = window.scrollY;
-            // Hide card once user has scrolled past ~60% of viewport height
-            const threshold = window.innerHeight * 0.6;
-            cardWrapper.classList.toggle('hidden', scrollY > threshold);
+            const threshold = window.innerHeight * 0.5;
+            const shouldHide = scrollY > threshold;
+            cardWrapper.classList.toggle('hidden', shouldHide);
         }
+
         window.addEventListener('scroll', checkScroll, { passive: true });
         checkScroll();
     }
