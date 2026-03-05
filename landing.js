@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.getElementById('card');
     const cardContent = document.querySelector('.card-content');
     const cardWrapper = document.getElementById('card-wrapper');
+    const heroAngel = document.querySelector('.hero-angel');
+    const cherubButtons = document.querySelectorAll('.hero-cherub-btn');
     const body = document.body;
 
     //c + p to set ruleset for rest of htmls
@@ -74,5 +76,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', checkScroll, { passive: true });
         checkScroll();
+    }
+
+    // Cherub variants: swap main image when activating specific buttons
+    if (heroAngel && cherubButtons.length) {
+        const defaultSrc = heroAngel.getAttribute('src');
+        const variantSrc = {
+            camera: 'home-imgs/angel-hold-camera-home.png',
+            mic: 'home-imgs/angel-hold-mic-home.png',
+            pen: 'home-imgs/angel-hold-pencil-home.png',
+        };
+
+        function setVariant(src) {
+            if (src && heroAngel.getAttribute('src') !== src) {
+                heroAngel.setAttribute('src', src);
+            }
+        }
+
+        function bounceAngel() {
+            heroAngel.classList.remove('hero-angel--bounce');
+            // force reflow so animation can restart
+            // eslint-disable-next-line no-unused-expressions
+            heroAngel.offsetWidth;
+            heroAngel.classList.add('hero-angel--bounce');
+        }
+
+        cherubButtons.forEach((btn) => {
+            const variantKey = btn.dataset.variant;
+            const src = variantSrc[variantKey];
+            if (!src) return;
+
+            const activate = () => {
+                setVariant(src);
+                bounceAngel();
+            };
+
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                activate();
+            });
+
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    activate();
+                }
+            });
+        });
     }
 });
