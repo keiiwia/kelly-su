@@ -214,6 +214,7 @@ video {
     width: min(280px, 34vw);
     pointer-events: auto;
     cursor: pointer;
+    z-index: 6;
 }
 
 .hero-cherub img {
@@ -335,6 +336,7 @@ video {
     width: 520px;
     height: 330px;
     position: relative;
+    z-index: 5;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
     cursor: pointer;
@@ -684,6 +686,14 @@ video {
 }
 
 @media (max-width: 768px) {
+    /* On mobile, avoid costly fixed backgrounds/animations */
+    body.landing-page {
+        background-attachment: scroll;
+    }
+
+    body.landing-page::before {
+        animation: none;
+    }
     .top-nav {
         padding: 0.75rem 1rem;
     }
@@ -715,22 +725,28 @@ video {
 
     .card {
         width: 94vw;
-        max-width: 360px;
-        height: 230px;
+        max-width: 380px;
+        /* Keep an explicit height so the absolutely positioned
+           frame layers and content remain visible on mobile */
+        height: 260px;
     }
 
     .card-content {
-        padding: 12px;
-        gap: 12px;
-    }
-
-    .profile-image {
-        width: 56px;
-        height: 56px;
+        padding: 20px 18px 18px;
+        gap: 10px;
     }
 
     .card .name {
-        font-size: 15px;
+        font-size: 26px;
+        line-height: 1.15;
+    }
+
+    .card .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .scroll-hint {
+        font-size: 0.9rem;
     }
 
     .decorative-shape {
@@ -738,6 +754,43 @@ video {
         height: 40px;
         top: 8px;
         right: 8px;
+    }
+
+    /* Landing hero: stack card + cherub nicely on small screens */
+    .home-hero {
+        min-height: auto;
+        padding-top: 4.5rem;
+    }
+
+    .card-fixed-wrapper {
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        padding: 1.5rem 0 2rem;
+        transform: none;
+    }
+
+    .card-fixed-wrapper .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Mobile: cherub overlays the card instead of sitting below it */
+    .hero-cherub {
+        position: absolute;
+        top: 68%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+        width: min(180px, 52vw);
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 0;
     }
 }
 

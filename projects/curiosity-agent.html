@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curiosity Agent — Kelly Su</title>
+    <link rel="icon" type="image/jpeg" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../project-pages.css">
+</head>
+<body class="project-page">
+
+    <header class="top-nav" role="banner">
+        <a href="../index.html" class="top-nav-brand" aria-label="Kelly Su home">
+            <span class="top-nav-name">Kelly Su</span>
+            <img src="../images/favicon.jpg" alt="" class="top-nav-logo">
+        </a>
+        <nav class="top-nav-links" aria-label="Main">
+            <a href="../index.html#work">work</a>
+            <a href="../playground.html">playground</a>
+            <a href="../about.html">about</a>
+        </nav>
+    </header>
+
+    <!-- TOC + main layout -->
+    <div class="project-layout">
+
+        <!-- Sticky TOC -->
+        <aside class="project-toc" aria-label="Table of contents">
+            <a href="../index.html" class="project-toc-home">← home</a>
+            <nav class="project-toc-nav">
+                <a href="#overview">overview</a>
+                <a href="#problem">problem</a>
+                <a href="#research">research</a>
+                <a href="#brief">brief</a>
+                <a href="#iteration">iteration</a>
+                <a href="#solution">solution</a>
+                <a href="#reflection">reflection</a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="project-main">
+
+            <!-- Hero image -->
+            <div class="project-hero">
+                <div class="media-placeholder"></div>
+                <p class="media-placeholder-caption">Hero — Curiosity Agent device or key visual</p>
+            </div>
+
+            <!-- Title block -->
+            <div class="project-header-block">
+                <p class="project-label">AI/wearable · hackathon · March 2026</p>
+                <h1>Curiosity Agent</h1>
+            </div>
+
+            <hr class="project-divider">
+
+            <!-- Details grid -->
+            <div class="project-details-grid">
+                <div class="project-detail">
+                    <span class="project-detail-label">Role</span>
+                    <span class="project-detail-value">Product Designer, Creative Director, AI Model Trainer</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Timeline</span>
+                    <span class="project-detail-value">March 2026 · 48 hours</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Team</span>
+                    <span class="project-detail-value">Omer Eissa (software), Esteban Romero (hardware), Liam Peterson (R&D), Isabella Tedesco (research & management)</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Tools</span>
+                    <span class="project-detail-value">Figma, PyCharts, Anthropic API, Raspberry Pi, React</span>
+                </div>
+                <div class="project-detail">
+                    <span class="project-detail-label">Recognition</span>
+                    <span class="project-detail-value">"There's something in there that's more." — Pat Pataranutaporn, MIT Media Lab</span>
+                </div>
+            </div>
+
+            <!-- Overview -->
+            <section id="overview">
+                <span class="section-label">overview</span>
+                <h2 class="section-heading">Other AIs answer. This one questions.</h2>
+                <p>A 48-hour hackathon project: a wearable that asks questions instead of answering them — designed to augment curiosity rather than replace it.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Problem -->
+            <section id="problem">
+                <span class="section-label">problem</span>
+                <h2 class="section-heading">We built AI to answer questions. Nobody asked what we'd stop asking.</h2>
+                <p>The dominant behavior pattern in AI today is offloading — ask it something, get the answer, move on. The cognitive effort that used to live in curiosity gets outsourced before it has a chance to develop into anything.</p>
+                <p>The gap isn't in AI's ability to inform. It's that nothing is designed to make you more curious. Every tool closes the gap between question and answer. We wanted to sit in that gap instead.</p>
+                <div class="project-callout">
+                    <span class="callout-label">How Might We</span>
+                    <p>How might we design an AI that augments curiosity rather than replacing it — one that asks better questions than you'd think to ask yourself?</p>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Research -->
+            <section id="research">
+                <span class="section-label">research</span>
+                <h2 class="section-heading">Everyone we spoke to had quietly stopped wondering.</h2>
+                <p>We ran three research threads in parallel with building — conversations, personal observation, and desk research on how curiosity is taught.</p>
+
+                <h3>Conversations</h3>
+                <p>We spoke with people about their daily AI use. The pattern was consistent: search, summarize, generate. Almost no one described a moment where AI made them think harder or look more carefully. Several noted they'd stopped Googling things they used to be curious about.</p>
+
+                <h3>Personal observation</h3>
+                <p>The team's own experience confirmed it. The reflex to resolve uncertainty immediately has replaced the reflex to sit with it. Curiosity requires a gap — a question without an immediate answer. Our tools keep closing that gap before we've had a chance to inhabit it.</p>
+
+                <h3>How teachers cultivate curiosity</h3>
+                <p>Research on pedagogical curiosity converges on one method: questioning over answering. The most effective educators don't give students information — they give them better questions and let the tension do the work. We asked what it would look like to build that into a wearable.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Brief -->
+            <section id="brief">
+                <span class="section-label">brief</span>
+                <h2 class="section-heading">A wearable that watches the world with you — and asks what you didn't think to.</h2>
+                <p>Clip-worn camera → Anthropic API + Raspberry Pi backend → single open-ended question delivered via audio. The question is drawn from one of six registers — Observational, Social, Intentional, Prior Life, Predictive, Absence — selected by the model based on what the scene most calls for.</p>
+                <p>At the end of the day, an e-ink display surfaces patterns across the questions asked: what kept appearing, what was never asked about.</p>
+                <p>During use, there's no screen, no prompt, nothing to manage. The device handles the rest.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Iteration -->
+            <section id="iteration">
+                <span class="section-label">explorations & iterations</span>
+                <h2 class="section-heading">Three things we got wrong before we got right.</h2>
+
+                <h3>Prompt architecture</h3>
+                <p>Early prompts asked the model to generate a question from the image. The output was functional but flat — it named what was already visible rather than opening anything new. Structuring the output around six distinct registers changed the quality immediately. The model now selects a register based on what the scene warrants, then generates within it. The selection became part of the intelligence.</p>
+
+                <h3>Register selection logic</h3>
+                <p>The initial logic cycled through registers semi-randomly. Testing revealed tonal mismatches — Predictive questions on static scenes, Observational questions on charged social situations. We moved to contextual selection: the model reads the image, infers the most generative register, and commits. Questions became noticeably sharper.</p>
+
+                <h3>E-ink display — the pivot</h3>
+                <p>The original concept was audio-only. In testing, questions felt ephemeral — heard, but not held. We added the e-ink display midway through as a memory layer. E-ink was deliberate: slow, persistent, ambient. It doesn't pulse or refresh. The display UI iterated around how much to show and how to represent pattern without over-explaining. The final version shows question history alongside synthesized themes — not a summary of your day, but a reflection of what you kept noticing.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Solution -->
+            <section id="solution">
+                <span class="section-label">solution</span>
+                <h2 class="section-heading">Six ways of seeing. One question at a time.</h2>
+                <p>The shipped device: clip-worn camera, Raspberry Pi + Anthropic API backend, audio output. Six question registers, contextually selected. E-ink end-of-day synthesis. No screen during use.</p>
+
+                <div class="media-placeholder"></div>
+                <p class="media-placeholder-caption">Demo reel — add video in Figma</p>
+
+                <div class="media-placeholder"></div>
+                <p class="media-placeholder-caption">Device photos — add in Figma</p>
+
+                <div class="media-placeholder"></div>
+                <p class="media-placeholder-caption">E-ink UI screenshots — add in Figma</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Reflection -->
+            <section id="reflection">
+                <span class="section-label">reflection</span>
+                <h2 class="section-heading">The hardest constraint was giving the user less.</h2>
+                <p>The system surprised us. We expected useful questions. We didn't expect poetic ones — questions about absence, about the feeling a space was built to produce, about things that weren't there. There were moments in testing where the device asked something none of us would have arrived at on our own.</p>
+                <p>What I learned: every instinct in product design pushes toward more — more features, more feedback, more resolution. This project required the opposite. The device had to withhold. It had to trust the question without following it up with an answer. Knowing when to stop the interaction is a design decision too.</p>
+            </section>
+
+        </main>
+
+        <!-- Sidebar (intentionally light — space for future additions) -->
+        <aside class="project-sidebar"></aside>
+
+    </div>
+
+    <!-- Next project -->
+    <a href="iaso.html" class="project-next">
+        <div>
+            <div class="project-next-label">next project</div>
+            <div class="project-next-title">Iaso — Medication Tracking</div>
+        </div>
+        <span class="project-next-arrow">→</span>
+    </a>
+
+    <footer class="site-footer">
+        <p class="footer-credit">Designed and coded by Kelly Su.</p>
+        <nav class="footer-links" aria-label="Footer">
+            <a href="https://www.linkedin.com/in/kelly-x-su" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:kellysu@newschool.edu">Email</a>
+            <a href="https://github.com/keiiwia/" target="_blank" rel="noopener noreferrer">Github</a>
+            <a href="https://keiiwia.substack.com/" target="_blank" rel="noopener noreferrer">Substack</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Scroll spy for TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.project-toc-nav a');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('is-active'));
+                    const active = document.querySelector(`.project-toc-nav a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('is-active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(s => observer.observe(s));
+    </script>
+
+</body>
+</html>

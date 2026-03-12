@@ -9,13 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     //c + p to set ruleset for rest of htmls
     function setBackgroundStippleMouse(clientX, clientY) {
         if (!body.classList.contains('landing-page')) return;
+        // Skip heavy spotlight updates on small screens
+        if (window.innerWidth < 900) return;
         const x = (clientX / window.innerWidth) * 100;
         const y = (clientY / window.innerHeight) * 100;
         body.style.setProperty('--mouse-x', `${x}%`);
         body.style.setProperty('--mouse-y', `${y}%`);
     }
 
-    document.addEventListener('mousemove', (e) => setBackgroundStippleMouse(e.clientX, e.clientY));
+    let lastMouseMove = 0;
+    document.addEventListener('mousemove', (e) => {
+        const now = performance.now();
+        if (now - lastMouseMove < 30) return; // ~30fps throttle
+        lastMouseMove = now;
+        setBackgroundStippleMouse(e.clientX, e.clientY);
+    });
 
     if (!card || !cardContent) return;
 
