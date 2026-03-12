@@ -59,7 +59,7 @@
             <div class="project-details-grid">
                 <div class="project-detail">
                     <span class="project-detail-label">Role</span>
-                    <span class="project-detail-value">Product Designer, Creative Director, AI Model Trainer</span>
+                    <span class="project-detail-value">Product Designer, <br> Product Strategy, <br>AI Model Trainer</span>
                 </div>
                 <div class="project-detail">
                     <span class="project-detail-label">Timeline</span>
@@ -67,23 +67,23 @@
                 </div>
                 <div class="project-detail">
                     <span class="project-detail-label">Team</span>
-                    <span class="project-detail-value">Omer Eissa (software), Esteban Romero (hardware), Liam Peterson (R&D), Isabella Tedesco (research & management)</span>
+                    <span class="project-detail-value">Omer Eissa,<br> Esteban Romero,<br> Liam Peterson,<br> Isabella Tedesco  </span>
                 </div>
                 <div class="project-detail">
                     <span class="project-detail-label">Tools</span>
-                    <span class="project-detail-value">Figma, PyCharts, Anthropic API, Raspberry Pi, React</span>
+                    <span class="project-detail-value">Figma, PyCharts, Anthropic API, <br> Raspberry Pi, React</span>
                 </div>
-                <div class="project-detail">
+                <!-- <div class="project-detail">
                     <span class="project-detail-label">Recognition</span>
                     <span class="project-detail-value">"There's something in there that's more." — Pat Pataranutaporn, MIT Media Lab</span>
-                </div>
+                </div> -->
             </div>
 
             <!-- Overview -->
             <section id="overview">
                 <span class="section-label">overview</span>
                 <h2 class="section-heading">Other AIs answer. This one questions.</h2>
-                <p>A 48-hour hackathon project: a wearable that asks questions instead of answering them — designed to augment curiosity rather than replace it.</p>
+                <p>A 48-hour hackathon project: a wearable that asks questions instead of answering them, designed to augment human cognition rather than replace it.</p>
             </section>
 
             <hr class="project-divider">
@@ -92,11 +92,11 @@
             <section id="problem">
                 <span class="section-label">problem</span>
                 <h2 class="section-heading">We built AI to answer questions. Nobody asked what we'd stop asking.</h2>
-                <p>The dominant behavior pattern in AI today is offloading — ask it something, get the answer, move on. The cognitive effort that used to live in curiosity gets outsourced before it has a chance to develop into anything.</p>
-                <p>The gap isn't in AI's ability to inform. It's that nothing is designed to make you more curious. Every tool closes the gap between question and answer. We wanted to sit in that gap instead.</p>
+                <p>The dominant behavior pattern in AI today is offloading: ask it something, get the answer, move on. The cognitive effort that used to live in curiosity gets outsourced before it has a chance to develop into anything.</p>
+                <p>The gap isn't in AI's ability to inform, but that nothing is designed to make you more curious. <i>Every tool closes the gap between question and answer. We wanted to sit in that gap instead. </i></p>
                 <div class="project-callout">
                     <span class="callout-label">How Might We</span>
-                    <p>How might we design an AI that augments curiosity rather than replacing it — one that asks better questions than you'd think to ask yourself?</p>
+                    <p><strong>How might we design an AI that augments curiosity rather than replacing it — one that asks better questions than you'd think to ask yourself?</strong></p>
                 </div>
             </section>
 
@@ -106,16 +106,17 @@
             <section id="research">
                 <span class="section-label">research</span>
                 <h2 class="section-heading">Everyone we spoke to had quietly stopped wondering.</h2>
-                <p>We ran three research threads in parallel with building — conversations, personal observation, and desk research on how curiosity is taught.</p>
+                <p>We ran three research threads in parallel with building: <strong>
+                    conversations, personal observation, and desk research on how curiosity is taught.</strong></p>
 
-                <h3>Conversations</h3>
+                <h3>1. Conversations</h3>
                 <p>We spoke with people about their daily AI use. The pattern was consistent: search, summarize, generate. Almost no one described a moment where AI made them think harder or look more carefully. Several noted they'd stopped Googling things they used to be curious about.</p>
 
-                <h3>Personal observation</h3>
+                <h3>2. Personal observation</h3>
                 <p>The team's own experience confirmed it. The reflex to resolve uncertainty immediately has replaced the reflex to sit with it. Curiosity requires a gap — a question without an immediate answer. Our tools keep closing that gap before we've had a chance to inhabit it.</p>
 
-                <h3>How teachers cultivate curiosity</h3>
-                <p>Research on pedagogical curiosity converges on one method: questioning over answering. The most effective educators don't give students information — they give them better questions and let the tension do the work. We asked what it would look like to build that into a wearable.</p>
+                <h3>3. How teachers cultivate curiosity</h3>
+                <p>Research on pedagogical curiosity converges on one method: questioning over answering. The most effective educators give them better questions and let the tension do the work. We asked what it would look like to build that into a wearable.</p>
             </section>
 
             <hr class="project-divider">
@@ -127,6 +128,10 @@
                 <p>Clip-worn camera → Anthropic API + Raspberry Pi backend → single open-ended question delivered via audio. The question is drawn from one of six registers — Observational, Social, Intentional, Prior Life, Predictive, Absence — selected by the model based on what the scene most calls for.</p>
                 <p>At the end of the day, an e-ink display surfaces patterns across the questions asked: what kept appearing, what was never asked about.</p>
                 <p>During use, there's no screen, no prompt, nothing to manage. The device handles the rest.</p>
+                <figure class="project-figure">
+                    <img src="../home-imgs/P.IMG-techstack.png" alt="Curiosity Agent technical stack: clip-on camera, Raspberry Pi, Anthropic API, and e-ink display pipeline.">
+                    <figcaption>Tech stack — from camera capture to Anthropic API and e-ink synthesis.</figcaption>
+                </figure>
             </section>
 
             <hr class="project-divider">
@@ -137,13 +142,18 @@
                 <h2 class="section-heading">Three things we got wrong before we got right.</h2>
 
                 <h3>Prompt architecture</h3>
-                <p>Early prompts asked the model to generate a question from the image. The output was functional but flat — it named what was already visible rather than opening anything new. Structuring the output around six distinct registers changed the quality immediately. The model now selects a register based on what the scene warrants, then generates within it. The selection became part of the intelligence.</p>
+                <p>Early prompts asked the model to generate a question from the image. The output was functional but flat: it named what was already visible rather than opening anything new (or the question was <i>far</i> too vague). Structuring the output around six distinct registers changed the quality immediately. The model now selects a register based on what the scene warrants, then generates within it. The selection became part of the intelligence.</p>
 
                 <h3>Register selection logic</h3>
                 <p>The initial logic cycled through registers semi-randomly. Testing revealed tonal mismatches — Predictive questions on static scenes, Observational questions on charged social situations. We moved to contextual selection: the model reads the image, infers the most generative register, and commits. Questions became noticeably sharper.</p>
 
                 <h3>E-ink display — the pivot</h3>
                 <p>The original concept was audio-only. In testing, questions felt ephemeral — heard, but not held. We added the e-ink display midway through as a memory layer. E-ink was deliberate: slow, persistent, ambient. It doesn't pulse or refresh. The display UI iterated around how much to show and how to represent pattern without over-explaining. The final version shows question history alongside synthesized themes — not a summary of your day, but a reflection of what you kept noticing.</p>
+
+                <figure class="project-figure">
+                    <img src="../home-imgs/P.IMG-ruleset-diagram.png" alt="Diagram of the Curiosity Agent ruleset showing how six question registers are chosen from camera input.">
+                    <figcaption>How the ruleset works — camera input, scene understanding, and six registers that shape each question.</figcaption>
+                </figure>
             </section>
 
             <hr class="project-divider">
@@ -154,14 +164,29 @@
                 <h2 class="section-heading">Six ways of seeing. One question at a time.</h2>
                 <p>The shipped device: clip-worn camera, Raspberry Pi + Anthropic API backend, audio output. Six question registers, contextually selected. E-ink end-of-day synthesis. No screen during use.</p>
 
-                <div class="media-placeholder"></div>
-                <p class="media-placeholder-caption">Demo reel — add video in Figma</p>
+                <figure class="project-figure">
+                    <div style="position: relative; padding-top: 56.25%;">
+                        <iframe
+                            src="https://player.vimeo.com/video/1172964206?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="Curiosity Agent — demo reel"
+                        ></iframe>
+                    </div>
+                    <figcaption>Demo reel — Curiosity Agent in use.</figcaption>
+                </figure>
 
-                <div class="media-placeholder"></div>
-                <p class="media-placeholder-caption">Device photos — add in Figma</p>
+                <div class="project-img-2up">
+                    <img src="../home-imgs/P.IMG-demo-img-1.png" alt="Curiosity Agent demo image 1 — wearable in use.">
+                    <img src="../home-imgs/P.IMG-demo-img-2.png" alt="Curiosity Agent demo image 2 — close-up of device and e-ink display.">
+                </div>
 
-                <div class="media-placeholder"></div>
-                <p class="media-placeholder-caption">E-ink UI screenshots — add in Figma</p>
+                <figure class="project-figure">
+                    <img src="../home-imgs/P.IMG-e-ink-ui-screens.png" alt="Curiosity Agent e-ink UI screens showing question history and themes.">
+                    <figcaption>E-ink UI — question history and synthesized themes at the end of the day.</figcaption>
+                </figure>
+
             </section>
 
             <hr class="project-divider">

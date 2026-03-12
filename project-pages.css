@@ -433,8 +433,10 @@ figure.project-figure figcaption {
 
 .project-img-2up img {
     width: 100%;
-    height: auto;
+    height: 260px;
     display: block;
+    object-fit: cover;
+    object-position: center;
     border-radius: 4px;
 }
 
