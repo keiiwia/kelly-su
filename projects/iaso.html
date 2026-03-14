@@ -30,12 +30,13 @@
             <a href="../index.html" class="project-toc-home">← home</a>
             <nav class="project-toc-nav">
                 <a href="#overview">overview</a>
+                <a href="#what-i-built">what I built</a>
+                <a href="#core-flows">core flows</a>
                 <a href="#context">context</a>
                 <a href="#research">research</a>
                 <a href="#opportunities">opportunities</a>
                 <a href="#iteration">iteration</a>
                 <a href="#testing">testing</a>
-                <a href="#solution">solution</a>
                 <a href="#reflection">reflection</a>
             </nav>
         </aside>
@@ -80,8 +81,98 @@
             <section id="overview">
                 <span class="section-label">overview</span>
                 <h2 class="section-heading">Track your daily doses. Learn what you're taking. Stay accountable.</h2>
-                <p>Iaso started as a class project for CD Studio: UX at Parsons School of Design — and became something I couldn't stop working on. Named after Ἰασώ, the Greek goddess of recuperation and cures, the project grew directly out of Atlas. Designing a hardware ecosystem for medication adherence taught me that the physical device was only part of the problem. The rest lived in software: forgetting, routine disruption, the friction of managing multiple prescriptions, the caregiver who can't be present all day.</p>
-                <p>I wanted to know if the same ecosystem thinking could work at the app layer — and I wanted to build it myself.</p>
+                <p>125,000 Americans die annually from not taking their medications correctly. The apps built to fix this mostly get deleted within a month. Nobody is designing for month 6.</p>
+                <p>Iaso is my attempt to build a medication app that still matters a year later — growing out of <a href="atlas.html">Atlas</a>, a hardware adherence ecosystem I designed previously, where I learned the physical device was only half the problem.</p>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- What I built (solution preview) -->
+            <section id="what-i-built">
+                <span class="section-label">what I built</span>
+                <h2 class="section-heading">The product in practice</h2>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-final-home.png" alt="Iaso final home screen">
+                </figure>
+
+                <h3>Home screen</h3>
+                <p>Surfaces only what needs action right now. Current dose is large and centered with one confirmation action; upcoming doses visible but subordinate. The date strip gives calendar context without dominating. Answer to "what do I do?" the moment you open the app.</p>
+
+                <figure class="project-figure">
+                    <img src="../home-imgs/PIMG-insights.png" alt="Iaso insights screen">
+                </figure>
+
+                <h3>Insights</h3>
+                <p>Tracks adherence over time — rate, taken/missed/skipped breakdown, medication inventory with days/doses remaining, and a safety panel for drug interaction warnings. The screen that provides enduring value after the habit is formed.</p>
+
+                <figure class="project-figure">
+                    <img src="../project-imgs/iaso-add-med.png" alt="Iaso medication setup flow">
+                </figure>
+
+                <h3>Medication setup</h3>
+                <p>Walks through name, type, dosage, frequency, duration, and purpose in focused one-thing-at-a-time steps. Searches 14,000+ medications with generic name disambiguation. Each step confirmed before moving forward.</p>
+
+                <h3>Caregiver view</h3>
+                <p>Lets a designated family member see adherence at a glance and get alerts when doses are missed. Peace-of-mind, not surveillance — the patient controls what's shared.</p>
+
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                        <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
+                    </div>
+                </div>
+
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted></video>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>GPS location nodes <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                        <p>Reminders that fire when you arrive home (or another saved location) instead of at a fixed time. Plus pattern recognition: if you consistently take a dose earlier or later than set, the app offers to auto-adjust the schedule. Both are intentional bets on adaptation over rigidity.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Core Flows -->
+            <section id="core-flows">
+                <span class="section-label">core flows</span>
+                <h2 class="section-heading">Key flows at a glance</h2>
+
+                <h3>Notification → log dose</h3>
+                <p>User taps notification, lands on home with current dose dominant, confirms in one action.</p>
+                <figure class="project-figure">
+                    <video src="" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
+                </figure>
+
+                <h3>Smart scan → medication setup</h3>
+                <p>Scan prescription, auto-fill fields, user reviews and confirms before saving.</p>
+                <figure class="project-figure">
+                    <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
+                </figure>
+
+                <h3>Caregiver alert → patient view</h3>
+                <p>Caregiver receives alert when a dose is missed; can see adherence at a glance without surveillance.</p>
+                <figure class="project-figure">
+                    <img src="" alt="Caregiver alert to patient view">
+                </figure>
+
+                <h3>Insights / adherence review</h3>
+                <p>Adherence rate, taken/missed/skipped breakdown, medication inventory, safety panel.</p>
+                <figure class="project-figure">
+                    <img src="../home-imgs/PIMG-insights.png" alt="Insights and adherence review">
+                </figure>
+
+                <h3>GPS reminder trigger <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                <p>Reminder fires when user arrives at saved location instead of at a fixed time.</p>
+                <figure class="project-figure">
+                    <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
+                </figure>
             </section>
 
             <hr class="project-divider">
@@ -165,7 +256,7 @@
                 <p>Prescription scanning (on-device ML for privacy, no server dependency) can reduce medication entry from 20 minutes to under 2. This is the single biggest barrier to adoption and the most obvious gap in the market.</p>
 
                 <h3>Make reminders context-aware</h3>
-                <p>Time-based reminders fail when routines change. GPS location nodes — reminders that fire when you arrive home rather than at a fixed clock time — adapt to real life instead of demanding users adapt to the app. This directly addresses the most common adherence failure: leaving before a scheduled dose and not being home when the reminder fires.</p>
+                <p>Time-based reminders fail when routines change. Two levers: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
 
                 <div class="project-feature-row">
                     <div class="project-feature-media">
@@ -175,7 +266,7 @@
                     </div>
                     <div class="project-feature-text">
                         <h3>Adaptive scheduling in practice</h3>
-                        <p>Shows a reminder shifting from a fixed 9PM notification to firing when the user actually arrives home — same dose, different timing logic.</p>
+                        <p>Two parts: <strong>GPS</strong> — reminders fire when you arrive home (or another saved location) instead of at a fixed time. <strong>Pattern recognition</strong> — if the internal AI notices you tend to take a medication earlier or later than the set time, it prompts you to automatically adjust the schedule so reminders match how you actually take it.</p>
                     </div>
                 </div>
 
@@ -237,76 +328,6 @@
                 <div class="project-callout">
                     <span class="callout-label">Product decision</span>
                     <p>Iaso is designed to not exclude the harder use case. Optimizing for the most demanding user makes the product better for everyone, without making it worse for anyone.</p>
-                </div>
-            </section>
-
-            <hr class="project-divider">
-
-            <!-- Solution -->
-            <section id="solution">
-                <span class="section-label">solution</span>
-                <h2 class="section-heading">Track your daily doses. Learn what you're taking. Stay accountable.</h2>
-
-                <figure class="project-figure">
-                    <img src="../project-imgs/iaso-final-home.png" alt="Iaso final home screen">
-                    <figcaption>Home screen — current dose dominant, single confirmation action, upcoming doses subordinate</figcaption>
-                </figure>
-
-                <h3>Home screen</h3>
-                <p>Surfaces only what needs action right now. Current dose is large and centered. One confirmation action. Upcoming doses visible but subordinate. The date strip provides calendar context without dominating.</p>
-
-                <h3>Insights</h3>
-                <p>Tracks adherence over time — adherence rate, taken/missed/skipped breakdown, medication inventory with days/doses remaining, and a safety panel that flags drug interaction warnings. This is the screen that provides enduring value after the habit is formed.</p>
-
-                <figure class="project-figure">
-                    <img src="../home-imgs/PIMG-insights.png" alt="Iaso insights screen showing adherence graph and medication inventory.">
-                    <figcaption>Insights — adherence tracking, medication inventory, interaction safety checks.</figcaption>
-                </figure>
-
-                <figure class="project-figure">
-                    <img src="../project-imgs/iaso-add-med.png" alt="Iaso medication setup flow">
-                    <figcaption>Manual medication setup — one step at a time, confirmation at end</figcaption>
-                </figure>
-
-                <h3>Medication setup</h3>
-                <p>Walks through name, type, dosage, frequency, duration, and purpose in focused one-thing-at-a-time steps. Searches a database of 14,000+ medications with generic name disambiguation (Xanax → Alprazolam). Each step is confirmed before moving forward.</p>
-
-                <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted>
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="project-feature-text">
-                        <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
-                        <p>On-device ML scans a prescription document and auto-fills medication details. Running inference on-device rather than server-side keeps health data private and removes internet dependency. User reviews and edits before confirming — AI makes mistakes, and medical accuracy requires human confirmation.</p>
-                    </div>
-                </div>
-
-                
-
-                <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <video src="../videos/PVID-feature-safety-conflict.mp4" controls playsinline muted>
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="project-feature-text">
-                        <h3>Safety panel — conflict warning</h3>
-                        <p>Surfaces non-critical interaction alerts in plain language so patients and caregivers can understand what changed and what to do next, without panic.</p>
-                    </div>
-                </div>
-
-                <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <video src="../videos/PVID-feature-safety-serious.mp4" controls playsinline muted>
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="project-feature-text">
-                        <h3>Safety panel — serious warning</h3>
-                        <p>Escalates serious interactions with a clearer visual state, specific next steps, and guidance on when to contact a provider.</p>
-                    </div>
                 </div>
             </section>
 
