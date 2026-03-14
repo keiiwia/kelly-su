@@ -440,6 +440,26 @@ figure.project-figure figcaption {
     border-radius: 4px;
 }
 
+/* Feature rows: media + text side by side */
+.project-feature-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+    gap: 1.75rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.project-feature-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+.project-feature-text h3 {
+    margin-top: 0;
+}
+
 /* ── Next project footer link ────────────────────────────────────── */
 .project-next {
     display: flex;
