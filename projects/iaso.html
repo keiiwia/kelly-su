@@ -96,7 +96,7 @@
 
                 <div class="project-callout">
                     <span class="callout-label">How Might We</span>
-                    <p>How might we design a medication tool that earns long-term trust — without adding more cognitive load to the people who already carry the most?</p>
+                    <p>How might we design a medication tool that earns long-term trust, without adding more cognitive load to the people who already carry the most?</p>
                 </div>
             </section>
 
@@ -106,8 +106,6 @@
             <section id="solution">
                 <span class="section-label">solution</span>
                 <h2 class="section-heading">The product</h2>
-                <h3>Three screens. One thesis.</h3>
-                <p>Iaso is designed for the person who needs it most — and for the moment they need it least. Here's what that looks like in practice.</p>
 
                 <figure class="project-figure">
                     <img src="../home-imgs/P.IMG-home-screen.png" alt="Iaso home screen states: upcoming doses, no medication yet, full day complete.">
@@ -127,7 +125,45 @@
                     <figcaption>Safety — timing conflict detected on add, flag persists in Insights after confirmation</figcaption>
                 </figure>
 
-                <p><a href="#research" class="project-link">How we got here →</a></p>
+                <div class="project-callout">
+                    <span class="callout-label">Design principle</span>
+                    <p>AI handles recognition. Here, the user retains authority; the medication still gets added, the flag follows them forward.</p>
+                </div>
+
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Smart AI Scan</h3>
+                        <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
+                    </div>
+                </div>
+
+                <h3>Make reminders context-aware</h3>
+                <p>Time-based reminders fail when routines change. Two levers: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
+
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <img src="../videos/PGIF-notification-system.gif" controls playsinline muted>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Adaptive scheduling in practice</h3>
+                        <p><strong>GPS reminders fire when you arrive home (or another saved location) instead of at a fixed time.</strong></p>
+                    </div>
+                </div>
+
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <img src="../videos/PGIF-adaptive-schedule.gif" alt="Adaptive scheduling pattern recognition" style="width:100%;height:auto;display:block;border-radius:6px;">
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Adaptive scheduling in practice</h3>
+                        <p><strong>Pattern recognition</strong>: if the internal AI notices you tend to take a medication earlier or later than the set time, it prompts the user to adjust their schedule, so reminders match how you actually take it.</p>
+                    </div>
+                </div>
+
+                <!-- <p><a href="#research" class="project-link">How we got here →</a></p> -->
             </section>
 
             <hr class="project-divider">
@@ -136,7 +172,6 @@
             <section id="research">
                 <span class="section-label">research</span>
                 <h2 class="section-heading">A design failure dressed up as a health crisis</h2>
-                <p>I started with the data because it reframes the problem immediately.</p>
 
                 <div class="project-stats">
                     <div>
@@ -152,6 +187,8 @@
                         <div class="project-stat-label">cite forgetfulness as the primary reason</div>
                     </div>
                 </div>
+
+                <p>I started with the data because it reframes the problem immediately.</p>
 
                 <p>I then looked at why existing apps fail — through user interviews, desk research, and a competitive review of Medisafe, MyTherapy, and Care4Today.</p>
 
@@ -194,48 +231,14 @@
             <section id="opportunities">
                 <span class="section-label">opportunities</span>
                 <h2 class="section-heading">Three clear gaps in the market</h2>
+                <p>Based on the research, I identified three clear gaps in the market that Iaso can fill:</p>
+                <figure class="project-figure">
+                    <img src="../home-imgs/opportunity-graphics.png" alt="Three opportunity cards: Eliminate setup friction, Make reminders context-aware, Design without sterility">
+                    <!-- <figcaption>Three clear gaps in the market</figcaption> -->
+                </figure>
 
-                <h3>Eliminate setup friction</h3>
-                <p>Prescription scanning (on-device ML for privacy, no server dependency) can reduce medication entry from 20 minutes to under 2. This is the single biggest barrier to adoption and the most obvious gap in the market.</p>
-                <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
-                    </div>
-                    <div class="project-feature-text">
-                        <!-- <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3> -->
-                        <h3>Smart AI Scan</h3>
-                        <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
-                    </div>
-                </div>
-
-                <h3>Make reminders context-aware</h3>
-                <p>Time-based reminders fail when routines change. Two levers: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
-
-                <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <!-- <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted> -->
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="project-feature-text">
-                        <h3>Adaptive scheduling in practice</h3>
-                        <p> <strong>GPS reminders fire when you arrive home (or another saved location) instead of at a fixed time.</strong>  </p>
-                    </div>
-                </div>
-
-                 <div class="project-feature-row">
-                    <div class="project-feature-media">
-                        <img src="../videos/PGIF-adaptive-schedule.gif" controls playsinline muted>
-                    </img>
-                    </div>
-                    <div class="project-feature-text">
-                        <h3>Adaptive scheduling in practice</h3>
-                        <p> <strong>Pattern recognition</strong>:  if the internal AI notices you tend to take a medication earlier or later than the set time, it prompts the user to adjust their schedule, so reminders match how you actually take it.</p>
-                    </div>
-                </div>
-
-                <h3>Design for the actual user</h3>
-                <p>No major app is genuinely designed for seniors. Large touch targets, high contrast, persistent labeled navigation, one action per screen — these aren't accessibility add-ons, they're the core product decision. Designing for the hardest user makes the product better for everyone.</p>
+                <!-- <h3>Design for the actual user</h3>
+                <p>No major app is genuinely designed for seniors. Large touch targets, high contrast, persistent labeled navigation, one action per screen — these aren't accessibility add-ons, they're the core product decision. Designing for the hardest user makes the product better for everyone.</p> -->
             </section>
 
             <hr class="project-divider">
@@ -244,7 +247,6 @@
             <section id="iteration">
                 <span class="section-label">process & iteration</span>
                 <h2 class="section-heading">Three rounds before it tested well</h2>
-                <p>My first designs leaned into a warm, modern aesthetic — card-based layouts, soft color palette, multiple medications visible at once, but they tested poorly.</p>
 
                 <figure class="project-figure">
                     <img src="../home-imgs/PIMG-early-explorations.png" alt="Iaso v1 — early home screen exploration">
@@ -277,14 +279,15 @@
             <section id="testing">
                 <span class="section-label">testing</span>
                 <h2 class="section-heading">Designing for the harder use case</h2>
-                <p>I tested with users across two age groups: adults 25–40 and adults 60+. The failure modes were different for each, which created a real product tension.</p>
-                <p>Younger users wanted density — more information, faster navigation, less hand-holding. Older users consistently needed larger targets, explicit labels, slower flows, and more confirmation steps before committing to an action.</p>
 
-                <h3>A/B test: home screen</h3>
                 <div class="project-img-2up">
                     <img src="../home-imgs/P.IMG-VA.png" alt="Version A: list with checkboxes">
                     <img src="../home-imgs/P.IMG-VB.png" alt="Version B: current dose dominant">
                 </div>
+
+                <h3>A/B test: home screen</h3>
+                <p>I tested with users across two age groups: adults 25–40 and adults 60+. The failure modes were different for each, which created a real product tension.</p>
+                <p>Younger users wanted density — more information, faster navigation, less hand-holding. Older users consistently needed larger targets, explicit labels, slower flows, and more confirmation steps before committing to an action.</p>
 
                 <p><strong>Version A</strong> showed all today's medications in a list with checkboxes. Clean, information-dense, familiar from other apps. Version A looked better in a static screenshot.</p>
                 <p><strong>Version B</strong> made the current dose dominant with a single confirmation action, upcoming doses shown smaller below. Version B performed better in every real-use metric — task completion speed, error rate, and confidence rating from older users.</p>
