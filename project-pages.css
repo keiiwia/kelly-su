@@ -362,7 +362,8 @@ figure.project-figure {
     margin: 1.75rem 0;
 }
 
-figure.project-figure img {
+figure.project-figure img,
+figure.project-figure video {
     width: 100%;
     height: auto;
     display: block;
