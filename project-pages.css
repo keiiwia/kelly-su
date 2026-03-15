@@ -137,6 +137,25 @@ body.project-page .project-main .project-link:hover {
     color: #E8A84D;
 }
 
+body.project-page .project-main .project-jump-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #C98338;
+    text-decoration: none;
+    border: 1px solid rgba(201, 131, 56, 0.4);
+    border-radius: 6px;
+    background: rgba(201, 131, 56, 0.06);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+body.project-page .project-main .project-jump-btn:hover {
+    color: #E8A84D;
+    border-color: rgba(201, 131, 56, 0.5);
+    background: rgba(201, 131, 56, 0.1);
+}
+
 body.project-page .project-main video {
     width: 100%;
     height: auto;
