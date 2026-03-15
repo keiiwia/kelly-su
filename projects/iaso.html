@@ -127,7 +127,7 @@
 
                 <div class="project-callout">
                     <span class="callout-label">Design principle</span>
-                    <p>AI handles recognition. Here, the user retains authority; the medication still gets added, the flag follows them forward.</p>
+                    <p>AI handles recognition; the user retains authority. The design choice: in a high-stakes domain, suppressing a flag to reduce friction is the wrong tradeoff. False negatives cost more than false positives. The medication gets added, the warning follows them forward.</p>
                 </div>
 
                 <div class="project-feature-row">
@@ -136,19 +136,19 @@
                     </div>
                     <div class="project-feature-text">
                         <h3>Smart AI Scan</h3>
-                        <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
+                        <p>On-device ML scans a prescription and auto-fills medication details (the biggest setup friction today). Keeps health data private and offline. User reviews and confirms before saving.</p>
                     </div>
                 </div>
 
                 <h3>Make reminders context-aware</h3>
-                <p>Time-based reminders fail when routines change. Two levers: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
+                <p>Time-based reminders fail when routines change. <br> Two solutions simultaneously: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
 
                 <div class="project-feature-row">
                     <div class="project-feature-media">
                         <img src="../videos/PGIF-notification-system.gif" controls playsinline muted>
                     </div>
                     <div class="project-feature-text">
-                        <h3>Adaptive scheduling in practice</h3>
+                        <h3>Geo-tagged nodes, sending reminders when you arrive at a saved location</h3>
                         <p><strong>GPS reminders fire when you arrive home (or another saved location) instead of at a fixed time.</strong></p>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                 <p>During an early user session, a participant in her late 60s stared at the screen for a moment and asked: <em>"Which one do I press?"</em> That one moment drove the next three rounds of iteration.</p>
 
                 <h3>Checkboxes → confirmation action</h3>
-                <p>Checkboxes carry the mental model of "select items in a list." That's not what a patient needs at 9 AM — they need to confirm they took something right now. I replaced them with a single prominent confirmation action per dose group.</p>
+                <p>Checkboxes carry the mental model of "select items in a list." That's not what a patient needs at 9 AM, as they need to confirm they took something right now. I replaced them with a single prominent confirmation action per dose group. </p>
 
                 <h3>All medications at once → current dose dominant</h3>
                 <p>Showing everything simultaneously created visual competition. The redesign surfaces only what needs action now, with upcoming doses visible but visually subordinate. There's a clear answer to "what do I do?" the moment you open the app.</p>
@@ -267,10 +267,10 @@
                 </figure>
 
                 <h3>Color logic simplified</h3>
-                <p>Early versions used teal for both "current time indicator" and "taken" state, which created genuine confusion. Final system: one color per state, no overlap, no ambiguity.</p>
+                <p>Early versions used teal for both "current time indicator" and "taken" state, which created genuine confusion. Final system: one color per state, no overlap or ambiguity.</p>
 
                 <h3>Navigation labeled</h3>
-                <p>Icon-only bottom navigation replaced with labeled tabs. Gesture-based navigation removed entirely. Seniors don't explore, they execute — hidden swipeable screens replaced with explicit navigation.</p>
+                <p>Icon-only bottom navigation replaced with labeled tabs and gesture-based navigation were removed as the main navigation method. Seniors don't explore, they tended to execute, so hidden swipeable screens were replaced with explicit navigation.</p>
             </section>
 
             <hr class="project-divider">
