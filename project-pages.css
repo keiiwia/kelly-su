@@ -428,7 +428,7 @@ figure.project-figure figcaption {
 
 .project-img-2up img {
     width: 100%;
-    height: 260px;
+    height: auto;
     display: block;
     object-fit: cover;
     object-position: center;
