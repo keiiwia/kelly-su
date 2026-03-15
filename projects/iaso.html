@@ -102,12 +102,12 @@
             <hr class="project-divider">
 
             
-            <section id="what-i-built">
+            <section id="design-decisions">
                 <span class="section-label">design decisions</span>
                 <h2 class="section-heading">The product in practice</h2>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/iaso-final-home.png" alt="Iaso final home screen">
+                    <img src="../home-imgs/P.IMG-home-screen.png" alt="Iaso home screen states: upcoming doses, no medication yet, full day complete.">
                 </figure>
 
                 <h3>Home screen</h3>
@@ -130,7 +130,7 @@
                 <!-- <h3>Caregiver view</h3>
                 <p>Lets a designated family member see adherence at a glance and get alerts when doses are missed. Peace-of-mind, not surveillance — the patient controls what's shared.</p> -->
 
-                <div class="project-feature-row">
+                <!-- <div class="project-feature-row">
                     <div class="project-feature-media">
                         <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
                     </div>
@@ -138,9 +138,9 @@
                         <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                         <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="project-feature-row">
+                <!-- <div class="project-feature-row">
                     <div class="project-feature-media">
                         <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted></video>
                     </div>
@@ -148,7 +148,7 @@
                         <h3>GPS location nodes <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                         <p>Reminders that fire when you arrive home (or another saved location) instead of at a fixed time. Plus pattern recognition: if you consistently take a dose earlier or later than set, the app offers to auto-adjust the schedule. Both are intentional bets on adaptation over rigidity.</p>
                     </div>
-                </div>
+                </div> -->
             </section>
 
             <hr class="project-divider">
@@ -158,23 +158,48 @@
                 <span class="section-label">core flows</span>
                 <h2 class="section-heading">Key flows at a glance</h2>
 
-                <h3>Notification → log dose</h3>
-                <p>User taps notification, lands on home with current dose dominant, confirms in one action.</p>
-                <figure class="project-figure">
-                    <video src="" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
-                </figure>
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <img src="../videos/PGIF-notification-system.gif" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></img>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Notification → log dose</h3>
+                        <p>User taps notification, lands on home with current dose dominant, confirms in one action. Shown is the GPS-based notification.</p>
+                    </div>
+                </div>
+                
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <img src="../videos/PGIF-home-screen.gif" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></img>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Home screen flow</h3>
+                        <p>User taps notification, lands on home with current dose dominant, confirms in one action.</p>
+                    </div>
+                </div>
 
-                <h3>Smart scan → medication setup</h3>
-                <p>Scan prescription, auto-fill fields, user reviews and confirms before saving.</p>
-                <figure class="project-figure">
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
+                    </div>
+                    <div class="project-feature-text">
+                        <h3>Smart scan → medication setup</h3>
+                        <p>Scan prescription, auto-fill fields, user reviews and confirms before saving.</p>
+                    </div>
+                </div>
+
+                <!-- <figure class="project-figure">
                     <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
                 </figure>
+                    </div>
+                </div> -->
+                
 
-                <h3>Caregiver alert → patient view</h3>
+                <!-- <h3>Caregiver alert → patient view</h3>
                 <p>Caregiver receives alert when a dose is missed; can see adherence at a glance without surveillance.</p>
                 <figure class="project-figure">
                     <img src="" alt="Caregiver alert to patient view">
-                </figure>
+                </figure> -->
 
                 <h3>Insights / adherence review</h3>
                 <p>Adherence rate, taken/missed/skipped breakdown, medication inventory, safety panel.</p>
@@ -182,12 +207,12 @@
                     <img src="../home-imgs/PIMG-insights.png" alt="Insights and adherence review">
                 </figure>
 
-                <h3>GPS reminder trigger <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                <!-- <h3>GPS reminder trigger <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                 <p>Reminder fires when user arrives at saved location instead of at a fixed time.</p>
                 <figure class="project-figure">
                     <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
                 </figure>
-            </section>
+            </section> -->
 
             <hr class="project-divider">
 
@@ -208,7 +233,7 @@
                     </div>
                     <div>
                         <div class="project-stat-num">39%</div>
-                        <div class="project-stat-label">cite forgetfulness as the primary reason — not cost</div>
+                        <div class="project-stat-label">cite forgetfulness as the primary reason</div>
                     </div>
                 </div>
 
@@ -221,17 +246,19 @@
                 <div class="project-quote">
                     <p>"My mom can't figure out the interface. I just call her every morning now."</p>
                 </div>
-
+                <figure class="project-figure">
+                    <img src="../home-imgs/PIMG-systems.png" alt="Systems mapping, UX flows, competitor analysis, and research.">
+                    <figcaption>Systems mapping, UX flows, competitor analysis, and research.</figcaption>
+                </figure>
                 <p>The pattern was consistent: apps work for a few weeks, then get abandoned. Not because the reminder concept fails — but because the apps create their own burden. I mapped five recurring failure modes across every product I reviewed:</p>
-
                 <h3>Setup friction</h3>
-                <p>Adding five medications manually takes 20+ minutes. The people with the most complex regimens are least likely to finish setup — the people who need help most are the ones being left behind.</p>
+                <p>Adding five medications manually takes 20+ minutes. The people with the most complex regimens are least likely to finish setup. The people who need help most are the ones being left behind.</p>
 
                 <h3>Unreliable notifications</h3>
-                <p>The single most common complaint across all apps. One missed reminder destroys trust permanently. Users go back to alarms.</p>
+                <p>The single most common complaint across all apps. One missed reminder destroys trust permanently, and users go back to alarms.</p>
 
                 <h3>Wrong user model</h3>
-                <p>Designed for young, healthy people tracking supplements. Not for a 70-year-old managing 8 prescriptions from three different doctors. 51% of adults 65+ take 5+ prescriptions daily. They're the most underserved, and forEach major app leaves them behind.</p>
+                <p>Many apps are designed for young, healthy people tracking supplements. Not for a 70-year-old managing 8 prescriptions from three different doctors. 51% of adults 65+ take 5+ prescriptions daily. They're the most underserved, and forEach major app leaves them behind.</p>
 
                 <h3>No adaptation</h3>
                 <p>Life changes: you travel, your schedule shifts, a doctor adds a new prescription. The app doesn't adapt. It falls out of sync with reality and becomes useless.</p>
@@ -241,7 +268,7 @@
 
                 <div class="project-callout">
                     <span class="callout-label">Key insight</span>
-                    <p>Any app trying to replace a pillbox needs to do things a pillbox structurally cannot — not just digitize the same experience.</p>
+                    <p>Any app trying to replace a pillbox needs to do things a pillbox structurally cannot, not just digitize the same experience.</p>
                 </div>
             </section>
 
@@ -254,6 +281,16 @@
 
                 <h3>Eliminate setup friction</h3>
                 <p>Prescription scanning (on-device ML for privacy, no server dependency) can reduce medication entry from 20 minutes to under 2. This is the single biggest barrier to adoption and the most obvious gap in the market.</p>
+                <div class="project-feature-row">
+                    <div class="project-feature-media">
+                        <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
+                    </div>
+                    <div class="project-feature-text">
+                        <!-- <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3> -->
+                        <h3>Smart AI Scan</h3>
+                        <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
+                    </div>
+                </div>
 
                 <h3>Make reminders context-aware</h3>
                 <p>Time-based reminders fail when routines change. Two levers: <strong>GPS location nodes</strong> — reminders that fire when you arrive home (or work, gym) rather than at a fixed clock time — and <strong>pattern recognition</strong> — when the system notices you consistently take a dose earlier or later than set, it offers to auto-adjust the schedule so reminders match real behavior. Both adapt to the user instead of demanding the user adapt to the app.</p>
@@ -272,9 +309,9 @@
 
                  <div class="project-feature-row">
                     <div class="project-feature-media">
-                        <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted>
+                        <img src="../videos/PGIF-adaptive-schedule.gif" controls playsinline muted>
                             Your browser does not support the video tag.
-                        </video>
+                    </img>
                     </div>
                     <div class="project-feature-text">
                         <h3>Adaptive scheduling in practice</h3>
@@ -349,12 +386,12 @@
             <section id="reflection">
                 <span class="section-label">reflection</span>
                 <h2 class="section-heading">Designing for Month 6, not Month 1</h2>
-                <p>Building this solo — designing and developing in parallel — changed how I make decisions. Every choice I made in Figma, I had to implement in SwiftUI. That constraint made me more honest. It's easy to design a beautiful multi-step confirmation flow; it's harder to build one that handles a blurry scan, an unrecognized drug name, or a notification that fires while Do Not Disturb is on. The edge cases are the product.</p>
-                <p>The research taught me something I didn't expect: the medication adherence problem isn't unsolved because nobody has tried. It's unsolved because most solutions optimize for the first 30 days. The app that gets downloaded is a different problem than the app that gets used a year later. I'm designing for the second one — which means the smart scan and GPS features aren't additions, they're the core argument for why Iaso still matters in Month 12.</p>
+                <p>Building this solo — designing and developing in parallel — changed how I make decisions. Every choice I made in Figma, I would have to implement in SwiftUI. That constraint made me more honest. <br> <br> It's easy to design a beautiful multi-step confirmation flow; it's harder to build one that handles a blurry scan, an unrecognized drug name, or a notification that fires while Do Not Disturb is on. The edge cases are the product.</p>
+                <p>The research taught me something I didn't expect: the medication adherence problem isn't unsolved because nobody has tried. It's unsolved because most solutions optimize for the first 30 days. The app that gets downloaded is a different problem than the app that gets used a year later. I'm designing for the second one, which means the smart scan and GPS features aren't additions, they're the core argument for why Iaso still matters in Month 6 and beyond.</p>
 
                 <div class="project-callout">
                     <span class="callout-label">Atlas → Iaso</span>
-                    <p>Both projects share the same insight: healthcare solutions fail when they solve a narrow technical problem while ignoring the broader human context. Atlas worked at the hardware and ecosystem level. Iaso brings the same holistic thinking to the software layer — same patient, different surface.</p>
+                    <p>Both projects share the same insight: healthcare solutions fail when they solve a narrow technical problem while ignoring the broader human context. Atlas worked at the hardware and ecosystem level. Iaso brings the same holistic thinking to the software layer: same patient, different surface.</p>
                 </div>
             </section>
 
