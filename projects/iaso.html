@@ -34,6 +34,7 @@
                 <a href="#solution">solution</a>
                 <a href="#research">research</a>
                 <a href="#opportunities">opportunities</a>
+                <a href="#constraints">constraints</a>
                 <a href="#iteration">iteration</a>
                 <a href="#testing">testing</a>
                 <a href="#reflection">reflection</a>
@@ -219,6 +220,8 @@
                 <h3>No enduring value</h3>
                 <p>Once a habit forms (~90 days in), reminders become noise. There's no reason to keep using the app. A $5 pillbox wins on long-term retention because it requires zero maintenance.</p>
 
+                <p>These five failure modes mapped directly to the three opportunities Iaso is built around.</p>
+
                 <div class="project-callout">
                     <span class="callout-label">Key insight</span>
                     <p>Any app trying to replace a pillbox needs to do things a pillbox structurally cannot, not just digitize the same experience.</p>
@@ -237,8 +240,29 @@
                     <!-- <figcaption>Three clear gaps in the market</figcaption> -->
                 </figure>
 
+                <p>Each opportunity maps to a constraint I had to design within — not around.</p>
+                <!-- <p><a href="#constraints" class="project-link">See constraint reasoning →</a></p> -->
+
                 <!-- <h3>Design for the actual user</h3>
                 <p>No major app is genuinely designed for seniors. Large touch targets, high contrast, persistent labeled navigation, one action per screen — these aren't accessibility add-ons, they're the core product decision. Designing for the hardest user makes the product better for everyone.</p> -->
+            </section>
+
+            <hr class="project-divider">
+
+            <!-- Constraints -->
+            <section id="constraints">
+                <span class="section-label">constraints</span>
+                <h2 class="section-heading">Designing within real limits</h2>
+                <p>Three constraints shaped every major product decision:</p>
+
+                <h3>On-device ML over server-side</h3>
+                <p>Smart Scan runs inference on-device rather than sending prescription data to a server. The tradeoff: health data never leaves the device, no latency dependency, works offline — critical for older users most likely to have unreliable connections. The cost: a larger app binary and a harder engineering lift. Worth it.</p>
+
+                <h3>Notification timing is a trust problem, not a UX problem</h3>
+                <p>One missed reminder destroys trust permanently — users return to alarms and don't come back. GPS-based triggers exist because time-based notifications fail the moment a routine changes. The implementation cost (location permissions, background entitlements in iOS) is higher than a simple alarm; the retention payoff is the entire argument for Month 6.</p>
+
+                <h3>AI flags surface, never suppress</h3>
+                <p>Drug interaction detection fires at the moment of highest relevance — medication setup — and persists in Insights until resolved. The design choice: in a high-stakes domain, suppressing a flag to reduce friction is the wrong tradeoff. False negatives cost more than false positives. Building in SwiftUI in parallel made this call easier to commit to — I was designing with the real implementation cost in view, not an abstraction of it.</p>
             </section>
 
             <hr class="project-divider">
