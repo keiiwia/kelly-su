@@ -585,4 +585,8 @@ figure.project-figure figcaption {
     .project-img-2up {
         grid-template-columns: 1fr;
     }
+
+    .project-feature-row {
+        grid-template-columns: 1fr;
+    }
 }
