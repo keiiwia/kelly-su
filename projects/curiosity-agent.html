@@ -35,6 +35,7 @@
                 <a href="#brief">brief</a>
                 <a href="#iteration">iteration</a>
                 <a href="#solution">solution</a>
+                <a href="#speculative">speculative extension</a>
                 <a href="#reflection">reflection</a>
             </nav>
         </aside>
@@ -188,6 +189,72 @@
                     <img src="../home-imgs/P.IMG-e-ink-ui-screens.png" alt="Curiosity Agent e-ink UI screens showing question history and themes.">
                     <figcaption>E-ink UI — question history and synthesized themes at the end of the day.</figcaption>
                 </figure>
+
+            </section>
+
+            <hr class="project-divider">
+
+            <section id="speculative">
+              <span class="section-label">speculative extension</span>
+              <h2 class="section-heading">If the hardware wasn't the ceiling</h2>
+              <p>The wearable works, but the hardware constrained what we could design for, with no persistent screen, no voice input, no way to go deeper on a question once it landed. This is the app I would have built alongside it: the same system, a different surface.</p>
+              <p>Each of the four flows maps directly to a gap the hardware left open.</p>
+
+              <div class="project-feature-row">
+                <div class="project-feature-media">
+                  <img src="../videos/PGIF-camera.gif" alt="Curiosity Agent speculative app — camera feed and question arrival" style="width:100%;height:auto;display:block;border-radius:6px;">
+                </div>
+                <div class="project-feature-text">
+                  <h3>The question arrives</h3>
+                  <p>The camera feed opens full screen — you're seeing what the device sees. Tap, and it contracts to a thumbnail. The question fades in beneath it. The image that generated the question stays visible as evidence: this is what the AI saw, this is the register it chose, this is what it asked. The question is the only thing that needs your attention.</p>
+                </div>
+              </div>
+
+              <div class="project-feature-row">
+                <div class="project-feature-media">
+                  <img src="../videos/PGIF-question-archive.gif" alt="Curiosity Agent speculative app — question archive drawer" style="width:100%;height:auto;display:block;border-radius:6px;">
+                </div>
+                <div class="project-feature-text">
+                  <h3>Every question, in order</h3>
+                  <p>A drawer pulls up from the question screen — 147 questions, going back as far as you've worn the device. Chronological by default, filterable by register. The archive isn't a history, it's a record of what kept catching your attention. Patterns surface without being explained.</p>
+                </div>
+              </div>
+
+              <div class="project-feature-row">
+                <div class="project-feature-media">
+                  <img src="../videos/PGIF-menubar.gif" alt="Curiosity Agent speculative app — minimal navigation and recording status" style="width:100%;height:auto;display:block;border-radius:6px;">
+                </div>
+                <div class="project-feature-text">
+                  <h3>Navigation that stays out of the way</h3>
+                  <p>The menu lives behind a hamburger — never visible unless you need it. Recording status at the bottom: how long you've worn it today, how many times you've been asked something. The product has memory without making memory the point.</p>
+                </div>
+              </div>
+
+              <div class="project-feature-row">
+                <div class="project-feature-media">
+                  <video src="../videos/PVID-socraitic-chat.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
+                </div>
+                <div class="project-feature-text">
+                  <h3>Socr(AI)tic — going deeper</h3>
+                  <p>When a question lands and you want to follow it, the Socratic mode lets you speak back. The AI stays in register — it responds with questions, not answers. User voice is transcribed right-aligned, the agent left-aligned with a pulse ring indicating who's speaking. No chat bubbles. The conversation is a surface, not a UI pattern.</p>
+                  <p>The originating question anchors the top of the screen and never moves. Every exchange hangs from it. When the conversation ends, it gets archived alongside the question that started it.</p>
+                </div>
+              </div>
+
+              <div class="project-callout">
+                <span class="callout-label">Design principle</span>
+                <p>The AI never closes the gap. It sits in the question with you, asks what you didn't think to ask yourself, and stops before it becomes an answer. Knowing when to withhold is a design decision too.</p>
+              </div>
+
+              <div style="display: flex; justify-content: center; margin: 2rem 0;">
+                <iframe
+                  src="curiosity-agent-prototype.html"
+                  style="width: 420px; height: 900px; border: none; border-radius: 8px;"
+                  scrolling="no"
+                  title="Curiosity Agent interactive prototype">
+                </iframe>
+              </div>
+              <p style="text-align: center; font-size: 0.85rem; color: #888; margin-top: 0.5rem;">Interactive prototype built with Claude Code + Figma Make</p>
 
             </section>
 
