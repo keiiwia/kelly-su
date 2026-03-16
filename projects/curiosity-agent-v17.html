@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Curiosity Agent — v4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-sans/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#FFFFFF;
+  --black:#111111;
+  --g50:#F8F7F4;
+  --g100:#F0EEEB;
+  --g200:#E2E0DB;
+  --g400:#AAAAAA;
+  --g600:#666666;
+  --teal:#2D6A6A;
+  --amber:#BA7517;
+  --border:rgba(0,0,0,0.08);
+  --serif:'EB Garamond',Georgia,serif;
+  --sans:'Geist','Inter',system-ui,sans-serif;
+}
+html,body{width:100%;height:100%;background:#E8E6E1;display:flex;align-items:center;justify-content:center;font-family:var(--sans);overflow:hidden;}
+
+/* DEVICE */
+.device{width:393px;height:852px;background:var(--white);border-radius:50px;overflow:hidden;position:relative;isolation:isolate;box-shadow:0 40px 100px rgba(0,0,0,0.22),0 0 0 1px rgba(0,0,0,0.06);}
+.device-screens{position:absolute;inset:0;overflow:hidden;}
+
+/* STATUS BAR */
+.sb{position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:flex-end;padding:0 26px 10px;justify-content:space-between;z-index:400;pointer-events:none;}
+.sb-time{font-size:15px;font-weight:400;}
+.sb-right{display:flex;align-items:center;gap:5px;}
+.sb-right span{font-size:13px;font-weight:400;}
+.sb.light .sb-time,.sb.light .sb-right span{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.5);}
+.sb.dark .sb-time,.sb.dark .sb-right span{color:var(--black);}
+
+/* TOP NAV */
+.tn{position:absolute;top:54px;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:400;}
+.tn.light .ham span{background:#fff;}
+.tn.dark .ham span{background:var(--black);}
+.ham{display:flex;flex-direction:column;gap:4.5px;cursor:pointer;padding:6px;margin:-6px;}
+.ham span{display:block;border-radius:1px;height:1.2px;}
+.ham span:nth-child(1){width:20px;}
+.ham span:nth-child(2){width:15px;}
+.ham span:nth-child(3){width:10px;}
+.nav-status{display:flex;align-items:center;gap:7px;}
+.nav-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;}
+.tn.light .nav-label{color:rgba(255,255,255,0.85);}
+.tn.dark .nav-label{color:var(--black);}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dot.amber{background:var(--amber);animation:dp 2.4s ease-in-out infinite;}
+.dot.gray{background:var(--g400);}
+.dot.teal{background:var(--teal);animation:dp 2.4s ease-in-out infinite;}
+.dot.black{background:var(--black);animation:dp 1s ease-in-out infinite;}
+
+@keyframes dp{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes rp{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.2);opacity:0.08}}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SCREEN */
+.screen{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.28s ease;background:var(--white);z-index:1;}
+.screen.active{opacity:1;pointer-events:all;z-index:30;}
+/* question screen active sits below z-index:30 so sheet can overlay it */
+#sq.active{z-index:1;}
+
+/* ===================== SCREEN 1: QUESTION ===================== */
+#sq{}
+
+/* Camera fullscreen → thumbnail morph */
+.cam{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  z-index:10;overflow:hidden;cursor:pointer;
+  background:#111;
+  border-radius:50px;
+  transition:top .62s cubic-bezier(.4,0,.2,1),left .62s cubic-bezier(.4,0,.2,1),
+    width .62s cubic-bezier(.4,0,.2,1),height .62s cubic-bezier(.4,0,.2,1),
+    border-radius .62s cubic-bezier(.4,0,.2,1);
+}
+.cam.collapsed{top:118px;left:22px;width:56px;height:56px;border-radius:10px;cursor:default;z-index:5;}
+.cam-inner{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
+.cam-bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:0.7;}
+.cam-icon{position:relative;z-index:1;opacity:0.5;transition:opacity .3s;}
+.cam.collapsed .cam-icon{opacity:0;}
+.cam-hint{position:relative;z-index:1;font-size:12px;color:rgba(255,255,255,0.5);font-weight:300;letter-spacing:0.08em;text-transform:uppercase;animation:float 2.2s ease-in-out infinite;transition:opacity .3s;}
+.cam.collapsed .cam-hint{opacity:0;pointer-events:none;}
+@keyframes float{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:0.7;transform:translateY(-3px)}}
+
+/* Question content layer */
+.qcl{position:absolute;top:100px;left:0;right:0;bottom:0;padding:12px 22px 0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s ease .32s;z-index:4;}
+.qcl.vis{opacity:1;pointer-events:all;}
+
+.qmeta{display:flex;align-items:center;gap:14px;margin-bottom:22px;height:56px;}
+.thumb-ghost{width:56px;height:56px;flex-shrink:0;}/* space reserved for the morphed cam thumbnail */
+.meta-text{display:flex;flex-direction:column;gap:4px;}
+.meta-reg{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--black);font-weight:500;}
+.meta-loc{font-size:12px;color:var(--g400);font-weight:300;}
+
+.qtext{font-size:34px;line-height:1.28;color:var(--black);font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.015em;flex:1;}
+
+/* Bottom bar */
+.qbar{position:absolute;bottom:0;left:0;right:0;z-index:6;opacity:0;pointer-events:none;transition:opacity .4s ease .46s;}
+.qbar.vis{opacity:1;pointer-events:all;}
+
+/* SAVE + SOCRAITIC pill row */
+.pill-row{display:flex;gap:10px;padding:0 22px 14px;}
+.pill-btn{flex:1;height:40px;border-radius:20px;border:0.5px solid rgba(0,0,0,0.14);display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;background:var(--white);transition:background .15s;}
+.pill-btn:active{background:var(--g100);}
+.pill-btn span{font-size:13px;font-weight:400;color:var(--black);}
+.pill-btn.saved{border-color:var(--black);}
+.pill-btn.saved span{font-weight:500;}
+
+/* ALL QUESTIONS drawer pull — peek tab always visible */
+.drawer-pull{
+  border-top:0.5px solid var(--border);
+  background:var(--g50);
+  padding:12px 22px 44px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  cursor:grab;user-select:none;
+}
+.dp-handle{width:34px;height:3.5px;background:rgba(0,0,0,0.16);border-radius:2px;}
+.dp-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g600);font-weight:400;}
+
+/* BOTTOM SHEET — lives above question screen, draggable */
+.bottom-sheet{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:820px; /* taller than screen so content doesn't clip */
+  background:var(--g100);
+  border-radius:20px 20px 0 0;
+  z-index:20;
+  transform:translateY(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+  display:flex;flex-direction:column;
+  touch-action:none;
+}
+.bottom-sheet.open{ transform:translateY(calc(100% - 680px)); }
+.bottom-sheet.transitioning{ transition:transform .38s cubic-bezier(.4,0,.2,1); }
+
+/* scrim behind sheet */
+.sheet-scrim{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0);
+  z-index:15;
+  pointer-events:none;
+  transition:background .3s;
+}
+.sheet-scrim.visible{
+  background:rgba(0,0,0,0.22);
+  pointer-events:all;
+}
+
+/* ===================== SCREEN 2: ARCHIVE ===================== */
+#sa{background:var(--g100);}
+
+.arch-sheet{position:absolute;inset:0;background:var(--g100);display:flex;flex-direction:column;}
+.arch-topspace{height:100px;background:var(--g100);flex-shrink:0;}
+.arch-handle-row{display:flex;justify-content:center;padding:10px 0 0;}
+.arch-handle{width:34px;height:3.5px;background:rgba(0,0,0,0.18);border-radius:2px;}
+.arch-return{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g600);font-weight:400;text-align:center;padding:12px 0 14px;cursor:pointer;}
+
+/* Filter row — inline dropdown + sort */
+.arch-filterrow{display:flex;align-items:center;justify-content:space-between;padding:0 22px 10px;}
+.arch-count{font-size:11px;color:var(--g400);letter-spacing:0.06em;text-transform:uppercase;}
+.filter-dropdown{display:flex;align-items:center;gap:6px;border:0.5px solid rgba(0,0,0,0.18);border-radius:20px;padding:5px 12px;cursor:pointer;background:var(--white);position:relative;}
+.filter-dropdown span{font-size:11px;font-weight:500;color:var(--black);}
+.sort-row{display:flex;align-items:center;justify-content:space-between;padding:0 22px 12px;}
+.sort-label{font-size:11px;color:var(--g400);font-weight:300;font-style:italic;}
+
+/* Filter menu dropdown */
+.filter-menu{position:absolute;top:30px;right:0;background:var(--white);border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:50;overflow:hidden;min-width:160px;display:none;}
+.filter-menu.open{display:block;}
+.fm-item{padding:12px 16px;font-size:13px;color:var(--black);font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);}
+.fm-item:last-child{border-bottom:none;}
+.fm-item.active{font-weight:500;}
+.fm-item .fm-count{font-size:11px;color:var(--g400);}
+.fm-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+/* Archive list — date grouped */
+.arch-list{flex:1;overflow-y:auto;padding:0 22px;}
+.arch-list::-webkit-scrollbar{display:none;}
+.date-group-label{font-size:13px;font-weight:500;color:var(--black);padding:14px 0 8px;}
+.arch-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:0.5px solid rgba(0,0,0,0.07);cursor:pointer;}
+.arch-item:last-child{border-bottom:none;}
+.arch-thumb{width:44px;height:44px;border-radius:8px;flex-shrink:0;overflow:hidden;background:var(--g200);}
+.arch-thumb img{width:100%;height:100%;object-fit:cover;}
+.arch-item-text{flex:1;}
+.arch-item-q{font-size:14px;color:var(--black);font-weight:400;line-height:1.45;margin-bottom:4px;}
+.arch-item-meta{font-size:11px;color:var(--g400);font-weight:300;display:flex;align-items:center;gap:4px;}
+.arch-meta-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.arch-count-footer{font-size:11px;color:var(--g400);letter-spacing:0.1em;text-transform:uppercase;text-align:center;padding:14px 0 48px;}
+
+/* ===================== MENU OVERLAY (slide-in panel) ===================== */
+/* Not a screen — lives above all screens, slides from left */
+.menu-panel{
+  position:absolute;top:0;left:0;bottom:0;
+  width:100%;
+  background:var(--white);
+  z-index:450;
+  display:flex;flex-direction:column;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .32s cubic-bezier(.4,0,.2,1);
+}
+.menu-panel.open{clip-path:inset(0 0% 0 0);}
+
+/* dim scrim behind panel — only covers right side if panel is partial width,
+   but since we go full width we don't need a separate scrim */
+.menu-brand{padding:22px 22px 18px;font-size:15px;font-style:italic;font-family:var(--serif);color:var(--black);border-bottom:0.5px solid var(--border);}
+.menu-list{padding:0 22px;flex:1;}
+.menu-row{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:0.5px solid var(--border);cursor:pointer;}
+.menu-row:last-child{border-bottom:none;}
+.menu-row-l{display:flex;align-items:center;gap:14px;}
+.menu-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.menu-lbl{font-size:17px;font-weight:300;color:var(--black);}
+.menu-arr{color:var(--g400);font-size:18px;font-weight:300;}
+.menu-footer{padding:0 22px 52px;border-top:0.5px solid var(--border);}
+.menu-footer-row{display:flex;align-items:center;gap:8px;padding-top:22px;}
+.mf-dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:dp 2.4s ease-in-out infinite;flex-shrink:0;}
+.mf-text{font-size:11px;color:var(--g400);font-weight:300;line-height:1.7;letter-spacing:0.02em;}
+.close-x{width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+/* ===================== SCREEN 4: SOCRATIC ===================== */
+#ss{}
+.soc-origin{position:absolute;top:100px;left:0;right:0;padding:12px 22px;border-bottom:0.5px solid var(--border);}
+.soc-origin p{font-size:13px;color:var(--g400);font-weight:300;line-height:1.55;}
+
+.soc-thread{position:absolute;top:164px;left:0;right:0;bottom:148px;overflow-y:auto;padding:16px 22px;}
+.soc-thread::-webkit-scrollbar{display:none;}
+
+/* Current agent question — large centered */
+.t-agent-current{text-align:center;padding:24px 8px 20px;animation:fi .4s ease forwards;}
+.t-agent-current p{font-size:22px;line-height:1.38;color:var(--black);font-weight:500;}
+
+/* Past agent — compact with dot */
+.t-agent-past{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:0.5px solid var(--border);animation:fi .3s ease forwards;}
+.past-ring{width:22px;height:22px;border-radius:50%;border:0.8px solid var(--g200);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.past-ring-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);}
+.t-agent-past p{font-size:13px;color:var(--g400);font-weight:300;line-height:1.5;}
+
+/* Active agent ring */
+.active-ring{width:22px;height:22px;border-radius:50%;border:0.8px solid rgba(45,106,106,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;animation:rp 2.4s ease-in-out infinite;}
+.active-ring-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:dp 2.4s ease-in-out infinite;}
+.t-agent-with-ring{display:flex;align-items:flex-start;gap:10px;padding:14px 0;border-bottom:0.5px solid var(--border);animation:fi .4s ease forwards;}
+.t-agent-with-ring p{font-size:20px;line-height:1.38;color:var(--black);font-weight:500;}
+
+/* User transcript */
+.t-user{text-align:right;padding:12px 0;border-bottom:0.5px solid var(--border);animation:fi .3s ease forwards;}
+.t-user p{font-size:15px;color:var(--black);font-weight:300;line-height:1.6;font-style:italic;}
+
+.cur{display:inline-block;width:1.5px;height:14px;background:var(--black);margin-left:2px;vertical-align:middle;animation:cur 1s step-end infinite;}
+
+/* Tap area */
+.soc-tap{position:absolute;bottom:0;left:0;right:0;height:148px;border-top:0.5px solid var(--border);background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding-bottom:32px;}
+.tap-wrap{position:relative;width:72px;height:72px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.tap-o{position:absolute;width:72px;height:72px;border-radius:50%;border:0.8px solid rgba(0,0,0,0.1);transition:border-color .25s;}
+.tap-i{position:absolute;width:50px;height:50px;border-radius:50%;border:0.8px solid rgba(0,0,0,0.14);transition:border-color .25s;}
+.tap-d{width:11px;height:11px;border-radius:50%;background:var(--teal);z-index:1;transition:all .2s;}
+.tap-o.on{border-color:rgba(45,106,106,0.25);animation:rp 2.4s ease-in-out infinite;}
+.tap-i.on{border-color:rgba(45,106,106,0.35);animation:rp 2.4s ease-in-out infinite .3s;}
+.tap-d.on{animation:dp 1s ease-in-out infinite;transform:scale(1.3);}
+.tap-lbl{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g400);font-weight:400;transition:color .2s;}
+.tap-lbl.teal{color:var(--teal);}
+
+/* ===================== SCREEN 5: SYNTHESIS — CARD CAROUSEL ===================== */
+#sy{}
+.syn-header{position:absolute;top:100px;left:0;right:0;padding:16px 22px 12px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.syn-header-date{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--g400);font-weight:400;}
+.syn-dots{display:flex;gap:5px;align-items:center;}
+.syn-dot{width:5px;height:5px;border-radius:50%;background:var(--g200);transition:background .2s;}
+.syn-dot.active{background:var(--black);}
+
+/* horizontal carousel */
+.syn-track-wrap{position:absolute;top:148px;left:0;right:0;bottom:0;overflow:hidden;}
+.syn-track{display:flex;height:100%;width:calc(393px * 4);transition:transform .38s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.syn-card{width:393px;min-width:393px;max-width:393px;height:100%;overflow-y:auto;padding:22px 22px 52px;flex-shrink:0;box-sizing:border-box;}
+.syn-card::-webkit-scrollbar{display:none;}
+
+/* card typography */
+.sc-eyebrow{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--g400);font-weight:400;margin-bottom:14px;}
+.sc-title{font-size:20px;font-weight:400;color:var(--black);line-height:1.3;margin-bottom:20px;}
+.sc-body{font-size:13px;color:var(--g600);font-weight:300;line-height:1.6;}
+
+/* card 1 — inquiry frequency */
+.sc-chart-wrap{width:100%;height:140px;position:relative;margin:16px 0;}
+.sc-chart-axis{position:absolute;bottom:0;left:32px;right:0;display:flex;justify-content:space-between;}
+.sc-axis-lbl{font-size:9px;color:var(--g400);}
+.sc-legend{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.sc-legend-item{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--black);font-weight:300;}
+.sc-legend-swatch{width:14px;height:14px;flex-shrink:0;border:0.5px solid rgba(0,0,0,0.2);}
+.sc-top-q{padding:14px;background:var(--g50);border-radius:10px;border:0.5px solid var(--border);}
+.sc-top-q-label{font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--g400);margin-bottom:6px;}
+.sc-top-q-text{font-size:13px;color:var(--black);font-weight:400;line-height:1.5;}
+
+/* card 2 — rabbit holes scatter */
+.sc-scatter{width:100%;height:200px;position:relative;margin:12px 0;}
+.sc-axis-h{position:absolute;top:50%;left:0;right:0;height:0.5px;background:rgba(0,0,0,0.15);}
+.sc-axis-v{position:absolute;left:50%;top:0;bottom:0;width:0.5px;background:rgba(0,0,0,0.15);}
+.sc-axis-label{position:absolute;font-size:9px;color:var(--g400);letter-spacing:0.04em;}
+.sc-node{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);}
+.sc-node span{font-size:10px;color:#fff;font-weight:500;}
+.sc-node.highlight{background:var(--white);border:1.5px solid var(--black);}
+.sc-node.highlight span{color:var(--black);}
+.sc-node-line{position:absolute;pointer-events:none;}
+.sc-q-list{display:flex;flex-direction:column;gap:10px;}
+.sc-q-item{display:flex;gap:10px;align-items:flex-start;}
+.sc-q-num{width:20px;height:20px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:500;flex-shrink:0;margin-top:1px;}
+.sc-q-text{font-size:12px;color:var(--black);font-weight:300;line-height:1.5;}
+.sc-q-tags{font-size:10px;color:var(--g400);margin-top:2px;}
+
+/* card 3 — weekly pattern */
+.sc-week-chart{width:100%;margin:12px 0 8px;}
+.sc-week-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.sc-week-day{font-size:10px;color:var(--g400);width:20px;flex-shrink:0;text-align:right;}
+.sc-week-bar-wrap{flex:1;height:14px;position:relative;}
+.sc-week-bar{height:100%;border-radius:2px;display:flex;align-items:center;overflow:hidden;}
+.sc-week-bar.solid{background:var(--black);}
+.sc-week-bar.dotted{background:repeating-radial-gradient(circle,#999 1px,#999 1px,transparent 2px,transparent 4px);}
+.sc-week-labels{display:flex;justify-content:space-between;padding-left:28px;}
+.sc-week-label{font-size:9px;color:var(--g400);}
+.sc-week-insights{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.sc-week-insight{font-size:12px;color:var(--black);font-weight:300;line-height:1.5;padding-left:12px;border-left:2px solid var(--g200);}
+.sc-week-insight b{font-weight:500;}
+
+/* card 4 — question underneath */
+.sc-meta-q{font-size:22px;line-height:1.45;color:var(--black);font-family:var(--serif);font-style:italic;font-weight:400;margin:24px 0 28px;}
+.sc-return{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--g400);display:flex;align-items:center;gap:6px;}
+
+/* RESPONSIVE */
+@media(max-height:900px){.device{transform:scale(0.9);transform-origin:center;}}
+@media(max-height:800px){.device{transform:scale(0.78);}}
+@media(max-height:700px){.device{transform:scale(0.68);}}
+@media(max-width:440px){.device{transform:scale(0.88);}}
+</style>
+</head>
+<body>
+<div class="device">
+<div class="device-screens">
+
+<!-- ===================== SCREEN 1: QUESTION ===================== -->
+<div class="screen active" id="sq">
+  <div class="sb light" id="q-sb">
+    <span class="sb-time">9:41</span>
+    <div class="sb-right">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3.5" width="3" height="8.5" rx="0.8" fill="white" opacity="0.85"/><rect x="4.5" y="2" width="3" height="10" rx="0.8" fill="white" opacity="0.85"/><rect x="9" y="0" width="3" height="12" rx="0.8" fill="white" opacity="0.85"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="white" opacity="0.25"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2C10.8 2 13.3 3.2 15 5.2L16 4C14 1.6 11.2 0 8 0C4.8 0 2 1.6 0 4L1 5.2C2.7 3.2 5.2 2 8 2Z" fill="white" opacity="0.85"/><path d="M8 5C10 5 11.8 5.9 13 7.3L14 6.1C12.5 4.3 10.4 3 8 3C5.6 3 3.5 4.3 2 6.1L3 7.3C4.2 5.9 6 5 8 5Z" fill="white" opacity="0.85"/><circle cx="8" cy="10.5" r="1.5" fill="white" opacity="0.85"/></svg>
+      <span>99%</span>
+    </div>
+  </div>
+  <div class="tn light" id="q-tn">
+    <div class="ham" id="q-ham"><span></span><span></span><span></span></div>
+    <div class="nav-status">
+      <span class="nav-label" id="q-nav-lbl">Recording</span>
+      <div class="dot amber"></div>
+    </div>
+  </div>
+
+  <!-- Camera fullscreen → thumbnail -->
+  <div class="cam" id="cam">
+    <div class="cam-inner">
+      <div style="position:absolute;inset:0;background:linear-gradient(160deg,#1e1e1e,#0d0d0d);"></div>
+      <svg class="cam-icon" width="44" height="34" viewBox="0 0 40 32" fill="none"><rect x="1" y="5" width="27" height="22" rx="2.5" stroke="white" stroke-width="1.5"/><path d="M28 13L39 8V24L28 19V13Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><circle cx="14.5" cy="16" r="4" stroke="white" stroke-width="1.2"/></svg>
+      <span class="cam-hint">tap to begin</span>
+    </div>
+  </div>
+
+  <!-- Question content layer -->
+  <div class="qcl" id="qcl">
+    <div class="qmeta">
+      <div class="thumb-ghost"></div>
+      <div class="meta-text">
+        <span class="meta-reg">Observational</span>
+        <span class="meta-loc">Carroll Gardens · just now</span>
+      </div>
+    </div>
+    <p class="qtext">What is this space designed to make you feel — and is it working?</p>
+  </div>
+
+  <!-- Bottom action bar -->
+  <div class="qbar" id="qbar">
+    <div class="pill-row">
+      <div class="pill-btn" id="save-btn">
+        <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path id="save-path" d="M1 2C1 1.45 1.45 1 2 1H11C11.55 1 12 1.45 12 2V13.5L6.5 10.8L1 13.5V2Z" stroke="#111" stroke-width="1.1" stroke-linejoin="round"/></svg>
+        <span id="save-lbl">Save</span>
+      </div>
+      <div class="pill-btn" id="soc-btn">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3.5C2 2.7 2.7 2 3.5 2h7C11.3 2 12 2.7 12 3.5v5C12 9.3 11.3 10 10.5 10H8l-2.5 2.5V10H3.5C2.7 10 2 9.3 2 8.5v-5Z" stroke="#111" stroke-width="1.1"/></svg>
+        <span>Socr(AI)tic</span>
+      </div>
+    </div>
+    <div class="drawer-pull" id="q-drawer-pull">
+      <div class="dp-handle"></div>
+      <span class="dp-label">All Questions ↓</span>
+    </div>
+  </div>
+</div>
+
+  <!-- scrim + bottom sheet live inside the question screen -->
+  <div class="sheet-scrim" id="sheet-scrim"></div>
+  <div class="bottom-sheet" id="bottom-sheet">
+    <div class="arch-handle-row" id="sheet-drag-handle" style="padding:14px 0 0;cursor:grab;">
+      <div class="arch-handle"></div>
+    </div>
+    <div class="arch-return" id="arch-return">RETURN TO INQUIRING ↑</div>
+
+    <!-- Filter row -->
+    <div class="arch-filterrow">
+      <span class="arch-count">147 QUESTIONS</span>
+      <div class="filter-dropdown" id="filter-dropdown">
+        <span id="filter-label">All registers</span>
+        <svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div class="filter-menu" id="filter-menu">
+          <div class="fm-item active" data-filter="All registers"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#111;"></div>All registers</div><span class="fm-count">147</span></div>
+          <div class="fm-item" data-filter="Observational"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#378ADD;"></div>Observational</div><span class="fm-count">41</span></div>
+          <div class="fm-item" data-filter="Social"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#BA7517;"></div>Social</div><span class="fm-count">28</span></div>
+          <div class="fm-item" data-filter="Absence"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#D85A30;"></div>Absence</div><span class="fm-count">19</span></div>
+          <div class="fm-item" data-filter="Predictive"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#7F77DD;"></div>Predictive</div><span class="fm-count">23</span></div>
+          <div class="fm-item" data-filter="Intentional"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#639922;"></div>Intentional</div><span class="fm-count">22</span></div>
+          <div class="fm-item" data-filter="Prior Life"><div style="display:flex;align-items:center;gap:8px;"><div class="fm-dot" style="background:#D4537E;"></div>Prior Life</div><span class="fm-count">14</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sort-row">
+      <span class="sort-label">Sort: newest first</span>
+      <svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M1 2h12M3 6h8M5 10h4" stroke="#AAAAAA" stroke-width="1.1" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="arch-list" id="arch-list">
+      <div class="date-group-label">Today, March 8</div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,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" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">What is this space designed to make you feel — and is it working?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#378ADD;"></div>Observational · Carroll Gardens · just now</div>
+        </div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,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" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">What are these people agreeing not to say in this train?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#BA7517;"></div>Social · F-Train · 9:20 AM</div>
+        </div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,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" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">What is conspicuously missing from this scene, this early in the morning?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#D85A30;"></div>Absence · Home · 8:54 AM</div>
+        </div>
+      </div>
+      <div class="date-group-label">Yesterday, March 7</div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,/9j//gAQTGF2YzYwLjMxLjEwMgD/2wBDAAgGBgcGBwgICAgICAkJCQoKCgkJCQkKCgoKCgoMDAwKCgoKCgoKDAwMDA0ODQ0NDA0ODg8PDxISEREVFRUZGR//xACjAAEAAgMBAQEAAAAAAAAAAAAABQYHBAMBAggBAAMBAQEAAAAAAAAAAAAAAAADAgQBBRAAAQMDAgMEBgULAAsBAAAAAQMCBAUAERIhBhMxUSJBB5FhNTIUdIFxQiMVsXMX1ZXBcjNi0VXCs9JEg5M0oVIkVPARAAEEAQIFAgUEAwEAAAAAAAEAAwIRIRIEMUGRURNxgWGxoSLwBVJCwfEjQzL/wAARCABoAGgDASIAAhEAAxEA/9oADAMBAAIRAxEAPwCcta161mS/YkSdWZ34fBKaRTSC8qWqxyicVAktZhJrmlVZUtdy09TRhjnOO2D5di8uN6hxEfHVTm/QEFCB6XH03DkjGOFbYs5SLwCyWnrZxDU34OCWxYKQzgHZqkMuxv2n67pPHM+i8BTo8CbU+JZSy0cSP/WQo4Y1MvcxuXqxmZcSx2zQcDr1vOSPO0nnFMu1uxyw4AMz3QdRJLse8dhnoL4TKVT6iWGZCiSyzOgyI6S2nPXTzGuxnxxadcu56p1DsOi/NY8x+GSf+p4uH/DoHT/lDP1eN5aT4KjKRI0wcQVrlSmJKJD4SC55CzA9oKbYDnA4O4I28buI4ZoAIIo9KBByCIMXII8R93fd7Knqdy1oYbqOkOQVJDPAHC4GR2jA9VmuXc9UUOw6LGU2hyoictenTpVVEBjVZUSZTnxVyi5msuiLtRQSVUYzvFEsJdjTqDtr1UlWLJsUTcHMe0Pa4dC1wyCPrF5dSbJ5ZEhyLyWuB5bHtBznwc9+2Oo7bwlw+c0in/LJj0NxbGpk2CUt2IAtSVrWtqUlrWsQlrWviEuPPEdQ4ZjVuRT3JsWWqNNQ1qJhQNb8Cu84adsksA3ztm5C61X2g02rAhR2avTf5bS5wP4dJO2Af+9q3JIalXFN2+Z5Xy3zd4tYRqlRX77j4NIfRcsn5z1skAx6fv2tUH+ni8ZvTWzslMx/Ap2fw+v8l/LWrj3kZg6fZU/2fRfn6neRktmhs8QPY18llR/m3XmtLnIw2ePQdM42BO49e96kvze4hU0tQdDROHajy01B4Adem/pvHjS5vvNltPZpU/e2/Gqgt7xXB27pYT4jOSW+HU/TfBJ7nKR9qQYt9h1WSqL5ocSTKxToqq8VVFeUgio0R2NLmLPDSdTQC0taSRg9cZv54f8AZED5dl1PhdKOa7SHFduRPjdwt0lx5zMb5Hjg+vpds4f9kQPl2Xs2cjLVd4WfcgAClJWta9SzJa1rEJa1rEJerHS5qNaGCcVGmnrj/cV/rvavpQ0nLivNaC4/G07YA/8AxLXLgsD1CuGNXp/ah2I6yQWn7R0hR3TVsfd8b7/DMAyWvA/On+1yyMFyKimtpb0HeB9dx9Xkq05JykdILyXu0s2y1JoAy8gkAnOwuI6fmukS6r6ZHTeA4c3GM5Cvh68i9lCI1VjXAKkO8dbSD6brlPqtTdJalJRcUlO6XBjG6Cds9w4xn1XfKTGPwyDevdH/AOFu284TlVVjnSU9GcI3fNalNpwdLiv5JyyUw5ckgfdV66gdQ+sb3W+H/ZED5dl5Rp8PBzuMKauzxzeLeHvY8D8wy6d0eT7f256qWJym3PVykPkpO1rXCtLWtYhLWtYhLleC5TocivKgZxKp+R2gxFdrirr9a4glcOU2sSYri1VSrUxEdhBgSHbjxHduHMR4Xnh/lW0LJzWOPuslT5zqmqXPa1rWbMaPAY8Ttne4NeEjJWYFVk46eoalXu0sAKm5JyB0HjdLi8cS1UWlkkKKvYx/Kwm1x1nc5LcYDdz1d6r6KyqhIiTZcpZqzCkolFRT0e9l2tdTGPcaQ1POD3ycXkaLhnXjl39vZaZtxEL1xPpx+q6VbiqjxJGISE6WgDpEjKQYo5NQ5Kfe3aRg74I8RczSfM+kxygFKfUBywGnuolv+sF1Ckve2hKmLgrQ5JXcm/SQGlha54a5rxnAG7m+rIvXqlfqojc0LLK80osY8JkJopudpOlwaEcqOBbsNQ27b64/MOExFCuQvHVdbYblAXZzzPPosyxvMygTZMaKijOCkhVNJp+HZpD1HBrdRCmwydzg3ROH/ZED5dn5L0uCUXunwl111VH/ABCXde/WMue3oH5x9bcG93h/2RA+XZfdi/5/Jf8ACh1U7vbhiiP556YUla1r2LIlrWsQlrWsQl0zjJyQpc0KgaH1+ktdkkAA06Vk7b7C7ndK43iPmUmoJsOHCuUx3opcvPTfpcOy0R1diE7bRM3BECyeXdRkLh9KUGLEFkeMio3Uw/eOJAczVsN9lRl3a3a+ikpaLHjQWtc58aKm7Djv98Nbw7tcXOySey5jhRIGCv8AFveXKxWEFrCGhM6mkh5ADnjAPTb13WKjUgJShcHtcTqd0Lnam7d49GhhwB/e+O7mE35luX+vTEDlxjmvRan2AzGtNSMsjtR9VNUrkxI01YZasugok9mo40qpKasDOk+7kHfF8VJya1MnuesHotVitagg8OKehzQwph33epPbJ9ZvSotWY6QjHWYVUXPb/wCOWYZoJ6YLSzZ48Rv1uZp3C0CktVXb8StziGlJZzXoZLi8uHdA1tGlo/pFq3G5ag3fj4Mzj9v7s3I9Qp2+3ddNCX/WMjfbkB9VDcPVFJ/EdD3mOU/EYabQpyOXgrtG4Zg+OfG71w/7Ig/LsuNpNOifjlLVEVhxOjEYDWljgs3Dh3d8dlyXD/siB8uy0/pk4zjMi+XFV+ptzbMRL6KSta17156WtaxCWtaxCXrxOF5XFTavGirIoqR6nTJJ52vQ9ghLpuZljXEHD8jbBxi9i7D5cOAqPELPtZpymP6XIrMB9LCPotb4EoEHgU7auSadE4/+o5F5yo93l1XhTBETl09qjI3w7HZVDQDnc4RyfeJyRnNw9W8mqpUCx7ZVP5gTaxznOVGdLQNQwgfHO1zPGXFnENLr740RYoMTagYcQRWqiol7QX6nlpecvJSASLSzTk3dKrUqnFWihCI5VigbzdJaSwlzQRucnSCT3WuzjfGc2mLIZGKqQ9e31TnN5PdSlq4iVmhWcrGEHyUnxW6jJghcFpCzFJGcY7w08oN69Dg5HW51/l3WSzDZEAb599fBPb/Ku+1CVKQckEk9QdjV3mjHb7wOcdg3vpKlKpNT206gMnpg+IyemOzxvjsQ7V4oVUftHv3XWnps3prJvItUCneXlYjTokheVB5aC6azuWVi8hNwdhocm0ZOMbm6vw/7IgfLsvNwVwgVFDpAY5zidhpAzk9m14SoAxSKf64yR9Lc/vu9q1FrVp5qN09N4AzN1wxSkbWtehZUta1iEtflrFxe38JKzqdNTqNNWTRlMYUntWaXx5KBOrkrtaWu2d3k1GEPYc4yCQfq1hzgrokY5CnB5g1wY10OnPcPtNqqrR6yA6nkj039fpDrf+Bg/tdT9XXA2ufFH49Vfll2H57qe/SHW/8AAwf2up+rrfpDrf8AgYP7XU/V1wNrPFH49UeWXw/PdbdY4lr3EMd8JZOJS4aw0yBFXVkSV0j7yIWclHYixQd1QtY55bkAtvUa1rGhrQGtaAAB0AGwA+q1r6IiPBTKZlxXtr8tfVK9tflrEL//2Q==" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">What will this place look like in ten years?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#7F77DD;"></div>Predictive · Atlantic Ave · Yesterday</div>
+        </div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,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" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">Who built this and what did they want you to think of them?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#639922;"></div>Intentional · Smith St · Yesterday</div>
+        </div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-thumb"><img src="data:image/jpeg;base64,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" alt=""/></div>
+        <div class="arch-item-text">
+          <div class="arch-item-q">What would change if you weren't allowed to leave for an hour?</div>
+          <div class="arch-item-meta"><div class="arch-meta-dot" style="background:#D4537E;"></div>Prior Life · Prospect Park · Yesterday</div>
+        </div>
+      </div>
+    </div>
+    <div class="arch-count-footer">147 QUESTIONS</div>
+  </div><!-- /bottom-sheet -->
+
+</div><!-- /sq -->
+
+<!-- screens below are siblings inside .device -->
+
+<!-- ===================== SCREEN 2: ARCHIVE (menu nav target, same sheet different context) ===================== -->
+
+<!-- ===================== MENU PANEL (slide-in, not a screen) ===================== -->
+<!-- ===================== SCREEN 4: SOCRATIC ===================== -->
+<div class="screen" id="ss">
+  <div class="sb dark"><span class="sb-time">9:41</span><div class="sb-right"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3.5" width="3" height="8.5" rx="0.8" fill="#111" opacity="0.85"/><rect x="4.5" y="2" width="3" height="10" rx="0.8" fill="#111" opacity="0.85"/><rect x="9" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.85"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.25"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2C10.8 2 13.3 3.2 15 5.2L16 4C14 1.6 11.2 0 8 0C4.8 0 2 1.6 0 4L1 5.2C2.7 3.2 5.2 2 8 2Z" fill="#111" opacity="0.85"/><path d="M8 5C10 5 11.8 5.9 13 7.3L14 6.1C12.5 4.3 10.4 3 8 3C5.6 3 3.5 4.3 2 6.1L3 7.3C4.2 5.9 6 5 8 5Z" fill="#111" opacity="0.85"/><circle cx="8" cy="10.5" r="1.5" fill="#111" opacity="0.85"/></svg><span style="color:var(--black);">99%</span></div></div>
+  <div class="tn dark">
+    <div class="ham" id="soc-back"><span></span><span></span><span></span></div>
+    <div class="nav-status">
+      <span class="nav-label" id="soc-lbl">Waiting</span>
+      <div class="dot gray" id="soc-dot"></div>
+    </div>
+  </div>
+  <div class="soc-origin"><p>What is this space designed to make you feel — and is it working?</p></div>
+  <div class="soc-thread" id="soc-thread"></div>
+  <div class="soc-tap">
+    <div class="tap-wrap" id="tap-btn">
+      <div class="tap-o" id="tap-o"></div>
+      <div class="tap-i" id="tap-i"></div>
+      <div class="tap-d" id="tap-d"></div>
+    </div>
+    <span class="tap-lbl" id="tap-lbl">Tap to respond</span>
+  </div>
+</div>
+
+<!-- ===================== SCREEN 5: SYNTHESIS ===================== -->
+<div class="screen" id="sy">
+  <div class="sb dark"><span class="sb-time">9:41</span><div class="sb-right"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3.5" width="3" height="8.5" rx="0.8" fill="#111" opacity="0.85"/><rect x="4.5" y="2" width="3" height="10" rx="0.8" fill="#111" opacity="0.85"/><rect x="9" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.85"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.25"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2C10.8 2 13.3 3.2 15 5.2L16 4C14 1.6 11.2 0 8 0C4.8 0 2 1.6 0 4L1 5.2C2.7 3.2 5.2 2 8 2Z" fill="#111" opacity="0.85"/><path d="M8 5C10 5 11.8 5.9 13 7.3L14 6.1C12.5 4.3 10.4 3 8 3C5.6 3 3.5 4.3 2 6.1L3 7.3C4.2 5.9 6 5 8 5Z" fill="#111" opacity="0.85"/><circle cx="8" cy="10.5" r="1.5" fill="#111" opacity="0.85"/></svg><span style="color:var(--black);">99%</span></div></div>
+  <div class="tn dark">
+    <div class="ham" id="syn-back"><span></span><span></span><span></span></div>
+    <div class="nav-status"><span class="nav-label" id="syn-card-label">When</span><div class="dot gray"></div></div>
+  </div>
+
+  <!-- sub-header: date + progress dots -->
+  <div class="syn-header">
+    <span class="syn-header-date">March 15, 2026</span>
+    <div class="syn-dots">
+      <div class="syn-dot active" data-card="0"></div>
+      <div class="syn-dot" data-card="1"></div>
+      <div class="syn-dot" data-card="2"></div>
+      <div class="syn-dot" data-card="3"></div>
+    </div>
+  </div>
+
+  <div class="syn-track-wrap" id="syn-track-wrap">
+    <div class="syn-track" id="syn-track">
+
+      <!-- CARD 1: WHEN — inquiry frequency by time of day -->
+      <div class="syn-card">
+        <div class="sc-eyebrow">When you inquired</div>
+        <div class="sc-title">You thought of these throughout the day.</div>
+        <div class="sc-legend">
+          <div class="sc-legend-item"><div class="sc-legend-swatch" style="background:var(--black);"></div>Observational</div>
+          <div class="sc-legend-item"><div class="sc-legend-swatch" style="background:repeating-linear-gradient(90deg,#333 0px,#333 2px,transparent 2px,transparent 5px);border:0.5px solid #333;"></div>Social</div>
+          <div class="sc-legend-item"><div class="sc-legend-swatch" style="background:var(--g200);"></div>Absence</div>
+        </div>
+        <div class="sc-chart-wrap">
+          <svg width="100%" height="140" viewBox="0 0 349 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hatch" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(90)">
+                <line x1="0" y1="0" x2="0" y2="5" stroke="#333" stroke-width="2"/>
+              </pattern>
+              <pattern id="dots" patternUnits="userSpaceOnUse" width="6" height="6">
+                <circle cx="3" cy="3" r="1.5" fill="#888"/>
+              </pattern>
+            </defs>
+            <!-- grid lines -->
+            <line x1="30" y1="10" x2="349" y2="10" stroke="#eee" stroke-width="0.5"/>
+            <line x1="30" y1="40" x2="349" y2="40" stroke="#eee" stroke-width="0.5"/>
+            <line x1="30" y1="70" x2="349" y2="70" stroke="#eee" stroke-width="0.5"/>
+            <line x1="30" y1="100" x2="349" y2="100" stroke="#eee" stroke-width="0.5"/>
+            <line x1="30" y1="125" x2="349" y2="125" stroke="#ddd" stroke-width="0.5"/>
+            <!-- y labels -->
+            <text x="22" y="13" text-anchor="end" font-size="9" fill="#aaa">12</text>
+            <text x="22" y="43" text-anchor="end" font-size="9" fill="#aaa">8</text>
+            <text x="22" y="73" text-anchor="end" font-size="9" fill="#aaa">4</text>
+            <text x="22" y="103" text-anchor="end" font-size="9" fill="#aaa">2</text>
+            <!-- Absence area (back layer, light) -->
+            <path d="M30,125 C60,115 80,105 110,98 C140,90 155,92 180,88 C205,84 220,90 250,95 C280,100 310,105 349,108 L349,125 Z" fill="url(#dots)" opacity="0.6"/>
+            <!-- Social area (mid layer, hatched) -->
+            <path d="M30,125 C50,108 75,82 100,72 C125,62 140,68 165,65 C190,62 210,70 240,78 C270,86 310,95 349,100 L349,125 Z" fill="url(#hatch)" opacity="0.7"/>
+            <!-- Observational area (front layer, solid) -->
+            <path d="M30,125 C45,118 60,95 80,80 C100,65 115,45 140,30 C155,20 170,35 195,55 C215,70 225,80 250,70 C275,60 300,40 320,30 C335,22 342,28 349,35 L349,125 Z" fill="var(--black)" opacity="0.85"/>
+          </svg>
+          <!-- x-axis labels -->
+          <div style="display:flex;justify-content:space-between;padding-left:30px;margin-top:4px;">
+            <span style="font-size:9px;color:var(--g400);">2:00</span>
+            <span style="font-size:9px;color:var(--g400);">6:00</span>
+            <span style="font-size:9px;color:var(--g400);">10:00</span>
+            <span style="font-size:9px;color:var(--g400);">14:00</span>
+            <span style="font-size:9px;color:var(--g400);">18:00</span>
+            <span style="font-size:9px;color:var(--g400);">22:00</span>
+          </div>
+        </div>
+        <div class="sc-top-q">
+          <div class="sc-top-q-label">Top question today</div>
+          <div class="sc-top-q-text">What is this space designed to make you feel — and is it working?</div>
+        </div>
+      </div>
+
+      <!-- CARD 2: WHAT — rabbit holes scatter plot -->
+      <div class="syn-card">
+        <div class="sc-eyebrow">Where your mind went</div>
+        <div class="sc-title">Today's rabbit holes.</div>
+        <div class="sc-scatter">
+          <svg width="100%" height="200" viewBox="0 0 349 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- axes -->
+            <line x1="0" y1="100" x2="349" y2="100" stroke="#ddd" stroke-width="0.5" stroke-dasharray="4,3"/>
+            <line x1="174" y1="0" x2="174" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="4,3"/>
+            <!-- axis labels -->
+            <text x="174" y="12" text-anchor="middle" font-size="9" fill="#aaa">nonfiction</text>
+            <text x="174" y="196" text-anchor="middle" font-size="9" fill="#aaa">fiction</text>
+            <text x="6" y="103" font-size="9" fill="#aaa">breadth</text>
+            <text x="295" y="103" font-size="9" fill="#aaa">depth</text>
+            <!-- connection lines -->
+            <polyline points="220,60 260,44 295,74 280,104 260,118 200,82" fill="none" stroke="#111" stroke-width="1" stroke-linejoin="round"/>
+            <!-- nodes -->
+            <circle cx="200" cy="82" r="13" fill="white" stroke="#111" stroke-width="1.5"/>
+            <text x="200" y="86" text-anchor="middle" font-size="10" fill="#111" font-weight="500">1</text>
+            <circle cx="260" cy="44" r="13" fill="#111"/>
+            <text x="260" y="48" text-anchor="middle" font-size="10" fill="white" font-weight="500">2</text>
+            <circle cx="295" cy="74" r="13" fill="#111"/>
+            <text x="295" y="78" text-anchor="middle" font-size="10" fill="white" font-weight="500">3</text>
+            <circle cx="280" cy="104" r="13" fill="#111"/>
+            <text x="280" y="108" text-anchor="middle" font-size="10" fill="white" font-weight="500">4</text>
+            <circle cx="220" cy="60" r="13" fill="#111"/>
+            <text x="220" y="64" text-anchor="middle" font-size="10" fill="white" font-weight="500">6</text>
+            <circle cx="260" cy="118" r="13" fill="#111"/>
+            <text x="260" y="122" text-anchor="middle" font-size="10" fill="white" font-weight="500">5</text>
+          </svg>
+        </div>
+        <div class="sc-q-list">
+          <div class="sc-q-item">
+            <div class="sc-q-num" style="background:white;border:1.5px solid #111;"><span style="color:#111;">1</span></div>
+            <div><div class="sc-q-text">What is this space designed to make you feel?</div><div class="sc-q-tags">Observational · Culture, Space</div></div>
+          </div>
+          <div class="sc-q-item">
+            <div class="sc-q-num">2</div>
+            <div><div class="sc-q-text">What are people agreeing not to say here?</div><div class="sc-q-tags">Social · Human behavior</div></div>
+          </div>
+          <div class="sc-q-item">
+            <div class="sc-q-num">3</div>
+            <div><div class="sc-q-text">What's conspicuously missing from this scene?</div><div class="sc-q-tags">Absence · Observation</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: HOW OFTEN — weekly pattern -->
+      <div class="syn-card">
+        <div class="sc-eyebrow">This week</div>
+        <div class="sc-title">You've been wondering.</div>
+        <div class="sc-week-chart">
+          <div class="sc-week-row"><span class="sc-week-day">M</span><div class="sc-week-bar-wrap"><div class="sc-week-bar solid" style="width:52%;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">Tu</span><div class="sc-week-bar-wrap"><div class="sc-week-bar dotted" style="width:78%;height:14px;background:repeating-radial-gradient(circle,#888 1px,#888 1.5px,transparent 2px,transparent 4px);border-radius:2px;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">W</span><div class="sc-week-bar-wrap"><div class="sc-week-bar solid" style="width:48%;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">Th</span><div class="sc-week-bar-wrap"><div class="sc-week-bar dotted" style="width:88%;height:14px;background:repeating-radial-gradient(circle,#888 1px,#888 1.5px,transparent 2px,transparent 4px);border-radius:2px;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">F</span><div class="sc-week-bar-wrap"><div class="sc-week-bar solid" style="width:68%;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">Sa</span><div class="sc-week-bar-wrap"><div class="sc-week-bar dotted" style="width:95%;height:14px;background:repeating-radial-gradient(circle,#888 1px,#888 1.5px,transparent 2px,transparent 4px);border-radius:2px;"></div></div></div>
+          <div class="sc-week-row"><span class="sc-week-day">Su</span><div class="sc-week-bar-wrap"><div class="sc-week-bar solid" style="width:38%;"></div></div></div>
+        </div>
+        <div class="sc-week-labels"><span class="sc-week-label">Nonfrequent</span><span class="sc-week-label">Frequent</span></div>
+        <div class="sc-week-insights">
+          <div class="sc-week-insight"><b>Saturday</b> was the most curiosity-filled day.</div>
+          <div class="sc-week-insight"><b>Wednesday</b> was when you were away the most.</div>
+          <div class="sc-week-insight"><b>Thursday</b> was full of observational thoughts.</div>
+        </div>
+      </div>
+
+      <!-- CARD 4: THE QUESTION UNDERNEATH -->
+      <div class="syn-card">
+        <div class="sc-eyebrow">The question underneath the questions</div>
+        <p class="sc-meta-q">What does the way someone occupies a space — their posture, their clutter, their distance from others — reveal that they would never say out loud?</p>
+        <div style="height:0.5px;background:var(--border);margin-bottom:18px;"></div>
+        <div class="sc-body">Come back tomorrow with more inquiries to view the next question summary.</div>
+        <div style="margin-top:28px;" class="sc-return">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="#aaa" stroke-width="1.1" stroke-linecap="round"/></svg>
+          <span style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--g400);">Swipe to review</span>
+        </div>
+      </div>
+
+    </div><!-- /syn-track -->
+  </div><!-- /syn-track-wrap -->
+</div>
+
+<!-- ===================== MENU PANEL (slide-in, inside device) ===================== -->
+<div class="menu-panel" id="menu-panel">
+  <div class="sb dark"><span class="sb-time">9:41</span><div class="sb-right"><svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3.5" width="3" height="8.5" rx="0.8" fill="#111" opacity="0.85"/><rect x="4.5" y="2" width="3" height="10" rx="0.8" fill="#111" opacity="0.85"/><rect x="9" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.85"/><rect x="13.5" y="0" width="3" height="12" rx="0.8" fill="#111" opacity="0.25"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2C10.8 2 13.3 3.2 15 5.2L16 4C14 1.6 11.2 0 8 0C4.8 0 2 1.6 0 4L1 5.2C2.7 3.2 5.2 2 8 2Z" fill="#111" opacity="0.85"/><path d="M8 5C10 5 11.8 5.9 13 7.3L14 6.1C12.5 4.3 10.4 3 8 3C5.6 3 3.5 4.3 2 6.1L3 7.3C4.2 5.9 6 5 8 5Z" fill="#111" opacity="0.85"/><circle cx="8" cy="10.5" r="1.5" fill="#111" opacity="0.85"/></svg><span style="color:var(--black);">99%</span></div></div>
+  <div class="tn dark">
+    <div class="ham" id="menu-ham"><span></span><span></span><span></span></div>
+    <div class="close-x" id="menu-close"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#111" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+  </div>
+  <div style="padding-top:100px;flex:1;display:flex;flex-direction:column;">
+    <div class="menu-brand">CuriosityAgent</div>
+    <div class="menu-list">
+      <div class="menu-row" id="m-questions">
+        <div class="menu-row-l"><div class="menu-icon"><svg width="19" height="19" viewBox="0 0 19 19" fill="none"><circle cx="9.5" cy="9.5" r="8" stroke="#666" stroke-width="1.1"/><path d="M9.5 6.5C9.5 5.4 10.4 5 11 5H8C8.9 5 9.5 5.7 9.5 6.5V9" stroke="#666" stroke-width="1.1" stroke-linecap="round"/><circle cx="9.5" cy="12.5" r="0.9" fill="#666"/></svg></div><span class="menu-lbl">All questions</span></div>
+        <span class="menu-arr">→</span>
+      </div>
+      <div class="menu-row" id="m-synthesis">
+        <div class="menu-row-l"><div class="menu-icon"><svg width="19" height="19" viewBox="0 0 19 19" fill="none"><rect x="2" y="3" width="15" height="13" rx="1.5" stroke="#666" stroke-width="1.1"/><path d="M5.5 7.5h8M5.5 10.5h5.5" stroke="#666" stroke-width="1.1" stroke-linecap="round"/></svg></div><span class="menu-lbl">Today's synthesis</span></div>
+        <span class="menu-arr">→</span>
+      </div>
+      <div class="menu-row" id="m-socratic">
+        <div class="menu-row-l"><div class="menu-icon"><svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M3 5C3 4.1 3.7 3.3 4.6 3.3h9.8C15.3 3.3 16 4.1 16 5v6.3c0 .9-.7 1.7-1.6 1.7H10.5l-3.2 3.2v-3.2H4.6C3.7 13 3 12.2 3 11.3V5Z" stroke="#666" stroke-width="1.1"/></svg></div><span class="menu-lbl">Socr(AI)tic</span></div>
+        <span class="menu-arr">→</span>
+      </div>
+    </div>
+    <div style="flex:1;"></div>
+    <div class="menu-footer">
+      <div class="menu-row" id="m-settings" style="border-top:0.5px solid var(--border);border-bottom:none;">
+        <div class="menu-row-l"><div class="menu-icon"><svg width="19" height="19" viewBox="0 0 19 19" fill="none"><circle cx="9.5" cy="9.5" r="7" stroke="#666" stroke-width="1.1"/><circle cx="9.5" cy="9.5" r="2.2" stroke="#666" stroke-width="1.1"/><path d="M9.5 2.5v2M9.5 14.5v2M2.5 9.5h2M14.5 9.5h2" stroke="#666" stroke-width="1.1" stroke-linecap="round"/></svg></div><span class="menu-lbl">Settings</span></div>
+        <span class="menu-arr">→</span>
+      </div>
+      <div class="menu-footer-row">
+        <div class="mf-dot"></div>
+        <div class="mf-text">RECORDED 4H 12M TODAY<br>INQUIRED 23 TIMES</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /menu-panel -->
+
+</div><!-- /device -->
+<script>
+const S={q:document.getElementById('sq'),s:document.getElementById('ss'),y:document.getElementById('sy')};
+const menuPanel=document.getElementById('menu-panel');
+const bottomSheet=document.getElementById('bottom-sheet');
+const sheetScrim=document.getElementById('sheet-scrim');
+let camDown=false,saved=false,socState='idle',convIdx=0;
+let sheetOpen=false;
+
+/* ---- SCREEN ROUTER ---- */
+function show(k){
+  Object.values(S).forEach(s=>s.classList.remove('active'));
+  if(S[k]) S[k].classList.add('active');
+  closeMenu();
+  closeSheet();
+  if(k==='s') resetSoc();
+}
+
+/* ---- MENU PANEL ---- */
+function openMenu(){ menuPanel.classList.add('open'); }
+function closeMenu(){ menuPanel.classList.remove('open'); }
+
+/* ---- BOTTOM SHEET ---- */
+const SHEET_OPEN_Y = 172;   // translateY when fully open (px from bottom)
+const SHEET_CLOSED_Y = 100; // % — translateY(100%)
+
+function openSheet(){
+  sheetOpen=true;
+  bottomSheet.style.transition='transform .38s cubic-bezier(.4,0,.2,1)';
+  bottomSheet.style.transform=`translateY(calc(100% - 680px))`;
+  sheetScrim.classList.add('visible');
+}
+function closeSheet(){
+  sheetOpen=false;
+  bottomSheet.style.transition='transform .38s cubic-bezier(.4,0,.2,1)';
+  bottomSheet.style.transform='translateY(100%)';
+  sheetScrim.classList.remove('visible');
+}
+
+// ---- DRAG SYSTEM — clean, no shared state bugs ----
+const SHEET_CLOSED = 852;
+const SHEET_OPEN   = 172;
+
+let drag = null;
+
+function getCurrentY(){
+  const t = bottomSheet.style.transform;
+  if(!t) return SHEET_CLOSED;
+  const m = t.match(/translateY\(([\d.]+)px\)/);
+  if(m) return parseFloat(m[1]);
+  if(t.includes('calc')) return SHEET_OPEN;
+  return SHEET_CLOSED;
+}
+
+function setSheetY(y){
+  bottomSheet.style.transform = `translateY(${y}px)`;
+  const p = Math.max(0, Math.min(1, 1 - (y - SHEET_OPEN) / (SHEET_CLOSED - SHEET_OPEN)));
+  sheetScrim.style.background = `rgba(0,0,0,${0.22 * p})`;
+  if(p > 0) sheetScrim.classList.add('visible');
+  else sheetScrim.classList.remove('visible');
+}
+
+function beginDrag(e, initialY){
+  drag = { startClientY: e.clientY, startSheetY: initialY, lastY: e.clientY, lastTime: Date.now(), vel: 0 };
+  bottomSheet.style.transition = 'none';
+  try { e.currentTarget.setPointerCapture(e.pointerId); } catch(_){}
+}
+
+function moveDrag(e){
+  if(!drag) return;
+  const now = Date.now(), dt = Math.max(now - drag.lastTime, 1);
+  drag.vel = (e.clientY - drag.lastY) / dt * 16;
+  drag.lastY = e.clientY;
+  drag.lastTime = now;
+  const newY = Math.max(SHEET_OPEN, Math.min(SHEET_CLOSED, drag.startSheetY + (e.clientY - drag.startClientY)));
+  setSheetY(newY);
+}
+
+function finishDrag(e){
+  if(!drag) return;
+  const moved = Math.abs(e.clientY - drag.startClientY);
+  const currentY = getCurrentY();
+  const vel = drag.vel;
+  drag = null;
+  // opening gesture: small move (tap), flick up, or dragged above threshold
+  const isOpening = drag === null && (moved < 10 || vel < -4 || currentY < SHEET_CLOSED * 0.7);
+  // closing gesture: flick down or dragged below threshold
+  const isClosing = vel > 4 || currentY > SHEET_CLOSED * 0.55;
+  // decide: if we started from closed position, default to open; from open, default to close
+  const startedClosed = drag === null; // always true here, use currentY
+  if(currentY < (SHEET_OPEN + SHEET_CLOSED) / 2){
+    // sheet is mostly open — close only if flicked/dragged down
+    if(isClosing) closeSheet(); else openSheet();
+  } else {
+    // sheet is mostly closed — open if tapped or dragged/flicked up
+    if(vel < -3 || moved < 10 || currentY < SHEET_CLOSED * 0.75) openSheet(); else closeSheet();
+  }
+}
+
+// Sheet — drag to close from top handle zone
+bottomSheet.addEventListener('pointerdown', e => {
+  if(e.target.closest('#filter-dropdown,#filter-menu,.arch-return,.arch-item,.arch-list')) return;
+  const rect = bottomSheet.getBoundingClientRect();
+  if(e.clientY - rect.top > 80) return;
+  beginDrag(e, getCurrentY());
+});
+bottomSheet.addEventListener('pointermove', e => { if(drag) moveDrag(e); });
+bottomSheet.addEventListener('pointerup', finishDrag);
+bottomSheet.addEventListener('pointercancel', () => { drag = null; });
+
+// Pull tab — drag OR tap to open
+const pullTab = document.getElementById('q-drawer-pull');
+pullTab.addEventListener('pointerdown', e => {
+  setSheetY(SHEET_CLOSED); // anchor at closed before drag
+  beginDrag(e, SHEET_CLOSED);
+});
+pullTab.addEventListener('pointermove', e => { if(drag) moveDrag(e); });
+pullTab.addEventListener('pointerup', finishDrag);
+pullTab.addEventListener('pointercancel', () => { drag = null; });
+
+
+/* ---- CAMERA COLLAPSE ---- */
+const cam=document.getElementById('cam');
+const qcl=document.getElementById('qcl');
+const qbar=document.getElementById('qbar');
+const qSB=document.getElementById('q-sb');
+const qTN=document.getElementById('q-tn');
+
+cam.addEventListener('click',()=>{
+  if(camDown) return;
+  camDown=true;
+  cam.classList.add('collapsed');
+  setTimeout(()=>{
+    qSB.classList.replace('light','dark');
+    qSB.querySelectorAll('svg rect,svg path,svg circle').forEach(el=>{
+      if(el.getAttribute('fill')==='white'){el.setAttribute('fill','#111');}
+    });
+    qSB.querySelector('.sb-time').style.textShadow='none';
+    qTN.classList.replace('light','dark');
+  },300);
+  setTimeout(()=>{qcl.classList.add('vis');qbar.classList.add('vis');},280);
+});
+
+function resetCam(){
+  camDown=false;
+  cam.classList.remove('collapsed');
+  qcl.classList.remove('vis');
+  qbar.classList.remove('vis');
+  qSB.classList.replace('dark','light');
+  qTN.classList.replace('dark','light');
+  saved=false;
+  document.getElementById('save-btn').classList.remove('saved');
+  document.getElementById('save-path').setAttribute('fill','none');
+  document.getElementById('save-lbl').textContent='Save';
+}
+
+/* ---- SAVE ---- */
+document.getElementById('save-btn').addEventListener('click',()=>{
+  saved=!saved;
+  const btn=document.getElementById('save-btn');
+  const path=document.getElementById('save-path');
+  const lbl=document.getElementById('save-lbl');
+  if(saved){btn.classList.add('saved');path.setAttribute('fill','#111');lbl.textContent='Saved';}
+  else{btn.classList.remove('saved');path.setAttribute('fill','none');lbl.textContent='Save';}
+});
+
+/* ---- SOCRATIC ENTRY ---- */
+document.getElementById('soc-btn').addEventListener('click',()=>show('s'));
+
+/* ---- NAV ---- */
+document.getElementById('q-ham').addEventListener('click',openMenu);
+document.getElementById('arch-return').addEventListener('click',closeSheet);
+sheetScrim.addEventListener('click',closeSheet);
+document.getElementById('menu-close').addEventListener('click',closeMenu);
+document.getElementById('menu-ham').addEventListener('click',closeMenu);
+document.getElementById('m-questions').addEventListener('click',()=>{closeMenu();openSheet();show('q');});
+document.getElementById('m-synthesis').addEventListener('click',()=>show('y'));
+document.getElementById('m-socratic').addEventListener('click',()=>show('s'));
+document.getElementById('m-settings').addEventListener('click',closeMenu);
+document.getElementById('soc-back').addEventListener('click',openMenu);
+document.getElementById('syn-back').addEventListener('click',openMenu);
+
+/* ---- FILTER DROPDOWN ---- */
+const fd=document.getElementById('filter-dropdown');
+const fm=document.getElementById('filter-menu');
+const fl=document.getElementById('filter-label');
+
+// All archive items — for filtering
+const archItems=document.querySelectorAll('.arch-item');
+const dateLabels=document.querySelectorAll('.date-group-label');
+
+fd.addEventListener('click',e=>{
+  e.stopPropagation();
+  e.preventDefault();
+  fm.classList.toggle('open');
+});
+
+// Close when clicking outside the dropdown
+document.addEventListener('click',e=>{
+  if(!fd.contains(e.target)) fm.classList.remove('open');
+});
+
+fm.querySelectorAll('.fm-item').forEach(item=>{
+  item.addEventListener('click',e=>{
+    e.stopPropagation();
+    e.preventDefault();
+    const filter=item.dataset.filter;
+    // update active state
+    fm.querySelectorAll('.fm-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+    fl.textContent=filter;
+    fm.classList.remove('open');
+    // filter list items
+    archItems.forEach(el=>{
+      const meta=el.querySelector('.arch-item-meta');
+      if(!meta) return;
+      const show=filter==='All registers'||meta.textContent.includes(filter);
+      el.style.display=show?'flex':'none';
+    });
+    // hide date labels with no visible children
+    dateLabels.forEach(label=>{
+      let next=label.nextElementSibling;
+      let hasVisible=false;
+      while(next && !next.classList.contains('date-group-label')){
+        if(next.classList.contains('arch-item') && next.style.display!=='none') hasVisible=true;
+        next=next.nextElementSibling;
+      }
+      label.style.display=hasVisible?'':'none';
+    });
+  });
+});
+
+/* ---- SOCRATIC ---- */
+const thread=document.getElementById('soc-thread');
+const tapBtn=document.getElementById('tap-btn');
+const tapO=document.getElementById('tap-o');
+const tapI=document.getElementById('tap-i');
+const tapD=document.getElementById('tap-d');
+const tapLbl=document.getElementById('tap-lbl');
+const socLbl=document.getElementById('soc-lbl');
+const socDot=document.getElementById('soc-dot');
+
+const conv=[
+  {role:'agent',text:'How did the space make you feel before you asked yourself that?'},
+  {role:'user',text:'I think it was trying to feel calm, like a library. But there\'s something off — maybe the lighting is too warm, or maybe everyone\'s on their phones...'},
+  {role:'agent',text:'What would it feel like if everyone put their phones down?'},
+  {role:'user',text:'Probably like the space it was pretending to be.'},
+  {role:'agent',text:'What does a space that earns its calm actually look like to you?'},
+];
+
+function setSocState(s){
+  socState=s;
+  tapO.className='tap-o';tapI.className='tap-i';tapD.className='tap-d';tapLbl.className='tap-lbl';
+  if(s==='idle'||s==='waiting'){
+    socLbl.textContent='Waiting';socDot.className='dot gray';
+    tapLbl.textContent='Tap to respond';
+  } else if(s==='listening'){
+    socLbl.textContent='Listening';socDot.className='dot black';
+    tapO.classList.add('on');tapI.classList.add('on');tapD.classList.add('on');
+    tapLbl.textContent='Continue speaking';tapLbl.classList.add('teal');
+  } else if(s==='responding'){
+    socLbl.textContent='Responding';socDot.className='dot teal';
+    tapO.classList.add('on');tapI.classList.add('on');
+    tapLbl.textContent='Tap to respond';
+  }
+}
+
+function addAgentCurrent(text,withCur){
+  const el=document.createElement('div');el.className='t-agent-with-ring';
+  el.innerHTML=`<div class="active-ring"><div class="active-ring-dot"></div></div><p>${text}${withCur?'<span class="cur"></span>':''}</p>`;
+  thread.appendChild(el);thread.scrollTop=thread.scrollHeight;return el;
+}
+function demoteLast(){
+  const cur=thread.querySelector('.t-agent-with-ring');if(!cur) return;
+  const txt=cur.querySelector('p').textContent.trim();
+  const past=document.createElement('div');past.className='t-agent-past';
+  past.innerHTML=`<div class="past-ring"><div class="past-ring-dot"></div></div><p>${txt}</p>`;
+  thread.replaceChild(past,cur);
+}
+function addUser(text,withCur){
+  const el=document.createElement('div');el.className='t-user';
+  el.innerHTML=`<p>${text}${withCur?'<span class="cur"></span>':''}</p>`;
+  thread.appendChild(el);thread.scrollTop=thread.scrollHeight;return el;
+}
+
+function resetSoc(){
+  thread.innerHTML='';convIdx=0;setSocState('idle');
+  setTimeout(()=>{
+    setSocState('responding');
+    addAgentCurrent(conv[0].text,true);
+    setTimeout(()=>{
+      thread.querySelectorAll('.cur').forEach(c=>c.remove());
+      setSocState('waiting');convIdx=1;
+    },2000);
+  },500);
+}
+
+tapBtn.addEventListener('click',()=>{
+  if(socState!=='waiting'||convIdx>=conv.length) return;
+  setSocState('listening');
+  const turn=conv[convIdx];if(turn.role!=='user') return;
+  const words=turn.text.split(' ');let wi=0,disp='';
+  const el=addUser('',true);const p=el.querySelector('p');
+  const ti=setInterval(()=>{
+    if(wi<words.length){
+      disp+=(wi>0?' ':'')+words[wi++];
+      p.innerHTML=disp+'<span class="cur"></span>';
+      thread.scrollTop=thread.scrollHeight;
+    } else {
+      clearInterval(ti);p.innerHTML=disp;convIdx++;
+      setTimeout(()=>{
+        demoteLast();setSocState('responding');
+        if(convIdx<conv.length&&conv[convIdx].role==='agent'){
+          setTimeout(()=>{
+            addAgentCurrent(conv[convIdx].text,true);
+            setTimeout(()=>{
+              thread.querySelectorAll('.cur').forEach(c=>c.remove());
+              convIdx++;setSocState(convIdx<conv.length?'waiting':'idle');
+            },2000);
+          },700);
+        }
+      },500);
+    }
+  },72);
+});
+
+/* ---- SYNTHESIS CAROUSEL ---- */
+const synTrack = document.getElementById('syn-track');
+const synDots = document.querySelectorAll('.syn-dot');
+const synLabel = document.getElementById('syn-card-label');
+const cardLabels = ['When', 'What', 'How often', 'Underneath'];
+let synIdx = 0;
+let synDragStart = null;
+
+function cardW(){ return document.querySelector('.syn-card').offsetWidth; }
+
+function goToCard(i, animate=true){
+  synIdx = Math.max(0, Math.min(3, i));
+  const w = cardW();
+  synTrack.style.transition = animate ? 'transform .38s cubic-bezier(.4,0,.2,1)' : 'none';
+  synTrack.style.transform = `translateX(${-synIdx * w}px)`;
+  synDots.forEach((d,j) => d.classList.toggle('active', j===synIdx));
+  synLabel.textContent = cardLabels[synIdx];
+}
+
+synDots.forEach(d => d.addEventListener('click', () => goToCard(parseInt(d.dataset.card))));
+
+const synWrap = document.getElementById('syn-track-wrap');
+synWrap.addEventListener('pointerdown', e => {
+  synDragStart = { x: e.clientX, idx: synIdx };
+  synTrack.style.transition = 'none';
+  synWrap.setPointerCapture(e.pointerId);
+});
+synWrap.addEventListener('pointermove', e => {
+  if(!synDragStart) return;
+  const w = cardW();
+  const dx = e.clientX - synDragStart.x;
+  const base = -synDragStart.idx * w;
+  const minX = -3 * w;
+  const maxX = 0;
+  let raw = base + dx;
+  const clamped = raw > maxX ? maxX + (raw - maxX) * 0.18
+                : raw < minX ? minX + (raw - minX) * 0.18
+                : raw;
+  synTrack.style.transform = `translateX(${clamped}px)`;
+});
+synWrap.addEventListener('pointerup', e => {
+  if(!synDragStart) return;
+  const dx = e.clientX - synDragStart.x;
+  const startIdx = synDragStart.idx;
+  synDragStart = null;
+  if(dx < -40) goToCard(startIdx + 1);
+  else if(dx > 40) goToCard(startIdx - 1);
+  else goToCard(startIdx);
+});
+synWrap.addEventListener('pointercancel', () => {
+  if(synDragStart){ goToCard(synIdx); synDragStart=null; }
+});
+
+// Init card
+show('q');
+</script>
+</body>
+</html>
