@@ -197,6 +197,9 @@
             <section id="speculative">
               <span class="section-label">speculative extension</span>
               <h2 class="section-heading">If the hardware wasn't the ceiling</h2>
+              <figure class="project-figure">
+                <img src="../home-imgs/P.IMG-speculative-hero.png" alt="Speculative Curiosity Agent app screens showing question arrival, archive, and Socratic mode.">
+              </figure>
               <p>The wearable works, but the hardware constrained what we could design for, with no persistent screen, no voice input, no way to go deeper on a question once it landed. This is the app I would have built alongside it: the same system, a different surface.</p>
               <p>Each of the four flows maps directly to a gap the hardware left open.</p>
 
@@ -243,8 +246,11 @@
 
               <div class="project-callout">
                 <span class="callout-label">Design principle</span>
-                <p>The AI never closes the gap. It sits in the question with you, asks what you didn't think to ask yourself, and stops before it becomes an answer. Knowing when to withhold is a design decision too.</p>
+                <p>Define what the AI won't do before you define what it will: consider what the AI can't do, because that's where the relationship between users and AI starts.</p>
               </div>
+
+              <h3>How this was built</h3>
+              <p>This prototype was built beyond mockups: designed in Figma, generated into a React base with Figma Make, then rebuilt in Claude Code to handle the interaction states: the video-to-thumbnail contraction, live voice transcription, and the four-state Socratic flow. The AI handled the scaffolding. The constraint reasoning (what to show, what to withhold, when the system should stop) remained mine to decide.</p>
 
               <div style="display: flex; justify-content: center; margin: 2rem 0;">
                 <iframe
