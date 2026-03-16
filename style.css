@@ -2038,6 +2038,10 @@ code {
     width: 100%;
 }
 
+.ptile-row--50-50 {
+    grid-template-columns: 1fr 1fr;
+}
+
 .ptile-row--60-40 {
     grid-template-columns: 3fr 2fr;
 }
@@ -2060,7 +2064,8 @@ code {
 /* ─── RESPONSIVE ───────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .ptile-row--60-40,
-    .ptile-row--40-60 {
+    .ptile-row--40-60,
+    .ptile-row--50-50 {
         grid-template-columns: 1fr;
     }
 
