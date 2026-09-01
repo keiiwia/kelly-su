@@ -1229,18 +1229,24 @@ body.playground-page .fun-canvas-container::-webkit-scrollbar {
     display: none;
 }
 
+body.playground-page #funCanvasTiler {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-rows: repeat(3, max-content);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+}
+
 body.playground-page .fun-canvas {
     display: grid;
-    grid-template-columns: repeat(6, clamp(200px, 18vw, 290px));
-    grid-auto-rows: minmax(200px, auto);
-    column-gap: clamp(2.5rem, 4vw, 5rem);
-    row-gap: clamp(3rem, 5vh, 5rem);
-    padding: clamp(4rem, 7vw, 9rem);
+    grid-template-columns: repeat(6, clamp(190px, 16vw, 270px));
+    grid-auto-rows: minmax(190px, auto);
+    column-gap: clamp(4rem, 7vw, 9rem);
+    row-gap: clamp(5rem, 8vh, 10rem);
+    padding: clamp(5rem, 8vw, 11rem);
     min-width: 160vw;
     min-height: 160vh;
     align-items: start;
-    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    will-change: transform;
 }
 
 body.playground-page .fun-drag-hint {
@@ -1289,6 +1295,13 @@ body.playground-page .fun-card {
     padding: 0.25rem 0;
     max-width: 100%;
     user-select: none;
+    transition: translate 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: translate, scale;
+}
+
+body.playground-page .fun-card:not(.playground-hidden):hover {
+    scale: 1.06;
 }
 
 body.playground-page .fun-card.playground-hidden {
@@ -1324,22 +1337,7 @@ body.playground-page .fun-card img {
     border-radius: 8px;
 }
 
-/* Grid placement + transform scatter.
-   6-col grid: alternating columns left empty so cards breathe.
-   Transforms shift each card off its cell anchor for an organic feel.
-   col1/col6 sit just outside the initial viewport center → invite exploration. */
-body.playground-page .fun-card:nth-child(2)  { grid-column: 3; grid-row: 1; }                             /* Concept Art (hidden) */
-body.playground-page .fun-card:nth-child(3)  { grid-column: 4; grid-row: 1; transform: translate(1rem, -1.5rem); }   /* Monere */
-body.playground-page .fun-card:nth-child(4)  { grid-column: 5; grid-row: 2; transform: translate(-2.5rem, -1rem); }  /* N[u]ll */
-body.playground-page .fun-card:nth-child(5)  { grid-column: 5; grid-row: 3; }                             /* Photography (hidden) */
-body.playground-page .fun-card:nth-child(6)  { grid-column: 4; grid-row: 3; }                             /* Web Experiments (hidden) */
-body.playground-page .fun-card:nth-child(7)  { grid-column: 1; grid-row: 3; }                             /* Mixed Media (hidden) */
-body.playground-page .fun-card:nth-child(8)  { grid-column: 2; grid-row: 2; transform: translate(2rem, 3rem); }     /* Lucky, lucky! */
-body.playground-page .fun-card:nth-child(9)  { grid-column: 3; grid-row: 2; transform: translate(-1rem, 0.5rem); }  /* Gods as Humans */
-body.playground-page .fun-card:nth-child(10) { grid-column: 6; grid-row: 2; transform: translate(-0.5rem, 2rem); }  /* Photobooth */
-body.playground-page .fun-card:nth-child(11) { grid-column: 6; grid-row: 1; transform: translate(-2rem, 3.5rem); }  /* Fridge */
-body.playground-page .fun-card:nth-child(12) { grid-column: 3; grid-row: 3; transform: translate(1.5rem, -1.5rem); } /* PANYNJ */
-body.playground-page .fun-card:nth-child(13) { grid-column: 1; grid-row: 2; transform: translate(1.5rem, -2rem); }  /* Pinterest */
+/* Cards auto-flow into the dense grid; scatter is applied inline by JS */
 
 body.playground-page .fun-card--label p {
     display: none;
