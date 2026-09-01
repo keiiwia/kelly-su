@@ -590,3 +590,94 @@ figure.project-figure figcaption {
         grid-template-columns: 1fr;
     }
 }
+
+/* ── Protected project gate ──────────────────────────────────────── */
+.protected-gate {
+    padding: 4rem 0 2rem;
+}
+
+.protected-gate-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9d96a8;
+    margin: 0 0 1.25rem;
+}
+
+.protected-gate-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #3d3a45;
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
+}
+
+.protected-gate-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #6b6575;
+    margin: 0 0 2rem;
+}
+
+.protected-gate-form {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    max-width: 360px;
+}
+
+.protected-gate-input {
+    flex: 1;
+    padding: 0.6rem 0.9rem;
+    border: 1.5px solid #cdc7d8;
+    border-radius: 8px;
+    background: #FAF7F4;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #3d3a45;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.protected-gate-input:focus {
+    border-color: #3d3a45;
+}
+
+.protected-gate-input.is-error {
+    border-color: #c0392b;
+    animation: gate-shake 0.3s ease;
+}
+
+.protected-gate-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: #3d3a45;
+    color: #F3EEEB;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+}
+
+.protected-gate-btn:hover {
+    background: #5a5465;
+}
+
+.protected-gate-error {
+    margin: 0.75rem 0 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #c0392b;
+}
+
+@keyframes gate-shake {
+    0%, 100% { transform: translateX(0); }
+    25%       { transform: translateX(-6px); }
+    75%       { transform: translateX(6px); }
+}

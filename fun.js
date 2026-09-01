@@ -16,10 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < FILL_COUNT; i++) {
         const clone = sourceCards[i % sourceCards.length].cloneNode(true);
-        // Pseudo-random scatter that stays the same across all tiled copies
-        const sx = (Math.sin(i * 1.6180339) * 1.4).toFixed(2);
-        const sy = (Math.sin(i * 2.7182818) * 1.8).toFixed(2);
-        clone.style.transform = `translate(${sx}rem, ${sy}rem)`;
+        // Two-frequency sin per axis gives a more chaotic, less periodic pattern.
+        // Values stay deterministic so every cloned tile looks identical (seamless teleport).
+        const rx = (Math.sin(i * 1.6180339) + Math.sin(i * 3.1415926 + 0.7)) * 0.5;
+        const ry = (Math.sin(i * 2.7182818) + Math.sin(i * 1.4142135 + 1.3)) * 0.5;
+        const rr = (Math.sin(i * 0.5772156) + Math.sin(i * 2.2360679 + 0.4)) * 0.5;
+        const sx = (rx * 7).toFixed(2);   // ±7rem horizontal
+        const sy = (ry * 8).toFixed(2);   // ±8rem vertical
+        const rot = (rr * 9).toFixed(2);  // ±9deg rotation
+        clone.style.transform = `translate(${sx}rem, ${sy}rem) rotate(${rot}deg)`;
         canvas.appendChild(clone);
     }
 

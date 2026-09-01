@@ -1241,9 +1241,9 @@ body.playground-page .fun-canvas {
     display: grid;
     grid-template-columns: repeat(6, clamp(190px, 16vw, 270px));
     grid-auto-rows: minmax(190px, auto);
-    column-gap: clamp(4rem, 7vw, 9rem);
-    row-gap: clamp(5rem, 8vh, 10rem);
-    padding: clamp(5rem, 8vw, 11rem);
+    column-gap: clamp(7rem, 12vw, 16rem);
+    row-gap: clamp(9rem, 14vh, 18rem);
+    padding: clamp(8rem, 12vw, 16rem);
     min-width: 160vw;
     min-height: 160vh;
     align-items: start;
