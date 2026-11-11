@@ -1,11 +1,16 @@
 name: Deploy site
 
-# Builds the Astro site and serves the archived vanilla-JS site (tag v1-vanilla) at /v1/.
-# Requires Settings → Pages → Source: "GitHub Actions".
+# Publishes the site with GitHub Actions (Settings → Pages → Source: "GitHub Actions").
+# Before launch, the vanilla-JS site (tag v1-vanilla) is the whole site, so every existing link keeps working.
+# After launch, the Astro site is the home page and the vanilla site is archived at /v1/.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
+env:
+  # Set to "true" when the Astro redesign is ready to replace the vanilla site.
+  LAUNCH_ASTRO: "false"
 
 permissions:
   contents: read
@@ -28,21 +33,27 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+      - run: npm run build # runs before launch too, so build errors show up early
 
-      - name: Check out v1 archive
+      - name: Check out the vanilla site
         uses: actions/checkout@v7
         with:
           ref: v1-vanilla
           path: v1-src
 
-      - name: Add v1 archive at /v1/
+      - name: Add the vanilla site
         run: |
+          if [ "$LAUNCH_ASTRO" = "true" ]; then
+            dest=dist/v1/              # launched: archive at /v1/
+          else
+            rm -rf dist && mkdir dist  # not launched yet: the vanilla site is the whole site
+            dest=dist/
+          fi
           rsync -a \
             --exclude .git --exclude .gitignore --exclude .vscode \
             --exclude .DS_Store --exclude CNAME --exclude README.md \
-            v1-src/ dist/v1/
-          du -sh dist dist/v1
+            v1-src/ "$dest"
+          du -sh dist
 
       - uses: actions/configure-pages@v6
 
