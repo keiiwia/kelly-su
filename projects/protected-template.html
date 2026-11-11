@@ -23,35 +23,75 @@
 
     <div class="project-layout">
 
-        <aside class="project-toc" aria-label="Table of contents">
-            <a href="../index.html" class="project-toc-home">← home</a>
-        </aside>
+        <aside class="project-toc"></aside>
 
         <main class="project-main" id="projectMain">
 
-            <!-- Password gate — visible until the correct password is entered -->
-            <div class="protected-gate" id="protectedGate">
-                <p class="protected-gate-label">Protected</p>
-                <h1 class="protected-gate-heading">This project is private.</h1>
-                <p class="protected-gate-sub">Enter the password to view.</p>
-                <form class="protected-gate-form" id="gateForm" autocomplete="off">
-                    <input
-                        class="protected-gate-input"
-                        id="gateInput"
-                        type="password"
-                        placeholder="Password"
-                        aria-label="Project password"
-                        autocomplete="new-password"
-                    >
-                    <button class="protected-gate-btn" type="submit">Unlock</button>
-                </form>
-                <p class="protected-gate-error" id="gateError" hidden aria-live="polite">
-                    Incorrect password.
-                </p>
+            <!-- Public intro — visible to everyone -->
+            <div class="project-hero">
+                <img src="../home-imgs/HERO-IMAGE.png" alt="Project hero image">
             </div>
+
+            <div class="project-header-block">
+                <p class="project-label">category · platform · year</p>
+                <h1>Project title</h1>
+            </div>
+
+            <hr class="project-divider">
+
+            <div class="project-details-grid">
+                <div class="project-detail"><span class="project-detail-label">Role</span><span class="project-detail-value">TBD</span></div>
+                <div class="project-detail"><span class="project-detail-label">Timeline</span><span class="project-detail-value">TBD</span></div>
+                <div class="project-detail"><span class="project-detail-label">Tools</span><span class="project-detail-value">TBD</span></div>
+                <div class="project-detail"><span class="project-detail-label">Skills</span><span class="project-detail-value">TBD</span></div>
+            </div>
+
+            <section id="overview">
+                <span class="section-label">overview</span>
+                <h2 class="section-heading">One-line summary of the project.</h2>
+                <p>A short public overview: what the project is and your role in it.</p>
+            </section>
+
+            <!-- Everything below the lock is encrypted -->
+            <div class="protected-divider" aria-hidden="true">
+                <svg class="protected-lock" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="11" width="14" height="10" rx="2"/>
+                    <path class="shackle shackle-closed" d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                    <path class="shackle shackle-open" d="M8 11V7a4 4 0 0 1 7.8-1.2"/>
+                </svg>
+            </div>
+
+            <section class="protected-gate" id="protectedGate" aria-labelledby="gateHeading">
+                <!-- Teaser image, blurred with CSS. Use a pre-blurred image if the original is confidential. -->
+                <figure class="protected-preview" aria-hidden="true">
+                    <img src="../home-imgs/HERO-IMAGE.png" alt="">
+                </figure>
+
+                <div class="protected-body">
+                    <h2 class="protected-heading" id="gateHeading">This project is under NDA.</h2>
+                    <p class="protected-sub">Enter the password to view the full case study.</p>
+                    <p class="protected-contact">No password? <a href="mailto:kellysu@newschool.edu?subject=Case%20study%20password">Email me</a></p>
+
+                    <form class="protected-form" id="gateForm" autocomplete="off">
+                        <div class="protected-entry">
+                            <label class="protected-sr" for="gateInput">Password</label>
+                            <!-- maxlength = password length (one slot per character); keep #gateHint in sync -->
+                            <input class="protected-input" id="gateInput" type="text" maxlength="6" required
+                                   autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+                                   aria-describedby="gateHint gateError">
+                            <div class="protected-slots" aria-hidden="true"></div>
+                        </div>
+                        <span class="protected-sr" id="gateHint">Six characters. Unlocks automatically once all six are entered.</span>
+                        <button class="protected-submit" type="submit">Unlock</button>
+                    </form>
+                    <p class="protected-error" id="gateError" aria-live="polite"></p>
+                </div>
+            </section>
 
             <!--
                 Encrypted content blob — generated by encrypt-util.html.
+                Encrypt only the gated sections (everything that goes below the lock),
+                not the public intro above.
                 Contains: salt (PBKDF2), iv (AES-GCM), ciphertext (base64).
                 None of these values reveal the password or the plaintext.
             -->
@@ -73,89 +113,6 @@
         </nav>
     </footer>
 
-    <script>
-    (function () {
-        const gate  = document.getElementById('protectedGate');
-        const form  = document.getElementById('gateForm');
-        const input = document.getElementById('gateInput');
-        const err   = document.getElementById('gateError');
-
-        // Parse the encrypted blob embedded in the page
-        let payload;
-        try {
-            payload = JSON.parse(document.getElementById('encryptedPayload').textContent.trim());
-        } catch {
-            err.textContent = 'Encrypted content missing or malformed.';
-            err.hidden = false;
-            form.hidden = true;
-            return;
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            err.hidden = true;
-            input.classList.remove('is-error');
-
-            const password = input.value;
-            if (!password) return;
-
-            try {
-                const salt       = b64ToBuffer(payload.salt);
-                const iv         = b64ToBuffer(payload.iv);
-                const ciphertext = b64ToBuffer(payload.ciphertext);
-
-                // Derive a 256-bit AES-GCM key from the password using PBKDF2.
-                // 100 000 iterations makes brute-force expensive.
-                const keyMaterial = await crypto.subtle.importKey(
-                    'raw',
-                    new TextEncoder().encode(password),
-                    'PBKDF2',
-                    false,
-                    ['deriveKey']
-                );
-                const key = await crypto.subtle.deriveKey(
-                    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
-                    keyMaterial,
-                    { name: 'AES-GCM', length: 256 },
-                    false,
-                    ['decrypt']
-                );
-
-                // AES-GCM is authenticated: a wrong password causes the auth-tag
-                // check to fail and throws — no partial plaintext ever leaks.
-                const plaintext = await crypto.subtle.decrypt(
-                    { name: 'AES-GCM', iv },
-                    key,
-                    ciphertext
-                );
-
-                const html = new TextDecoder().decode(plaintext);
-
-                // Swap gate out and inject the decrypted project content
-                const main = document.getElementById('projectMain');
-                main.innerHTML = html;
-
-                // Re-run any inline scripts that were in the decrypted content
-                main.querySelectorAll('script').forEach(old => {
-                    const s = document.createElement('script');
-                    if (old.src) s.src = old.src;
-                    else s.textContent = old.textContent;
-                    old.replaceWith(s);
-                });
-
-            } catch {
-                // Wrong password or tampered ciphertext — show error, no info leaked
-                err.hidden = false;
-                input.classList.add('is-error');
-                input.value = '';
-                input.focus();
-            }
-        });
-
-        function b64ToBuffer(b64) {
-            return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-        }
-    })();
-    </script>
+    <script src="../protected.js"></script>
 </body>
 </html>

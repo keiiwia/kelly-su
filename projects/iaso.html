@@ -27,7 +27,7 @@
 
         <!-- Sticky TOC -->
         <aside class="project-toc" aria-label="Table of contents">
-            <a href="../index.html" class="project-toc-home">← home</a>
+            <a href="#solution" class="project-jump-btn">Jump to solution →</a>
             <nav class="project-toc-nav">
                 <a href="#overview">overview</a>
                 <a href="#context">context</a>
@@ -49,7 +49,7 @@
                 <img src="../home-imgs/iaso-hero.png" alt="Iaso app screens">
             </div>
 
-            <p style="margin: 0 0 1rem;"><a href="#solution" class="project-link project-jump-btn">Jump to solution →</a></p>
+            <p class="project-jump-inline" style="margin: 0 0 1rem;"><a href="#solution" class="project-link project-jump-btn">Jump to solution →</a></p>
 
             <!-- Title block -->
             <div class="project-header-block">
@@ -377,7 +377,7 @@
                         <video src="../videos/PVID-feature-smartscan.mp4" controls playsinline muted></video>
                     </div>
                     <div class="project-feature-text">
-                        <h3>Smart AI Scan <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                        <h3>Smart AI Scan <span style="font-family:'Geist',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                         <p>On-device ML scans a prescription and auto-fills medication details — the single biggest setup friction today. Keeps health data private and offline. User reviews and confirms before saving. This is the bet that makes Month 1 stick.</p>
                     </div>
                 </div> -- >
@@ -387,7 +387,7 @@
                         <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted></video>
                     </div>
                     <div class="project-feature-text">
-                        <h3>GPS location nodes <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                        <h3>GPS location nodes <span style="font-family:'Geist',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                         <p>Reminders that fire when you arrive home (or another saved location) instead of at a fixed time. Plus pattern recognition: if you consistently take a dose earlier or later than set, the app offers to auto-adjust the schedule. Both are intentional bets on adaptation over rigidity.</p>
                     </div>
                 </div> -- >
@@ -424,7 +424,7 @@
                     <img src="" alt="Caregiver alert to patient view">
                 </figure> -- >
 
-                <!--- <h3>GPS reminder trigger <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
+                <!--- <h3>GPS reminder trigger <span style="font-family:'Geist',sans-serif;font-size:0.7rem;font-weight:600;color:#C98338;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;margin-left:0.4rem;">in development</span></h3>
                 <p>Reminder fires when user arrives at saved location instead of at a fixed time.</p>
                 <figure class="project-figure">
                     <video src="../videos/PVID-feature-adaptivesched.mp4" controls playsinline muted style="width:100%;height:auto;display:block;border-radius:6px;"></video>
@@ -474,21 +474,7 @@
         </nav>
     </footer>
 
-    <script>
-        // Scroll spy for TOC
-        const sections = document.querySelectorAll('section[id]');
-        const tocLinks = document.querySelectorAll('.project-toc-nav a');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('is-active'));
-                    const active = document.querySelector(`.project-toc-nav a[href="#${entry.target.id}"]`);
-                    if (active) active.classList.add('is-active');
-                }
-            });
-        }, { rootMargin: '-20% 0px -70% 0px' });
-        sections.forEach(s => observer.observe(s));
-    </script>
+    <script src="../toc.js"></script>
 
 </body>
 </html>

@@ -27,7 +27,6 @@
 
         <!-- Sticky TOC -->
         <aside class="project-toc" aria-label="Table of contents">
-            <a href="../index.html" class="project-toc-home">← home</a>
             <nav class="project-toc-nav">
                 <a href="#overview">overview</a>
                 <a href="#context">context</a>
@@ -150,7 +149,7 @@
                 <p>The design brief that came out of research: a modular, human-centered on-body drug delivery ecosystem that simplifies treatment, reduces anxiety, and grows with the patient — serving the full care network, not just the person wearing the device.</p>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-brief.png" alt="Atlas design brief and opportunity map">
+                    <img src="../project-imgs/atlas-brief.jpg" alt="Atlas design brief and opportunity map">
                     <figcaption>Opportunity mapping — from device-centric to ecosystem-centric thinking</figcaption>
                 </figure>
             </section>
@@ -165,7 +164,7 @@
                 <p>It tested badly. Too many moving parts, too much cognitive overhead, overlapping functions that added complexity without adding value. We stripped it back.</p>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-v1.png" alt="Atlas early concept — combined touchscreen unit">
+                    <img src="../project-imgs/atlas-v1.jpg" alt="Atlas early concept — combined touchscreen unit">
                     <figcaption>Early concept: one unit trying to do everything. Tested poorly — users found it overwhelming.</figcaption>
                 </figure>
 
@@ -176,7 +175,7 @@
                 <p>The syringe pump mechanism required a form factor too large for the rounded, wearable shape we needed. Switching to a peristaltic pump — inspired by IV drip mechanics — reduced the physical footprint significantly while improving delivery consistency. One constraint solved two problems simultaneously.</p>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-iteration.png" alt="Atlas iteration showing pump mechanism change">
+                    <img src="../project-imgs/atlas-iteration.jpg" alt="Atlas iteration showing pump mechanism change">
                     <figcaption>The pump mechanism switch unlocked the rounded form factor — less bulk, same delivery performance</figcaption>
                 </figure>
 
@@ -194,7 +193,7 @@
                 <h2 class="section-heading">Three connected objects. One continuous experience.</h2>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-system.png" alt="Atlas full ecosystem — device, watch, speaker dock">
+                    <img src="../project-imgs/atlas-system.jpg" alt="Atlas full ecosystem — device, watch, speaker dock">
                     <figcaption>The Atlas ecosystem — OBDS device, smartwatch, and home speaker dock</figcaption>
                 </figure>
 
@@ -202,7 +201,7 @@
                 <p>Modular needle heads — hypodermic or microneedle depending on treatment. Octopus-inspired suction adhesive that maintains contact through sweat and body oils. Reusable 30mL cartridge. Peristaltic pump for consistent delivery. Soft rounded form available in a full skin tone range plus expressive colors — because a device you're proud to wear gets worn.</p>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-device.png" alt="Atlas OBDS device detail renders">
+                    <img src="../project-imgs/atlas-device.jpg" alt="Atlas OBDS device detail renders">
                     <figcaption>OBDS device in multiple colorways — form designed to be wearable, not just functional</figcaption>
                 </figure>
 
@@ -239,7 +238,7 @@
                 <p>Refillable cartridges reduce packaging waste and enable subscription logistics. Anonymized adherence data provides population-level insight. A branded patient ecosystem creates a direct ongoing relationship with users — not just a one-time prescription.</p>
 
                 <figure class="project-figure">
-                    <img src="../project-imgs/atlas-stakeholders.png" alt="Atlas stakeholder ecosystem map">
+                    <img src="../project-imgs/atlas-stakeholders.jpg" alt="Atlas stakeholder ecosystem map">
                     <figcaption>Stakeholder ecosystem — the platform serves all four simultaneously</figcaption>
                 </figure>
             </section>
@@ -285,21 +284,7 @@
         </nav>
     </footer>
 
-    <script>
-        // Scroll spy for TOC
-        const sections = document.querySelectorAll('section[id]');
-        const tocLinks = document.querySelectorAll('.project-toc-nav a');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('is-active'));
-                    const active = document.querySelector(`.project-toc-nav a[href="#${entry.target.id}"]`);
-                    if (active) active.classList.add('is-active');
-                }
-            });
-        }, { rootMargin: '-20% 0px -70% 0px' });
-        sections.forEach(s => observer.observe(s));
-    </script>
+    <script src="../toc.js"></script>
 
 </body>
 </html>

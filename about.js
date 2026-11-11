@@ -13,14 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Start with On my birthday, then the rest */
     const photos = [
-        { src: 'images/profilepics/onmybirthday.jpg', caption: 'On my birthday' },
-        { src: 'images/profilepics/atharvardyale.jpg', caption: 'At Harvard Yale' },
-        { src: 'images/profilepics/atparsons.JPG', caption: 'At Parsons' },
-        { src: 'images/profilepics/awe2025.png', caption: 'AWE 2025' },
-        { src: 'images/profilepics/foodwithfriends.jpg', caption: 'Food with friends' },
-        { src: 'images/profilepics/halloweenasamushroom.JPG', caption: 'Halloween as a mushroom' },
-        { src: 'images/profilepics/lockedindoingwork.JPEG', caption: 'Locked in doing work' },
-        { src: 'images/profilepics/matcharun.jpg', caption: 'Matcha run' }
+        { src: 'images/profilepics/web/onmybirthday.jpg', caption: 'On my birthday' },
+        { src: 'images/profilepics/web/atharvardyale.jpg', caption: 'At Harvard Yale' },
+        { src: 'images/profilepics/web/atparsons.jpg', caption: 'At Parsons' },
+        { src: 'images/profilepics/web/awe2025.jpg', caption: 'AWE 2025' },
+        { src: 'images/profilepics/web/lockedindoingwork.jpg', caption: 'Locked in doing work' },
+        { src: 'images/profilepics/web/matcharun.jpg', caption: 'Matcha run' }
     ];
 
     let index = 0;

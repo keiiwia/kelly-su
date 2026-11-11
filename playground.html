@@ -21,70 +21,74 @@
     </header>
 
     <main class="playground-main">
-        <div class="playground-intro" aria-label="Playground intro">
-            <!-- <h1>Playground</h1> -->
-            <p class="playground-hero-line">Work hard, play hard.</p>
-            <p class="playground-hero-sub">Scroll to explore.</p>
-        </div>
+        <section class="play" id="play" aria-labelledby="playHeading">
+            <h1 class="play-sr" id="playHeading">Playground</h1>
 
-        <section class="playground-section--explore" aria-label="Playground canvas">
-            <div class="fun-content" id="funMain">
-                <div class="fun-canvas-container" id="funCanvasContainer">
-                    <div class="fun-canvas" id="funCanvas">
-                        <div class="fun-intro">
-                            <!-- <h1>Playground</h1> -->
-                            <p>Work hard, play hard.<br> Scroll to explore.</p>
-                        </div>
+            <!-- Tick rail: drag to move through the projects -->
+            <div class="play-rail" role="slider" tabindex="0" aria-orientation="vertical"
+                 aria-label="Playground projects" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1" aria-valuetext="Monere">
+                <div class="play-ticks" aria-hidden="true"></div>
+                <span class="play-rail-index" aria-hidden="true"></span>
+                <p class="play-hint" aria-hidden="true">drag <span>&darr;</span></p>
+            </div>
 
-                        <div class="fun-card">
-                            <img src="images/fun-projects/monere/monere-assets.png" alt="Monere assets">
-                            <h2>Monere</h2>
-                            <p>A game concept about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
-                        </div>
-                        <div class="fun-card">
-                            <img src="images/fun-projects/null/null-asset.png" alt="Null asset">
-                            <h2>N[u]ll</h2>
-                            <p>2-D Gameboy-style exploration game of identity and finding purpose.</p>
-                        </div>
-                        <!-- <div class="fun-card playground-hidden">
-                            <h2>Photography</h2>
-                            <p>Click to view all selected photos, based on collections.</p>
-                        </div> -->
-                        
-                        <!-- <div class="fun-card">
-                            <h2>Lucky, lucky!</h2>
-                            <p>A series about capitalism, human greed, and luck.</p>
-                        </div> -->
-                        <a href="projects/operation.html" class="fun-card">
-                            <img src="images/fun-projects/operation-icon.png" alt="Gods as Humans">
-                            <h2>Gods as Humans</h2>
-                            <p>A critique on speculative futures through physical hardware and software.</p>
-                        </a>
-                        <a href="projects/photobooth.html" class="fun-card">
-                            <img src="images/fun-projects/photobooth-icon.png" alt="Photobooth">
-                            <h2>Photobooth</h2>
-                            <p>Generate color palettes from photos through K-Means and Agglomerative clustering.</p>
-                        </a>
-                        <a href="projects/fridge.html" class="fun-card">
-                            <img src="images/fun-projects/fridge-icon.png" alt="The Lab's Digital Fridge">
-                            <h2>The Lab's Digital Fridge</h2>
-                            <p>A visual collection of 3D-scanned calories consumed at work.</p>
-                        </a>
-                        <a href="projects/panynj.html" class="fun-card">
-                            <img src="images/fun-projects/panynj-icon.png" alt="City as Systems">
-                            <h2>City as Systems</h2>
-                            <p>A visualization of the Hudson's economic flows through PANYNJ trade data.</p>
-                        </a>
-                        <a href="projects/pinterest.html" class="fun-card">
-                            <img src="images/fun-projects/pinterest-icon.png" alt="Self as Systems">
-                            <h2>Self as Systems</h2>
-                            <p>Who the algorithm thinks I am, vs. who it thinks a new user is.</p>
-                        </a>
-                    </div>
-                </div>
+            <!-- Projects (a plain list without JavaScript; an arc with it) -->
+            <ol class="play-list">
+                <li class="play-item">
+                    <img src="images/fun-projects/web/monere.webp" alt="Monere game assets" width="1000" height="768" draggable="false">
+                    <h2>Monere</h2>
+                    <p>A game concept about the pursuit of everything as an omnipotent player, yet not an omnipotent in-game character.</p>
+                </li>
+                <li class="play-item">
+                    <img src="images/fun-projects/web/null.webp" alt="N[u]ll character art" width="1000" height="989" draggable="false">
+                    <h2>N[u]ll</h2>
+                    <p>2-D Gameboy-style exploration game of identity and finding purpose.</p>
+                </li>
+                <li class="play-item" data-preview="videos/previews/operation.mp4" data-poster="videos/previews/operation.webp">
+                    <img src="images/fun-projects/web/operation.webp" alt="Gods as Humans" width="800" height="958" draggable="false">
+                    <h2>Gods as Humans</h2>
+                    <p>A critique on speculative futures through physical hardware and software.</p>
+                    <a href="projects/operation.html">View project &rarr;</a>
+                </li>
+                <li class="play-item">
+                    <img src="images/fun-projects/web/photobooth.webp" alt="Photobooth" width="736" height="1000" draggable="false">
+                    <h2>Photobooth</h2>
+                    <p>Generate color palettes from photos through K-Means and Agglomerative clustering.</p>
+                    <a href="projects/photobooth.html">View project &rarr;</a>
+                </li>
+                <li class="play-item" data-preview="videos/previews/fridge.mp4" data-poster="videos/previews/fridge.webp">
+                    <img src="images/fun-projects/web/fridge.webp" alt="The Lab's Digital Fridge" width="674" height="856" draggable="false">
+                    <h2>The Lab's Digital Fridge</h2>
+                    <p>A visual collection of 3D-scanned calories consumed at work.</p>
+                    <a href="projects/fridge.html">View project &rarr;</a>
+                </li>
+                <li class="play-item" data-preview="videos/previews/panynj.mp4" data-poster="videos/previews/panynj.webp">
+                    <img src="images/fun-projects/web/panynj.webp" alt="City as Systems" width="959" height="949" draggable="false">
+                    <h2>City as Systems</h2>
+                    <p>A visualization of the Hudson's economic flows through PANYNJ trade data.</p>
+                    <a href="projects/panynj.html">View project &rarr;</a>
+                </li>
+                <li class="play-item" data-preview="videos/previews/pinterest.mp4" data-poster="videos/previews/pinterest.webp">
+                    <img src="images/fun-projects/web/pinterest.webp" alt="Self as Systems" width="571" height="999" draggable="false">
+                    <h2>Self as Systems</h2>
+                    <p>Who the algorithm thinks I am, vs. who it thinks a new user is.</p>
+                    <a href="projects/pinterest.html">View project &rarr;</a>
+                </li>
+            </ol>
+
+            <!-- Appears over the centred project after a short pause, for projects with a preview clip -->
+            <div class="play-peek" aria-hidden="true">
+                <video class="play-peek-media" muted loop playsinline preload="none"></video>
+            </div>
+
+            <!-- Details for the project locked in the centre -->
+            <div class="play-info">
+                <p class="play-count"><span class="play-count-current">01</span></p>
+                <h2 class="play-title" aria-live="polite"></h2>
+                <p class="play-desc"></p>
+                <a class="play-link" href="#">View project &rarr;</a>
             </div>
         </section>
-
     </main>
 
     <div id="playgroundModal" class="playground-modal" aria-hidden="true" role="dialog" aria-label="Project">
@@ -95,6 +99,6 @@
         </div>
     </div>
 
-    <script src="fun.js"></script>
+    <script src="playground.js"></script>
 </body>
 </html>
