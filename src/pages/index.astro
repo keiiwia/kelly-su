@@ -1,0 +1,10 @@
+---
+import Base from "../layouts/Base.astro";
+import Hello from "../components/Hello.tsx";
+---
+
+<Base>
+  <main class="flex min-h-screen items-center justify-center p-8">
+    <Hello client:load />
+  </main>
+</Base>
